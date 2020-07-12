@@ -1,4 +1,4 @@
-package dto;
+package dto.tsv;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
