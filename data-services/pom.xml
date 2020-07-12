@@ -18,7 +18,7 @@
 
         <dependency>
             <groupId>org.pdxfinder</groupId>
-            <artifactId>data-model</artifactId>
+            <artifactId>data-repository</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

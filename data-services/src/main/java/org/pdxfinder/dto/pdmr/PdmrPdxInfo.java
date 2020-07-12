@@ -1,4 +1,4 @@
-package dto.pdmr;
+package org.pdxfinder.dto.pdmr;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
