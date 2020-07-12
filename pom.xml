@@ -14,9 +14,9 @@
         <module>dependencies</module>
         <module>parent</module>
         <module>data-model</module>
-        <module>data-repositories</module>
         <module>data-services</module>
         <module>transformer-cli</module>
+        <module>data-repository</module>
     </modules>
 
 

@@ -10,9 +10,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>data-repositories</artifactId>
+    <artifactId>data-repository</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
+
 
     <dependencies>
         <dependency>
