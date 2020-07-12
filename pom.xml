@@ -16,6 +16,7 @@
         <module>data-model</module>
         <module>data-services</module>
         <module>data-repositories</module>
+        <module>transformer-cli</module>
     </modules>
 
 

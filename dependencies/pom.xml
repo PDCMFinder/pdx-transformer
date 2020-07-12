@@ -16,22 +16,6 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <name>PDX Transformer dependencies management module</name>
-    <description>PDX Finder External Resource Transformer Dependencies</description>
-
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
-
-<!--    <build>-->
-<!--        <plugins>-->
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
-<!--    </build>-->
-
     <repositories>
         <repository>
             <id>spring-milestones</id>
@@ -43,6 +27,12 @@
         </repository>
     </repositories>
 
+    <name>PDX Transformer dependencies management module</name>
+    <description>PDX Finder External Resource Transformer Dependencies</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
 
     <dependencyManagement>
         <dependencies>
@@ -51,8 +41,6 @@
 
         </dependencies>
     </dependencyManagement>
-
-
 
     <dependencies>
         <dependency>
