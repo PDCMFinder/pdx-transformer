@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="data-model" />
         <module name="data-repositories" />
+        <module name="transformer-cli" />
         <module name="data-services" />
       </profile>
     </annotationProcessing>
@@ -18,6 +19,7 @@
       <module name="dependencies" target="1.8" />
       <module name="parent" target="1.8" />
       <module name="pdx-transformer" target="1.5" />
+      <module name="transformer-cli" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -28,6 +30,7 @@
       <module name="dependencies" options="" />
       <module name="parent" options="-parameters" />
       <module name="pdx-transformer" options="-parameters" />
+      <module name="transformer-cli" options="-parameters" />
     </option>
   </component>
 </project>

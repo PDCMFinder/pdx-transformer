@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/dependencies/dependencies.iml" filepath="$PROJECT_DIR$/dependencies/dependencies.iml" />
       <module fileurl="file://$PROJECT_DIR$/parent/parent.iml" filepath="$PROJECT_DIR$/parent/parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/pdx-transformer.iml" filepath="$PROJECT_DIR$/pdx-transformer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/transformer-cli/transformer-cli.iml" filepath="$PROJECT_DIR$/transformer-cli/transformer-cli.iml" />
     </modules>
   </component>
 </project>
