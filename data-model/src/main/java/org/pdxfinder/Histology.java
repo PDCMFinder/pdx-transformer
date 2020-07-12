@@ -10,21 +10,46 @@ public class Histology {
     @SequenceGenerator(name = "histology_Sequence", sequenceName = "HISTOLOGY_SEQ")
     private String histologyseqnbr;
 
-    private String sampleseqnbr;
-    private String tumorgradeseqnbr;
-    private String tumorcontent;
+    @Column(name = "sampleseqnbr")
+    private String sampleSeqnbr;
+
+    @Column(name = "tumorgradeseqnbr")
+    private String tumorGradeSeqNbr;
+
+    @Column(name = "tumorcontent")
+    private String tumorContent;
+
+    @Column(name = "necrosis")
     private String necrosis;
+
+    @Column(name = "stromal")
     private String stromal;
-    private String inflammatorycellseqnbr;
-    private String pathologynotes;
+
+    @Column(name = "inflammatorycellseqnbr")
+    private String inflammatoryCellSeqNbr;
+
+    @Column(name = "pathologynotes")
+    private String pathologyNotes;
+
     @Lob
-    private byte[] lowmagimage;
-    private String lowmagimagemimetype;
-    private String lowmagimagefilename;
+    @Column(name = "lowmagimage")
+    private byte[] lowMagImage;
+
+    @Column(name = "lowmagimagemimetype")
+    private String lowMagImageMimeType;
+
+    @Column(name = "lowmagimagefilename")
+    private String lowMagImageFileName;
+
     @Lob
-    private byte[] highmagimage;
-    private String highmagimagemimetype;
-    private String highmagimagefilename;
+    @Column(name = "highmagimage")
+    private byte[] highMagImage;
+
+    @Column(name = "highmagimagemimetype")
+    private String highMagImageMimeType;
+
+    @Column(name = "highmagimagefilename")
+    private String highMagImageFileName;
 
 
     public String getHistologyseqnbr() {
@@ -36,35 +61,34 @@ public class Histology {
         return this;
     }
 
-    public String getSampleseqnbr() {
-        return sampleseqnbr;
+    public String getSampleSeqnbr() {
+        return sampleSeqnbr;
     }
 
-    public Histology setSampleseqnbr(String sampleseqnbr) {
-        this.sampleseqnbr = sampleseqnbr;
+    public Histology setSampleSeqnbr(String sampleSeqnbr) {
+        this.sampleSeqnbr = sampleSeqnbr;
         return this;
     }
 
 
-    public String getTumorgradeseqnbr() {
-        return tumorgradeseqnbr;
+    public String getTumorGradeSeqNbr() {
+        return tumorGradeSeqNbr;
     }
 
-    public Histology setTumorgradeseqnbr(String tumorgradeseqnbr) {
-        this.tumorgradeseqnbr = tumorgradeseqnbr;
+    public Histology setTumorGradeSeqNbr(String tumorGradeSeqNbr) {
+        this.tumorGradeSeqNbr = tumorGradeSeqNbr;
         return this;
     }
 
 
-    public String getTumorcontent() {
-        return tumorcontent;
+    public String getTumorContent() {
+        return tumorContent;
     }
 
-    public Histology setTumorcontent(String tumorcontent) {
-        this.tumorcontent = tumorcontent;
+    public Histology setTumorContent(String tumorContent) {
+        this.tumorContent = tumorContent;
         return this;
     }
-
 
     public String getNecrosis() {
         return necrosis;
@@ -86,82 +110,80 @@ public class Histology {
     }
 
 
-    public String getInflammatorycellseqnbr() {
-        return inflammatorycellseqnbr;
+    public String getInflammatoryCellSeqNbr() {
+        return inflammatoryCellSeqNbr;
     }
 
-    public Histology setInflammatorycellseqnbr(String inflammatorycellseqnbr) {
-        this.inflammatorycellseqnbr = inflammatorycellseqnbr;
+    public Histology setInflammatoryCellSeqNbr(String inflammatorycellseqnbr) {
+        this.inflammatoryCellSeqNbr = inflammatorycellseqnbr;
+        return this;
+    }
+
+    public String getPathologyNotes() {
+        return pathologyNotes;
+    }
+
+    public Histology setPathologyNotes(String pathologynotes) {
+        this.pathologyNotes = pathologynotes;
+        return this;
+    }
+
+    public byte[] getLowMagImage() {
+        return lowMagImage;
+    }
+
+    public Histology setLowMagImage(byte[] lowmagimage) {
+        this.lowMagImage = lowmagimage;
         return this;
     }
 
 
-    public String getPathologynotes() {
-        return pathologynotes;
+    public String getLowMagImageMimeType() {
+        return lowMagImageMimeType;
     }
 
-    public Histology setPathologynotes(String pathologynotes) {
-        this.pathologynotes = pathologynotes;
+    public Histology setLowMagImageMimeType(String lowmagimagemimetype) {
+        this.lowMagImageMimeType = lowmagimagemimetype;
         return this;
     }
 
 
-    public byte[] getLowmagimage() {
-        return lowmagimage;
+    public String getLowMagImageFileName() {
+        return lowMagImageFileName;
     }
 
-    public Histology setLowmagimage(byte[] lowmagimage) {
-        this.lowmagimage = lowmagimage;
+    public Histology setLowMagImageFileName(String lowmagimagefilename) {
+        this.lowMagImageFileName = lowmagimagefilename;
         return this;
     }
 
 
-    public String getLowmagimagemimetype() {
-        return lowmagimagemimetype;
+    public byte[] getHighMagImage() {
+        return highMagImage;
     }
 
-    public Histology setLowmagimagemimetype(String lowmagimagemimetype) {
-        this.lowmagimagemimetype = lowmagimagemimetype;
+    public Histology setHighMagImage(byte[] highmagimage) {
+        this.highMagImage = highmagimage;
         return this;
     }
 
 
-    public String getLowmagimagefilename() {
-        return lowmagimagefilename;
+    public String getHighMagImageMimeType() {
+        return highMagImageMimeType;
     }
 
-    public Histology setLowmagimagefilename(String lowmagimagefilename) {
-        this.lowmagimagefilename = lowmagimagefilename;
+    public Histology setHighMagImageMimeType(String highmagimagemimetype) {
+        this.highMagImageMimeType = highmagimagemimetype;
         return this;
     }
 
 
-    public byte[] getHighmagimage() {
-        return highmagimage;
+    public String getHighMagImageFileName() {
+        return highMagImageFileName;
     }
 
-    public Histology setHighmagimage(byte[] highmagimage) {
-        this.highmagimage = highmagimage;
-        return this;
-    }
-
-
-    public String getHighmagimagemimetype() {
-        return highmagimagemimetype;
-    }
-
-    public Histology setHighmagimagemimetype(String highmagimagemimetype) {
-        this.highmagimagemimetype = highmagimagemimetype;
-        return this;
-    }
-
-
-    public String getHighmagimagefilename() {
-        return highmagimagefilename;
-    }
-
-    public Histology setHighmagimagefilename(String highmagimagefilename) {
-        this.highmagimagefilename = highmagimagefilename;
+    public Histology setHighMagImageFileName(String highmagimagefilename) {
+        this.highMagImageFileName = highmagimagefilename;
         return this;
     }
 
