@@ -29,7 +29,6 @@ public class PriorTherapies {
     this.priortherapiesseqnbr = priortherapiesseqnbr;
   }
 
-
   public String getPatientseqnbr() {
     return patientseqnbr;
   }
@@ -37,7 +36,6 @@ public class PriorTherapies {
   public void setPatientseqnbr(String patientseqnbr) {
     this.patientseqnbr = patientseqnbr;
   }
-
 
   public String getRegimen() {
     return regimen;
@@ -47,7 +45,6 @@ public class PriorTherapies {
     this.regimen = regimen;
   }
 
-
   public java.sql.Date getDateregimenstarted() {
     return dateregimenstarted;
   }
@@ -55,7 +52,6 @@ public class PriorTherapies {
   public void setDateregimenstarted(java.sql.Date dateregimenstarted) {
     this.dateregimenstarted = dateregimenstarted;
   }
-
 
   public String getBestresponseseqnbr() {
     return bestresponseseqnbr;
@@ -65,7 +61,6 @@ public class PriorTherapies {
     this.bestresponseseqnbr = bestresponseseqnbr;
   }
 
-
   public String getDurationmonths() {
     return durationmonths;
   }
@@ -73,7 +68,6 @@ public class PriorTherapies {
   public void setDurationmonths(String durationmonths) {
     this.durationmonths = durationmonths;
   }
-
 
   public String getComments() {
     return comments;
@@ -83,7 +77,6 @@ public class PriorTherapies {
     this.comments = comments;
   }
 
-
   public String getPtid() {
     return ptid;
   }
@@ -91,7 +84,6 @@ public class PriorTherapies {
   public void setPtid(String ptid) {
     this.ptid = ptid;
   }
-
 
   public String getStandardizedregimenseqnbr() {
     return standardizedregimenseqnbr;
