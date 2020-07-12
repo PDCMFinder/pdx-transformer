@@ -8,9 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="data-model" />
         <module name="data-repositories" />
-        <module name="dependencies" />
         <module name="data-services" />
-        <module name="parent" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,7 +17,7 @@
       <module name="data-services" target="1.8" />
       <module name="dependencies" target="1.8" />
       <module name="parent" target="1.8" />
-      <module name="pdx-transformer" target="1.8" />
+      <module name="pdx-transformer" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -27,7 +25,7 @@
       <module name="data-model" options="-parameters" />
       <module name="data-repositories" options="-parameters" />
       <module name="data-services" options="-parameters" />
-      <module name="dependencies" options="-parameters" />
+      <module name="dependencies" options="" />
       <module name="parent" options="-parameters" />
       <module name="pdx-transformer" options="-parameters" />
     </option>

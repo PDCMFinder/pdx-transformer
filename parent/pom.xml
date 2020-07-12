@@ -2,14 +2,57 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>pdx-transformer</artifactId>
-        <groupId>org.pdxfinder</groupId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <parent>
+        <artifactId>dependencies</artifactId>
+        <groupId>org.pdxfinder</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../dependencies/pom.xml</relativePath>
+    </parent>
+
+    <name>PDX Transformer Parent Module</name>
+    <url>http://www.pdxfinder.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:https://github.com/PDXFinder/pdx-transformer.git</connection>
+        <developerConnection>scm:git:https://github.com/PDXFinder/pdx-transformer.git</developerConnection>
+        <url>https://github.com/PDXFinder/pdx-transformer.git</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>sprintell</id>
+            <name>Mosaku Abayomi</name>
+            <email>abayomi@ebi.ac.uk</email>
+            <organization>EBI</organization>
+            <organizationUrl>http://www.ebi.ac.uk</organizationUrl>
+            <roles>
+                <role>administrator</role>
+                <role>developer</role>
+            </roles>
+            <timezone>0</timezone>
+            <properties/>
+        </developer>
+    </developers>
+
 
 
 </project>
