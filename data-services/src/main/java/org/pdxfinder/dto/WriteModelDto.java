@@ -1,4 +1,4 @@
-package org.pdxfinder.dto.tsv;
+package org.pdxfinder.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "publications",
 })
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class MetadataModel {
+public class WriteModelDto {
 
     @JsonProperty("Field")
     private String field;
@@ -49,52 +49,52 @@ public class MetadataModel {
     @JsonProperty("publications")
     private String publications;
 
-    public MetadataModel setField(String field) {
+    public WriteModelDto setField(String field) {
         this.field = field;
         return this;
     }
 
-    public MetadataModel setModelId(String modelId) {
+    public WriteModelDto setModelId(String modelId) {
         this.modelId = modelId;
         return this;
     }
 
-    public MetadataModel setHostStrain(String hostStrain) {
+    public WriteModelDto setHostStrain(String hostStrain) {
         this.hostStrain = hostStrain;
         return this;
     }
 
-    public MetadataModel setHostStrainFull(String hostStrainFull) {
+    public WriteModelDto setHostStrainFull(String hostStrainFull) {
         this.hostStrainFull = hostStrainFull;
         return this;
     }
 
-    public MetadataModel setEngraftmentSite(String engraftmentSite) {
+    public WriteModelDto setEngraftmentSite(String engraftmentSite) {
         this.engraftmentSite = engraftmentSite;
         return this;
     }
 
-    public MetadataModel setEngraftmentType(String engraftmentType) {
+    public WriteModelDto setEngraftmentType(String engraftmentType) {
         this.engraftmentType = engraftmentType;
         return this;
     }
 
-    public MetadataModel setSampleType(String sampleType) {
+    public WriteModelDto setSampleType(String sampleType) {
         this.sampleType = sampleType;
         return this;
     }
 
-    public MetadataModel setSampleState(String sampleState) {
+    public WriteModelDto setSampleState(String sampleState) {
         this.sampleState = sampleState;
         return this;
     }
 
-    public MetadataModel setPassageNumber(String passageNumber) {
+    public WriteModelDto setPassageNumber(String passageNumber) {
         this.passageNumber = passageNumber;
         return this;
     }
 
-    public MetadataModel setPublications(String publications) {
+    public WriteModelDto setPublications(String publications) {
         this.publications = publications;
         return this;
     }
@@ -103,7 +103,7 @@ public class MetadataModel {
         return field;
     }
 
-    public MetadataModel createMetadataModel() {
+    public WriteModelDto createMetadataModel() {
         return this;
     }
 

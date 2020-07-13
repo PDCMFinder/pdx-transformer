@@ -1,4 +1,4 @@
-package org.pdxfinder.dto.tsv;
+package org.pdxfinder.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "age_at_initial_diagnosis",
 })
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class MetadataPatient {
+public class WritePatientDto {
 
     @JsonProperty("Field")
     private String field;
@@ -41,42 +41,42 @@ public class MetadataPatient {
     @JsonProperty("age_at_initial_diagnosis")
     private String ageAtInitialDiagnosis;
 
-    public MetadataPatient setField(String field) {
+    public WritePatientDto setField(String field) {
         this.field = field;
         return this;
     }
 
-    public MetadataPatient setPatientId(String patientId) {
+    public WritePatientDto setPatientId(String patientId) {
         this.patientId = patientId;
         return this;
     }
 
-    public MetadataPatient setSex(String sex) {
+    public WritePatientDto setSex(String sex) {
         this.sex = sex;
         return this;
     }
 
-    public MetadataPatient setHistory(String history) {
+    public WritePatientDto setHistory(String history) {
         this.history = history;
         return this;
     }
 
-    public MetadataPatient setEthnicity(String ethnicity) {
+    public WritePatientDto setEthnicity(String ethnicity) {
         this.ethnicity = ethnicity;
         return this;
     }
 
-    public MetadataPatient setEthnicityAssessmentMethod(String ethnicityAssessmentMethod) {
+    public WritePatientDto setEthnicityAssessmentMethod(String ethnicityAssessmentMethod) {
         this.ethnicityAssessmentMethod = ethnicityAssessmentMethod;
         return this;
     }
 
-    public MetadataPatient setInitialDiagnosis(String initialDiagnosis) {
+    public WritePatientDto setInitialDiagnosis(String initialDiagnosis) {
         this.initialDiagnosis = initialDiagnosis;
         return this;
     }
 
-    public MetadataPatient setAgeAtInitialDiagnosis(String ageAtInitialDiagnosis) {
+    public WritePatientDto setAgeAtInitialDiagnosis(String ageAtInitialDiagnosis) {
         this.ageAtInitialDiagnosis = ageAtInitialDiagnosis;
         return this;
     }
@@ -85,7 +85,7 @@ public class MetadataPatient {
         return field;
     }
 
-    public MetadataPatient createMetadataPatient() {
+    public WritePatientDto createMetadataPatient() {
         return this;
     }
 

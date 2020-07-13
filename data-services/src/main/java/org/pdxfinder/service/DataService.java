@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class OracleDataService {
+public class DataService {
 
-    private final Logger log = LoggerFactory.getLogger(OracleDataService.class);
+    private final Logger log = LoggerFactory.getLogger(DataService.class);
 
     private final GendersRepository gendersRepository;
     private final SpecimenRepository specimenRepository;
@@ -34,22 +34,22 @@ public class OracleDataService {
     private String outputDirectory;
 
 
-    public OracleDataService(GendersRepository gendersRepository,
-                             SpecimenRepository specimenRepository,
-                             ClinicalResponsesRepo clinicalResponsesRepo,
-                             CurrentTherapyRepo currentTherapyRepo,
-                             ImplantationSitesRepo implantationSitesRepo,
-                             MouseStrainsRepo mouseStrainsRepo,
-                             PatientInfoRepo patientInfoRepo,
-                             PriorTherapiesRepo priorTherapiesRepo,
-                             ProvidedTissueOriginsRepo providedTissueOriginsRepo,
-                             SampleRepo sampleRepo,
-                             SpecimenSearchrepo specimenSearchrepo,
-                             StandardizedRegimensRepo standardizedRegimensRepo,
-                             TissueTypesRepo tissueTypesRepo,
-                             TumorGradesRepo tumorGradesRepo,
-                             TumorGradeStageTypesRepo tumorGradeStageTypesRepo,
-                             HistologyRepository histologyRepository) {
+    public DataService(GendersRepository gendersRepository,
+                       SpecimenRepository specimenRepository,
+                       ClinicalResponsesRepo clinicalResponsesRepo,
+                       CurrentTherapyRepo currentTherapyRepo,
+                       ImplantationSitesRepo implantationSitesRepo,
+                       MouseStrainsRepo mouseStrainsRepo,
+                       PatientInfoRepo patientInfoRepo,
+                       PriorTherapiesRepo priorTherapiesRepo,
+                       ProvidedTissueOriginsRepo providedTissueOriginsRepo,
+                       SampleRepo sampleRepo,
+                       SpecimenSearchrepo specimenSearchrepo,
+                       StandardizedRegimensRepo standardizedRegimensRepo,
+                       TissueTypesRepo tissueTypesRepo,
+                       TumorGradesRepo tumorGradesRepo,
+                       TumorGradeStageTypesRepo tumorGradeStageTypesRepo,
+                       HistologyRepository histologyRepository) {
         this.gendersRepository = gendersRepository;
         this.specimenRepository = specimenRepository;
         this.clinicalResponsesRepo = clinicalResponsesRepo;
@@ -114,7 +114,7 @@ public class OracleDataService {
     }
 
     public List<ClinicalResponses> getAllClinicalResponses() {
-        log.info("Loading clinical rwsponses");
+        log.info("Loading clinical responses");
         return clinicalResponsesRepo.findAll();
     }
 

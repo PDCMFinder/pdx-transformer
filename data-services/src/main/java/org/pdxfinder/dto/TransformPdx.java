@@ -1,4 +1,4 @@
-package org.pdxfinder.dto.pdmr;
+package org.pdxfinder.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -41,7 +41,7 @@ import java.util.List;
         "Validations",
         "Source url"
 })
-public class PdmrPdxInfo {
+public class TransformPdx {
 
     private Integer id;
 
@@ -77,21 +77,21 @@ public class PdmrPdxInfo {
     private String dateAtCollection;
     private String accessibility;
 
-    private List<Treatment> treatments;
-    private List<Validation> validations;
-    private List<PdmrSample> samples;
+    private List<TransformTreatment> transformTreatments;
+    private List<TransformValidation> transformValidations;
+    private List<TransformSample> samples;
 
 
-    public PdmrPdxInfo() {
+    public TransformPdx() {
     }
 
 
-    public PdmrPdxInfo(String modelID, String patientID, String gender, String age, String race, String ethnicity, String specimenSite,
-                       String primarySite, String initialDiagnosis, String clinicalDiagnosis, String tumorType, String stageClassification,
-                       String stageValue, String gradeClassification, String gradeValue, String sampleType, String strain, String mouseSex,
-                       String treatmentNaive, String engraftmentSite, String engraftmentType, String sourceUrl,
-                       String extractionMethod, String dateAtCollection, String accessibility,
-                       List<Treatment> treatments, List<Validation> validations, List<PdmrSample> samples) {
+    public TransformPdx(String modelID, String patientID, String gender, String age, String race, String ethnicity, String specimenSite,
+                        String primarySite, String initialDiagnosis, String clinicalDiagnosis, String tumorType, String stageClassification,
+                        String stageValue, String gradeClassification, String gradeValue, String sampleType, String strain, String mouseSex,
+                        String treatmentNaive, String engraftmentSite, String engraftmentType, String sourceUrl,
+                        String extractionMethod, String dateAtCollection, String accessibility,
+                        List<TransformTreatment> transformTreatments, List<TransformValidation> transformValidations, List<TransformSample> samples) {
         this.modelID = modelID;
         this.patientID = patientID;
         this.gender = gender;
@@ -117,8 +117,8 @@ public class PdmrPdxInfo {
         this.extractionMethod = extractionMethod;
         this.dateAtCollection = dateAtCollection;
         this.accessibility = accessibility;
-        this.treatments = treatments;
-        this.validations = validations;
+        this.transformTreatments = transformTreatments;
+        this.transformValidations = transformValidations;
         this.samples = samples;
     }
 
@@ -304,13 +304,13 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Treatments")
-    public void setTreatments(List<Treatment> treatments) {
-        this.treatments = treatments;
+    public void setTransformTreatments(List<TransformTreatment> transformTreatments) {
+        this.transformTreatments = transformTreatments;
     }
 
     @JsonProperty("Treatments")
-    public List<Treatment> getTreatments() {
-        return treatments;
+    public List<TransformTreatment> getTransformTreatments() {
+        return transformTreatments;
     }
 
     @JsonProperty("Treatment Naive")
@@ -384,12 +384,12 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Validations")
-    public List<Validation> getValidations() {
-        return validations;
+    public List<TransformValidation> getTransformValidations() {
+        return transformValidations;
     }
 
     @JsonProperty("Samples")
-    public List<PdmrSample> getSamples() {
+    public List<TransformSample> getSamples() {
         return samples;
     }
 }

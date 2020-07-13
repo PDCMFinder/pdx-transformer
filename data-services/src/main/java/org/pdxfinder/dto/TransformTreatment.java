@@ -1,4 +1,4 @@
-package org.pdxfinder.dto.pdmr;
+package org.pdxfinder.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "Starting Date",
         "Prior Date"
 })
-public class Treatment {
+public class TransformTreatment {
 
     private Integer id;
 
@@ -35,10 +35,10 @@ public class Treatment {
     private String priorDate;
 
 
-    public Treatment(String currentDrug, String priorDrug, String manufacturer,
-                     String dose, String duration,
-                     String frequency, String armSize,
-                     String response, String passageRange, String startingDate, String priorDate) {
+    public TransformTreatment(String currentDrug, String priorDrug, String manufacturer,
+                              String dose, String duration,
+                              String frequency, String armSize,
+                              String response, String passageRange, String startingDate, String priorDate) {
         this.priorDrug = priorDrug;
         this.currentDrug = currentDrug;
         this.manufacturer = manufacturer;
@@ -52,7 +52,7 @@ public class Treatment {
         this.priorDate = priorDate;
     }
 
-    public Treatment() {
+    public TransformTreatment() {
     }
 
     @JsonProperty("Current Drug")

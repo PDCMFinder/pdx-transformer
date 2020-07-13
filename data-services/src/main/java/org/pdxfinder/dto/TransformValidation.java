@@ -1,4 +1,4 @@
-package org.pdxfinder.dto.pdmr;
+package org.pdxfinder.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "Description",
         "Passage"
 })
-public class Validation {
+public class TransformValidation {
 
     private Integer id;
 
@@ -18,10 +18,10 @@ public class Validation {
     private String description;
     private String passage;
 
-    public Validation() {
+    public TransformValidation() {
     }
 
-    public Validation(String technique, String description, String passage) {
+    public TransformValidation(String technique, String description, String passage) {
         this.technique = technique;
         this.description = description;
         this.passage = passage;
