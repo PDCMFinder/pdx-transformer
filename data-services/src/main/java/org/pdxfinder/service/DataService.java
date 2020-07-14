@@ -4,7 +4,6 @@ import org.pdxfinder.*;
 import org.pdxfinder.projection.HistologyProjection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -29,10 +28,6 @@ public class DataService {
     private final TumorGradesRepo tumorGradesRepo;
     private final TumorGradeStageTypesRepo tumorGradeStageTypesRepo;
     private final HistologyRepository histologyRepository;
-
-    @Value("${output.directory}")
-    private String outputDirectory;
-
 
     public DataService(GendersRepository gendersRepository,
                        SpecimenRepository specimenRepository,

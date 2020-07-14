@@ -3,31 +3,20 @@ package org.pdxfinder.service;
 import org.pdxfinder.*;
 import org.pdxfinder.dto.*;
 import org.pdxfinder.util.*;
-import org.pdxfinder.util.tsv.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class TransformDataService {
 
-    @Value("${output.directory}")
-    private String outputDirectory;
     private final Logger log = LoggerFactory.getLogger(TransformDataService.class);
-    private final ExtractService extractService;
 
-    public TransformDataService(ExtractService extractService) {
-        this.extractService = extractService;
-    }
+    public List<PdxDto> transformerData(ExtractDto extracted) {
 
-    public List<PdxDto> transformerData() throws IOException {
-
-        ExtractDto extracted = extractService.execute();
+        log.info("Start Transforming data-sets");
         List<String> modelIds = new ArrayList<>();
         List<PdxDto> pdxDtos = new ArrayList<>();
 
@@ -63,12 +52,6 @@ public class TransformDataService {
 
             pdxDtos.add(pdxDto);
         }
-
-        WritePatientTsvUtil.writeTsv(pdxDtos, outputDirectory);
-        WriteModelTsvUtil.writeTsv(pdxDtos, outputDirectory);
-        WriteSampleTsvUtil.writeTsv(pdxDtos, outputDirectory);
-        WriteSharingTsvUtil.writeTsv(pdxDtos, outputDirectory);
-        WriteModelValidationTsvUtil.writeTsv(pdxDtos, outputDirectory);
 
         return pdxDtos;
     }

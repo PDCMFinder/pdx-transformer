@@ -6,7 +6,6 @@ import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.dto.ValidationDto;
 import org.pdxfinder.dto.tsv.MetadataModelValidationTsv;
-import org.pdxfinder.dto.tsv.MetadataSharingTsv;
 import org.pdxfinder.util.FileUtil;
 
 import java.io.IOException;
