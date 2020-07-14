@@ -14,31 +14,15 @@ public class StandardizedRegimens {
   private String inputregimen;
   private String displayedregimen;
 
-
   public String getRegimenseqnbr() {
     return regimenseqnbr;
   }
-
-  public void setRegimenseqnbr(String regimenseqnbr) {
-    this.regimenseqnbr = regimenseqnbr;
-  }
-
 
   public String getInputregimen() {
     return inputregimen;
   }
 
-  public void setInputregimen(String inputregimen) {
-    this.inputregimen = inputregimen;
-  }
-
-
   public String getDisplayedregimen() {
     return displayedregimen;
   }
-
-  public void setDisplayedregimen(String displayedregimen) {
-    this.displayedregimen = displayedregimen;
-  }
-
 }

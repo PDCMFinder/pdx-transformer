@@ -18,17 +18,8 @@ public class MouseStrains {
     return mousestrainseqnbr;
   }
 
-  public void setMousestrainseqnbr(String mousestrainseqnbr) {
-    this.mousestrainseqnbr = mousestrainseqnbr;
-  }
-
-
   public String getMousestraindescript() {
     return mousestraindescript;
-  }
-
-  public void setMousestraindescript(String mousestraindescript) {
-    this.mousestraindescript = mousestraindescript;
   }
 
 }

@@ -14,31 +14,15 @@ public class TumorGradeStageTypes {
   private String tumorgradestageshortname;
   private String tumorgradestagedescription;
 
-
   public String getTumorgradestageseqnbr() {
     return tumorgradestageseqnbr;
   }
-
-  public void setTumorgradestageseqnbr(String tumorgradestageseqnbr) {
-    this.tumorgradestageseqnbr = tumorgradestageseqnbr;
-  }
-
 
   public String getTumorgradestageshortname() {
     return tumorgradestageshortname;
   }
 
-  public void setTumorgradestageshortname(String tumorgradestageshortname) {
-    this.tumorgradestageshortname = tumorgradestageshortname;
-  }
-
-
   public String getTumorgradestagedescription() {
     return tumorgradestagedescription;
   }
-
-  public void setTumorgradestagedescription(String tumorgradestagedescription) {
-    this.tumorgradestagedescription = tumorgradestagedescription;
-  }
-
 }

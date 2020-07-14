@@ -1,7 +1,7 @@
 package org.pdxfinder;
 
 import javax.persistence.*;
-
+import java.sql.Date;
 
 @Entity
 public class Specimen {
@@ -14,7 +14,7 @@ public class Specimen {
     private String patientseqnbr;
     private String specimenid;
     private String tissuetypeshortname;
-    private java.sql.Date collectiondate;
+    private Date collectiondate;
     private String dayofyear;
     private String reasonforcollection;
     private String notes;
@@ -76,11 +76,11 @@ public class Specimen {
     }
 
 
-    public java.sql.Date getCollectiondate() {
+    public Date getCollectiondate() {
         return collectiondate;
     }
 
-    public void setCollectiondate(java.sql.Date collectiondate) {
+    public void setCollectiondate(Date collectiondate) {
         this.collectiondate = collectiondate;
     }
 

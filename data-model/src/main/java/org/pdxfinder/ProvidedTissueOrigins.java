@@ -18,17 +18,8 @@ public class ProvidedTissueOrigins {
     return providedtissueoriginseqnbr;
   }
 
-  public void setProvidedtissueoriginseqnbr(String providedtissueoriginseqnbr) {
-    this.providedtissueoriginseqnbr = providedtissueoriginseqnbr;
-  }
-
-
   public String getProvidedtissueorigindescript() {
     return providedtissueorigindescript;
-  }
-
-  public void setProvidedtissueorigindescript(String providedtissueorigindescript) {
-    this.providedtissueorigindescript = providedtissueorigindescript;
   }
 
 }

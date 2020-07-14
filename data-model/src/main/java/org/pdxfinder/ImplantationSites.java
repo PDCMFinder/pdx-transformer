@@ -18,17 +18,8 @@ public class ImplantationSites {
     return implantationsiteseqnbr;
   }
 
-  public void setImplantationsiteseqnbr(String implantationsiteseqnbr) {
-    this.implantationsiteseqnbr = implantationsiteseqnbr;
-  }
-
-
   public String getImplantationsitedescription() {
     return implantationsitedescription;
-  }
-
-  public void setImplantationsitedescription(String implantationsitedescription) {
-    this.implantationsitedescription = implantationsitedescription;
   }
 
 }

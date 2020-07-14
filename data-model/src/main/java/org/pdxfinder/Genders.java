@@ -29,23 +29,11 @@ public class Genders {
         return genderSeqnbr;
     }
 
-    public void setGenderSeqnbr(Integer genderSeqnbr) {
-        this.genderSeqnbr = genderSeqnbr;
-    }
-
     public String getGenderShortName() {
         return genderShortName;
     }
 
-    public void setGenderShortName(String genderShortName) {
-        this.genderShortName = genderShortName;
-    }
-
     public String getGenderDescription() {
         return genderDescription;
-    }
-
-    public void setGenderDescription(String genderDescription) {
-        this.genderDescription = genderDescription;
     }
 }
