@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "Starting Date",
         "Prior Date"
 })
-public class TransformTreatment {
+public class TreatmentDto {
 
     private Integer id;
 
@@ -35,10 +35,10 @@ public class TransformTreatment {
     private String priorDate;
 
 
-    public TransformTreatment(String currentDrug, String priorDrug, String manufacturer,
-                              String dose, String duration,
-                              String frequency, String armSize,
-                              String response, String passageRange, String startingDate, String priorDate) {
+    public TreatmentDto(String currentDrug, String priorDrug, String manufacturer,
+                        String dose, String duration,
+                        String frequency, String armSize,
+                        String response, String passageRange, String startingDate, String priorDate) {
         this.priorDrug = priorDrug;
         this.currentDrug = currentDrug;
         this.manufacturer = manufacturer;
@@ -52,7 +52,7 @@ public class TransformTreatment {
         this.priorDate = priorDate;
     }
 
-    public TransformTreatment() {
+    public TreatmentDto() {
     }
 
     @JsonProperty("Current Drug")

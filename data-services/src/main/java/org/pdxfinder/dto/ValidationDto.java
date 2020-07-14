@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "Description",
         "Passage"
 })
-public class TransformValidation {
+public class ValidationDto {
 
     private Integer id;
 
@@ -18,10 +18,10 @@ public class TransformValidation {
     private String description;
     private String passage;
 
-    public TransformValidation() {
+    public ValidationDto() {
     }
 
-    public TransformValidation(String technique, String description, String passage) {
+    public ValidationDto(String technique, String description, String passage) {
         this.technique = technique;
         this.description = description;
         this.passage = passage;
