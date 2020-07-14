@@ -1,4 +1,4 @@
-package org.pdxfinder.dto.pdmr;
+package org.pdxfinder.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "RNASeq-Fasta-File",
         "RNASeq-RSEM-File"
 })
-public class PdmrSample {
+public class SampleDto {
 
     private Integer id;
 
@@ -29,11 +29,11 @@ public class PdmrSample {
     private String rNASeqRSEMFile;
 
 
-    public PdmrSample() {
+    public SampleDto() {
     }
 
-    public PdmrSample(String sampleID, String tumorType, String passage, String wESVCFFile, String wESFastaFile,
-                      String nCIGenePanel, String rNASeqFastaFile, String rNASeqRSEMFile) {
+    public SampleDto(String sampleID, String tumorType, String passage, String wESVCFFile, String wESFastaFile,
+                     String nCIGenePanel, String rNASeqFastaFile, String rNASeqRSEMFile) {
         this.sampleID = sampleID;
         this.tumorType = tumorType;
         this.passage = passage;
@@ -125,7 +125,4 @@ public class PdmrSample {
         this.rNASeqRSEMFile = rNASeqRSEMFile;
     }
 
-//    public void setPdmrPdxInfo(PdmrPdxInfo pdmrPdxInfo) {
-//        this.pdmrPdxInfo = pdmrPdxInfo;
-//    }
 }

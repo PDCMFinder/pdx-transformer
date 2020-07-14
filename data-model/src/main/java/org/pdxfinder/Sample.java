@@ -5,463 +5,470 @@ import javax.persistence.*;
 @Entity
 public class Sample {
 
-    //  @Id
-    //  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sample_Sequence")
-    //  @SequenceGenerator(name = "sample_Sequence", sequenceName = "SAMPLE_SEQ")
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "specimen_Sequence")
-    @SequenceGenerator(name = "specimen_Sequence", sequenceName = "SPECIMEN_SEQ")
-    private String sampleseqnbr;
-
-    private String specimenseqnbr;
-    private String sampleid;
-    private String passageprimaryyn;
-    private String pdmtypeseqnbr;
-    private String passageofthissample;
-    private String mpactsequencingdatayn;
-    private String samplenotes;
-    private String wholeexomesequenceftpyn;
-    private String rnasequenceftpyn;
-    private String affymetrixftpyn;
-    private String wholeexomesequence2Ftpyn;
-    private String culturederivation;
-    private String growthpropertyseqnbr;
-    private String proliferationrate;
-    private String subculturerecommendations;
-    private String spheroidcultureyn;
-    private String spheroidculturenotes;
-    private String softagargrowthyn;
-    private String softagargrowthnotes;
-    private String tumorigenicinngsmiceyn;
-    private String facsCharacterization;
-    private String qrtpcrC1Correlation;
-    private String qrtpcrC2Correlation;
-    private String qrtpcrTophits;
-    private String humanpathogentesting;
-    private String rnasequencetpmftpyn;
-    private String wholeexomesequenceftpversion;
-    private String wholeexomesequence2Ftpversion;
-    private String rnasequenceftpversion;
-    private String rnasequencetpmftpversion;
-    private String affymetrixftpversion;
-    private String wholeexomesequenceftpttuseqnbr;
-    private String wholeexomesequence2Ftpttusn;
-    private String rnasequenceftpttuseqnbr;
-    private String rnasequencetpmftpttuseqnbr;
-    private String affymetrixftpttuseqnbr;
-    private String somaticwesftpttuseqnbr;
-    private String somaticwesftpyn;
-    private String somaticwesftpversion;
-    private String cultureoriginseqnbr;
-    private String requiredmediaseqnbr;
-    private String wesoncokbftpyn;
-    private String wesoncokbftpversion;
-    private String wesoncokbftpversionprocessed;
-
-
-    public String getSampleseqnbr() {
-        return sampleseqnbr;
-    }
-
-    public void setSampleseqnbr(String sampleseqnbr) {
-        this.sampleseqnbr = sampleseqnbr;
-    }
-
-
-    public String getSpecimenseqnbr() {
-        return specimenseqnbr;
-    }
-
-    public void setSpecimenseqnbr(String specimenseqnbr) {
-        this.specimenseqnbr = specimenseqnbr;
-    }
-
 
-    public String getSampleid() {
-        return sampleid;
-    }
+//  @Id
+//  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sample_Sequence")
+//  @SequenceGenerator(name = "sample_Sequence", sequenceName = "SAMPLE_SEQ")
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "specimen_Sequence")
+  @SequenceGenerator(name = "specimen_Sequence", sequenceName = "SPECIMEN_SEQ")
+  private String sampleseqnbr;
+
+  private String specimenseqnbr;
+  private String sampleid;
+  private String passageprimaryyn;
+  private String pdmtypeseqnbr;
+  private String passageofthissample;
+  private String mpactsequencingdatayn;
+  private String samplenotes;
+  private String wholeexomesequenceftpyn;
+  private String rnasequenceftpyn;
+  private String affymetrixftpyn;
+  private String wholeexomesequence2Ftpyn;
+  private String culturederivation;
+  private String growthpropertyseqnbr;
+  private String proliferationrate;
+  private String subculturerecommendations;
+  private String spheroidcultureyn;
+  private String spheroidculturenotes;
+  private String softagargrowthyn;
+  private String softagargrowthnotes;
+  private String tumorigenicinngsmiceyn;
+  private String facsCharacterization;
+
+  @Column(name = "QRTPCR_C1CORRELATION")
+  private String qrtpcrC1Correlation;
+
+  @Column(name = "QRTPCR_C2CORRELATION")
+  private String qrtpcrC2Correlation;
+
+  @Column(name = "QRTPCR_TOPHITS")
+  private String qrtpcrTophits;
+  private String humanpathogentesting;
+  private String rnasequencetpmftpyn;
+  private String wholeexomesequenceftpversion;
+  private String wholeexomesequence2Ftpversion;
+  private String rnasequenceftpversion;
+  private String rnasequencetpmftpversion;
+  private String affymetrixftpversion;
+  private String wholeexomesequenceftpttuseqnbr;
+  private String wholeexomesequence2Ftpttusn;
+  private String rnasequenceftpttuseqnbr;
+  private String rnasequencetpmftpttuseqnbr;
+  private String affymetrixftpttuseqnbr;
+  private String somaticwesftpttuseqnbr;
+  private String somaticwesftpyn;
+  private String somaticwesftpversion;
+  private String cultureoriginseqnbr;
+  private String requiredmediaseqnbr;
+  private String wesoncokbftpyn;
+  private String wesoncokbftpversion;
+  private String wesoncokbftpversionprocessed;
 
-    public void setSampleid(String sampleid) {
-        this.sampleid = sampleid;
-    }
 
+  public String getSampleseqnbr() {
+    return sampleseqnbr;
+  }
 
-    public String getPassageprimaryyn() {
-        return passageprimaryyn;
-    }
+  public void setSampleseqnbr(String sampleseqnbr) {
+    this.sampleseqnbr = sampleseqnbr;
+  }
 
-    public void setPassageprimaryyn(String passageprimaryyn) {
-        this.passageprimaryyn = passageprimaryyn;
-    }
 
+  public String getSpecimenseqnbr() {
+    return specimenseqnbr;
+  }
 
-    public String getPdmtypeseqnbr() {
-        return pdmtypeseqnbr;
-    }
+  public void setSpecimenseqnbr(String specimenseqnbr) {
+    this.specimenseqnbr = specimenseqnbr;
+  }
 
-    public void setPdmtypeseqnbr(String pdmtypeseqnbr) {
-        this.pdmtypeseqnbr = pdmtypeseqnbr;
-    }
 
+  public String getSampleid() {
+    return sampleid;
+  }
 
-    public String getPassageofthissample() {
-        return passageofthissample;
-    }
+  public void setSampleid(String sampleid) {
+    this.sampleid = sampleid;
+  }
 
-    public void setPassageofthissample(String passageofthissample) {
-        this.passageofthissample = passageofthissample;
-    }
 
+  public String getPassageprimaryyn() {
+    return passageprimaryyn;
+  }
 
-    public String getMpactsequencingdatayn() {
-        return mpactsequencingdatayn;
-    }
+  public void setPassageprimaryyn(String passageprimaryyn) {
+    this.passageprimaryyn = passageprimaryyn;
+  }
 
-    public void setMpactsequencingdatayn(String mpactsequencingdatayn) {
-        this.mpactsequencingdatayn = mpactsequencingdatayn;
-    }
 
+  public String getPdmtypeseqnbr() {
+    return pdmtypeseqnbr;
+  }
 
-    public String getSamplenotes() {
-        return samplenotes;
-    }
+  public void setPdmtypeseqnbr(String pdmtypeseqnbr) {
+    this.pdmtypeseqnbr = pdmtypeseqnbr;
+  }
 
-    public void setSamplenotes(String samplenotes) {
-        this.samplenotes = samplenotes;
-    }
 
+  public String getPassageofthissample() {
+    return passageofthissample;
+  }
 
-    public String getWholeexomesequenceftpyn() {
-        return wholeexomesequenceftpyn;
-    }
+  public void setPassageofthissample(String passageofthissample) {
+    this.passageofthissample = passageofthissample;
+  }
 
-    public void setWholeexomesequenceftpyn(String wholeexomesequenceftpyn) {
-        this.wholeexomesequenceftpyn = wholeexomesequenceftpyn;
-    }
 
+  public String getMpactsequencingdatayn() {
+    return mpactsequencingdatayn;
+  }
 
-    public String getRnasequenceftpyn() {
-        return rnasequenceftpyn;
-    }
+  public void setMpactsequencingdatayn(String mpactsequencingdatayn) {
+    this.mpactsequencingdatayn = mpactsequencingdatayn;
+  }
 
-    public void setRnasequenceftpyn(String rnasequenceftpyn) {
-        this.rnasequenceftpyn = rnasequenceftpyn;
-    }
 
+  public String getSamplenotes() {
+    return samplenotes;
+  }
 
-    public String getAffymetrixftpyn() {
-        return affymetrixftpyn;
-    }
+  public void setSamplenotes(String samplenotes) {
+    this.samplenotes = samplenotes;
+  }
 
-    public void setAffymetrixftpyn(String affymetrixftpyn) {
-        this.affymetrixftpyn = affymetrixftpyn;
-    }
 
+  public String getWholeexomesequenceftpyn() {
+    return wholeexomesequenceftpyn;
+  }
 
-    public String getWholeexomesequence2Ftpyn() {
-        return wholeexomesequence2Ftpyn;
-    }
+  public void setWholeexomesequenceftpyn(String wholeexomesequenceftpyn) {
+    this.wholeexomesequenceftpyn = wholeexomesequenceftpyn;
+  }
 
-    public void setWholeexomesequence2Ftpyn(String wholeexomesequence2Ftpyn) {
-        this.wholeexomesequence2Ftpyn = wholeexomesequence2Ftpyn;
-    }
 
+  public String getRnasequenceftpyn() {
+    return rnasequenceftpyn;
+  }
 
-    public String getCulturederivation() {
-        return culturederivation;
-    }
+  public void setRnasequenceftpyn(String rnasequenceftpyn) {
+    this.rnasequenceftpyn = rnasequenceftpyn;
+  }
 
-    public void setCulturederivation(String culturederivation) {
-        this.culturederivation = culturederivation;
-    }
 
+  public String getAffymetrixftpyn() {
+    return affymetrixftpyn;
+  }
 
-    public String getGrowthpropertyseqnbr() {
-        return growthpropertyseqnbr;
-    }
+  public void setAffymetrixftpyn(String affymetrixftpyn) {
+    this.affymetrixftpyn = affymetrixftpyn;
+  }
 
-    public void setGrowthpropertyseqnbr(String growthpropertyseqnbr) {
-        this.growthpropertyseqnbr = growthpropertyseqnbr;
-    }
 
+  public String getWholeexomesequence2Ftpyn() {
+    return wholeexomesequence2Ftpyn;
+  }
 
-    public String getProliferationrate() {
-        return proliferationrate;
-    }
+  public void setWholeexomesequence2Ftpyn(String wholeexomesequence2Ftpyn) {
+    this.wholeexomesequence2Ftpyn = wholeexomesequence2Ftpyn;
+  }
 
-    public void setProliferationrate(String proliferationrate) {
-        this.proliferationrate = proliferationrate;
-    }
 
+  public String getCulturederivation() {
+    return culturederivation;
+  }
 
-    public String getSubculturerecommendations() {
-        return subculturerecommendations;
-    }
+  public void setCulturederivation(String culturederivation) {
+    this.culturederivation = culturederivation;
+  }
 
-    public void setSubculturerecommendations(String subculturerecommendations) {
-        this.subculturerecommendations = subculturerecommendations;
-    }
 
+  public String getGrowthpropertyseqnbr() {
+    return growthpropertyseqnbr;
+  }
 
-    public String getSpheroidcultureyn() {
-        return spheroidcultureyn;
-    }
+  public void setGrowthpropertyseqnbr(String growthpropertyseqnbr) {
+    this.growthpropertyseqnbr = growthpropertyseqnbr;
+  }
 
-    public void setSpheroidcultureyn(String spheroidcultureyn) {
-        this.spheroidcultureyn = spheroidcultureyn;
-    }
 
+  public String getProliferationrate() {
+    return proliferationrate;
+  }
 
-    public String getSpheroidculturenotes() {
-        return spheroidculturenotes;
-    }
+  public void setProliferationrate(String proliferationrate) {
+    this.proliferationrate = proliferationrate;
+  }
 
-    public void setSpheroidculturenotes(String spheroidculturenotes) {
-        this.spheroidculturenotes = spheroidculturenotes;
-    }
 
+  public String getSubculturerecommendations() {
+    return subculturerecommendations;
+  }
 
-    public String getSoftagargrowthyn() {
-        return softagargrowthyn;
-    }
+  public void setSubculturerecommendations(String subculturerecommendations) {
+    this.subculturerecommendations = subculturerecommendations;
+  }
 
-    public void setSoftagargrowthyn(String softagargrowthyn) {
-        this.softagargrowthyn = softagargrowthyn;
-    }
 
+  public String getSpheroidcultureyn() {
+    return spheroidcultureyn;
+  }
 
-    public String getSoftagargrowthnotes() {
-        return softagargrowthnotes;
-    }
+  public void setSpheroidcultureyn(String spheroidcultureyn) {
+    this.spheroidcultureyn = spheroidcultureyn;
+  }
 
-    public void setSoftagargrowthnotes(String softagargrowthnotes) {
-        this.softagargrowthnotes = softagargrowthnotes;
-    }
 
+  public String getSpheroidculturenotes() {
+    return spheroidculturenotes;
+  }
 
-    public String getTumorigenicinngsmiceyn() {
-        return tumorigenicinngsmiceyn;
-    }
+  public void setSpheroidculturenotes(String spheroidculturenotes) {
+    this.spheroidculturenotes = spheroidculturenotes;
+  }
 
-    public void setTumorigenicinngsmiceyn(String tumorigenicinngsmiceyn) {
-        this.tumorigenicinngsmiceyn = tumorigenicinngsmiceyn;
-    }
 
+  public String getSoftagargrowthyn() {
+    return softagargrowthyn;
+  }
 
-    public String getFacsCharacterization() {
-        return facsCharacterization;
-    }
+  public void setSoftagargrowthyn(String softagargrowthyn) {
+    this.softagargrowthyn = softagargrowthyn;
+  }
 
-    public void setFacsCharacterization(String facsCharacterization) {
-        this.facsCharacterization = facsCharacterization;
-    }
 
+  public String getSoftagargrowthnotes() {
+    return softagargrowthnotes;
+  }
 
-    public String getQrtpcrC1Correlation() {
-        return qrtpcrC1Correlation;
-    }
+  public void setSoftagargrowthnotes(String softagargrowthnotes) {
+    this.softagargrowthnotes = softagargrowthnotes;
+  }
 
-    public void setQrtpcrC1Correlation(String qrtpcrC1Correlation) {
-        this.qrtpcrC1Correlation = qrtpcrC1Correlation;
-    }
 
+  public String getTumorigenicinngsmiceyn() {
+    return tumorigenicinngsmiceyn;
+  }
 
-    public String getQrtpcrC2Correlation() {
-        return qrtpcrC2Correlation;
-    }
+  public void setTumorigenicinngsmiceyn(String tumorigenicinngsmiceyn) {
+    this.tumorigenicinngsmiceyn = tumorigenicinngsmiceyn;
+  }
 
-    public void setQrtpcrC2Correlation(String qrtpcrC2Correlation) {
-        this.qrtpcrC2Correlation = qrtpcrC2Correlation;
-    }
 
+  public String getFacsCharacterization() {
+    return facsCharacterization;
+  }
 
-    public String getQrtpcrTophits() {
-        return qrtpcrTophits;
-    }
+  public void setFacsCharacterization(String facsCharacterization) {
+    this.facsCharacterization = facsCharacterization;
+  }
 
-    public void setQrtpcrTophits(String qrtpcrTophits) {
-        this.qrtpcrTophits = qrtpcrTophits;
-    }
 
+  public String getQrtpcrC1Correlation() {
+    return qrtpcrC1Correlation;
+  }
 
-    public String getHumanpathogentesting() {
-        return humanpathogentesting;
-    }
+  public void setQrtpcrC1Correlation(String qrtpcrC1Correlation) {
+    this.qrtpcrC1Correlation = qrtpcrC1Correlation;
+  }
 
-    public void setHumanpathogentesting(String humanpathogentesting) {
-        this.humanpathogentesting = humanpathogentesting;
-    }
 
+  public String getQrtpcrC2Correlation() {
+    return qrtpcrC2Correlation;
+  }
 
-    public String getRnasequencetpmftpyn() {
-        return rnasequencetpmftpyn;
-    }
+  public void setQrtpcrC2Correlation(String qrtpcrC2Correlation) {
+    this.qrtpcrC2Correlation = qrtpcrC2Correlation;
+  }
 
-    public void setRnasequencetpmftpyn(String rnasequencetpmftpyn) {
-        this.rnasequencetpmftpyn = rnasequencetpmftpyn;
-    }
 
+  public String getQrtpcrTophits() {
+    return qrtpcrTophits;
+  }
 
-    public String getWholeexomesequenceftpversion() {
-        return wholeexomesequenceftpversion;
-    }
+  public void setQrtpcrTophits(String qrtpcrTophits) {
+    this.qrtpcrTophits = qrtpcrTophits;
+  }
 
-    public void setWholeexomesequenceftpversion(String wholeexomesequenceftpversion) {
-        this.wholeexomesequenceftpversion = wholeexomesequenceftpversion;
-    }
 
+  public String getHumanpathogentesting() {
+    return humanpathogentesting;
+  }
 
-    public String getWholeexomesequence2Ftpversion() {
-        return wholeexomesequence2Ftpversion;
-    }
+  public void setHumanpathogentesting(String humanpathogentesting) {
+    this.humanpathogentesting = humanpathogentesting;
+  }
 
-    public void setWholeexomesequence2Ftpversion(String wholeexomesequence2Ftpversion) {
-        this.wholeexomesequence2Ftpversion = wholeexomesequence2Ftpversion;
-    }
 
+  public String getRnasequencetpmftpyn() {
+    return rnasequencetpmftpyn;
+  }
 
-    public String getRnasequenceftpversion() {
-        return rnasequenceftpversion;
-    }
+  public void setRnasequencetpmftpyn(String rnasequencetpmftpyn) {
+    this.rnasequencetpmftpyn = rnasequencetpmftpyn;
+  }
 
-    public void setRnasequenceftpversion(String rnasequenceftpversion) {
-        this.rnasequenceftpversion = rnasequenceftpversion;
-    }
 
+  public String getWholeexomesequenceftpversion() {
+    return wholeexomesequenceftpversion;
+  }
 
-    public String getRnasequencetpmftpversion() {
-        return rnasequencetpmftpversion;
-    }
+  public void setWholeexomesequenceftpversion(String wholeexomesequenceftpversion) {
+    this.wholeexomesequenceftpversion = wholeexomesequenceftpversion;
+  }
 
-    public void setRnasequencetpmftpversion(String rnasequencetpmftpversion) {
-        this.rnasequencetpmftpversion = rnasequencetpmftpversion;
-    }
 
+  public String getWholeexomesequence2Ftpversion() {
+    return wholeexomesequence2Ftpversion;
+  }
 
-    public String getAffymetrixftpversion() {
-        return affymetrixftpversion;
-    }
+  public void setWholeexomesequence2Ftpversion(String wholeexomesequence2Ftpversion) {
+    this.wholeexomesequence2Ftpversion = wholeexomesequence2Ftpversion;
+  }
 
-    public void setAffymetrixftpversion(String affymetrixftpversion) {
-        this.affymetrixftpversion = affymetrixftpversion;
-    }
 
+  public String getRnasequenceftpversion() {
+    return rnasequenceftpversion;
+  }
 
-    public String getWholeexomesequenceftpttuseqnbr() {
-        return wholeexomesequenceftpttuseqnbr;
-    }
+  public void setRnasequenceftpversion(String rnasequenceftpversion) {
+    this.rnasequenceftpversion = rnasequenceftpversion;
+  }
 
-    public void setWholeexomesequenceftpttuseqnbr(String wholeexomesequenceftpttuseqnbr) {
-        this.wholeexomesequenceftpttuseqnbr = wholeexomesequenceftpttuseqnbr;
-    }
 
+  public String getRnasequencetpmftpversion() {
+    return rnasequencetpmftpversion;
+  }
 
-    public String getWholeexomesequence2Ftpttusn() {
-        return wholeexomesequence2Ftpttusn;
-    }
+  public void setRnasequencetpmftpversion(String rnasequencetpmftpversion) {
+    this.rnasequencetpmftpversion = rnasequencetpmftpversion;
+  }
 
-    public void setWholeexomesequence2Ftpttusn(String wholeexomesequence2Ftpttusn) {
-        this.wholeexomesequence2Ftpttusn = wholeexomesequence2Ftpttusn;
-    }
 
+  public String getAffymetrixftpversion() {
+    return affymetrixftpversion;
+  }
 
-    public String getRnasequenceftpttuseqnbr() {
-        return rnasequenceftpttuseqnbr;
-    }
+  public void setAffymetrixftpversion(String affymetrixftpversion) {
+    this.affymetrixftpversion = affymetrixftpversion;
+  }
 
-    public void setRnasequenceftpttuseqnbr(String rnasequenceftpttuseqnbr) {
-        this.rnasequenceftpttuseqnbr = rnasequenceftpttuseqnbr;
-    }
 
+  public String getWholeexomesequenceftpttuseqnbr() {
+    return wholeexomesequenceftpttuseqnbr;
+  }
 
-    public String getRnasequencetpmftpttuseqnbr() {
-        return rnasequencetpmftpttuseqnbr;
-    }
+  public void setWholeexomesequenceftpttuseqnbr(String wholeexomesequenceftpttuseqnbr) {
+    this.wholeexomesequenceftpttuseqnbr = wholeexomesequenceftpttuseqnbr;
+  }
 
-    public void setRnasequencetpmftpttuseqnbr(String rnasequencetpmftpttuseqnbr) {
-        this.rnasequencetpmftpttuseqnbr = rnasequencetpmftpttuseqnbr;
-    }
 
+  public String getWholeexomesequence2Ftpttusn() {
+    return wholeexomesequence2Ftpttusn;
+  }
 
-    public String getAffymetrixftpttuseqnbr() {
-        return affymetrixftpttuseqnbr;
-    }
+  public void setWholeexomesequence2Ftpttusn(String wholeexomesequence2Ftpttusn) {
+    this.wholeexomesequence2Ftpttusn = wholeexomesequence2Ftpttusn;
+  }
 
-    public void setAffymetrixftpttuseqnbr(String affymetrixftpttuseqnbr) {
-        this.affymetrixftpttuseqnbr = affymetrixftpttuseqnbr;
-    }
 
+  public String getRnasequenceftpttuseqnbr() {
+    return rnasequenceftpttuseqnbr;
+  }
 
-    public String getSomaticwesftpttuseqnbr() {
-        return somaticwesftpttuseqnbr;
-    }
+  public void setRnasequenceftpttuseqnbr(String rnasequenceftpttuseqnbr) {
+    this.rnasequenceftpttuseqnbr = rnasequenceftpttuseqnbr;
+  }
 
-    public void setSomaticwesftpttuseqnbr(String somaticwesftpttuseqnbr) {
-        this.somaticwesftpttuseqnbr = somaticwesftpttuseqnbr;
-    }
 
+  public String getRnasequencetpmftpttuseqnbr() {
+    return rnasequencetpmftpttuseqnbr;
+  }
 
-    public String getSomaticwesftpyn() {
-        return somaticwesftpyn;
-    }
+  public void setRnasequencetpmftpttuseqnbr(String rnasequencetpmftpttuseqnbr) {
+    this.rnasequencetpmftpttuseqnbr = rnasequencetpmftpttuseqnbr;
+  }
 
-    public void setSomaticwesftpyn(String somaticwesftpyn) {
-        this.somaticwesftpyn = somaticwesftpyn;
-    }
 
+  public String getAffymetrixftpttuseqnbr() {
+    return affymetrixftpttuseqnbr;
+  }
 
-    public String getSomaticwesftpversion() {
-        return somaticwesftpversion;
-    }
+  public void setAffymetrixftpttuseqnbr(String affymetrixftpttuseqnbr) {
+    this.affymetrixftpttuseqnbr = affymetrixftpttuseqnbr;
+  }
 
-    public void setSomaticwesftpversion(String somaticwesftpversion) {
-        this.somaticwesftpversion = somaticwesftpversion;
-    }
 
+  public String getSomaticwesftpttuseqnbr() {
+    return somaticwesftpttuseqnbr;
+  }
 
-    public String getCultureoriginseqnbr() {
-        return cultureoriginseqnbr;
-    }
+  public void setSomaticwesftpttuseqnbr(String somaticwesftpttuseqnbr) {
+    this.somaticwesftpttuseqnbr = somaticwesftpttuseqnbr;
+  }
 
-    public void setCultureoriginseqnbr(String cultureoriginseqnbr) {
-        this.cultureoriginseqnbr = cultureoriginseqnbr;
-    }
 
+  public String getSomaticwesftpyn() {
+    return somaticwesftpyn;
+  }
 
-    public String getRequiredmediaseqnbr() {
-        return requiredmediaseqnbr;
-    }
+  public void setSomaticwesftpyn(String somaticwesftpyn) {
+    this.somaticwesftpyn = somaticwesftpyn;
+  }
 
-    public void setRequiredmediaseqnbr(String requiredmediaseqnbr) {
-        this.requiredmediaseqnbr = requiredmediaseqnbr;
-    }
 
+  public String getSomaticwesftpversion() {
+    return somaticwesftpversion;
+  }
 
-    public String getWesoncokbftpyn() {
-        return wesoncokbftpyn;
-    }
+  public void setSomaticwesftpversion(String somaticwesftpversion) {
+    this.somaticwesftpversion = somaticwesftpversion;
+  }
 
-    public void setWesoncokbftpyn(String wesoncokbftpyn) {
-        this.wesoncokbftpyn = wesoncokbftpyn;
-    }
 
+  public String getCultureoriginseqnbr() {
+    return cultureoriginseqnbr;
+  }
 
-    public String getWesoncokbftpversion() {
-        return wesoncokbftpversion;
-    }
+  public void setCultureoriginseqnbr(String cultureoriginseqnbr) {
+    this.cultureoriginseqnbr = cultureoriginseqnbr;
+  }
 
-    public void setWesoncokbftpversion(String wesoncokbftpversion) {
-        this.wesoncokbftpversion = wesoncokbftpversion;
-    }
 
+  public String getRequiredmediaseqnbr() {
+    return requiredmediaseqnbr;
+  }
 
-    public String getWesoncokbftpversionprocessed() {
-        return wesoncokbftpversionprocessed;
-    }
+  public void setRequiredmediaseqnbr(String requiredmediaseqnbr) {
+    this.requiredmediaseqnbr = requiredmediaseqnbr;
+  }
 
-    public void setWesoncokbftpversionprocessed(String wesoncokbftpversionprocessed) {
-        this.wesoncokbftpversionprocessed = wesoncokbftpversionprocessed;
-    }
+
+  public String getWesoncokbftpyn() {
+    return wesoncokbftpyn;
+  }
+
+  public void setWesoncokbftpyn(String wesoncokbftpyn) {
+    this.wesoncokbftpyn = wesoncokbftpyn;
+  }
+
+
+  public String getWesoncokbftpversion() {
+    return wesoncokbftpversion;
+  }
+
+  public void setWesoncokbftpversion(String wesoncokbftpversion) {
+    this.wesoncokbftpversion = wesoncokbftpversion;
+  }
+
+
+  public String getWesoncokbftpversionprocessed() {
+    return wesoncokbftpversionprocessed;
+  }
+
+  public void setWesoncokbftpversionprocessed(String wesoncokbftpversionprocessed) {
+    this.wesoncokbftpversionprocessed = wesoncokbftpversionprocessed;
+  }
 
 }

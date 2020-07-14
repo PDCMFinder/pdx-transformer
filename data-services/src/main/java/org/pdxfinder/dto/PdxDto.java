@@ -1,4 +1,4 @@
-package org.pdxfinder.dto.pdmr;
+package org.pdxfinder.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -41,7 +41,7 @@ import java.util.List;
         "Validations",
         "Source url"
 })
-public class PdmrPdxInfo {
+public class PdxDto {
 
     private Integer id;
 
@@ -77,49 +77,12 @@ public class PdmrPdxInfo {
     private String dateAtCollection;
     private String accessibility;
 
-    private List<Treatment> treatments;
-    private List<Validation> validations;
-    private List<PdmrSample> samples;
+    private List<TreatmentDto> treatmentDtos;
+    private List<ValidationDto> validationDtos;
+    private List<SampleDto> sampleDtos;
 
 
-    public PdmrPdxInfo() {
-    }
-
-
-    public PdmrPdxInfo(String modelID, String patientID, String gender, String age, String race, String ethnicity, String specimenSite,
-                       String primarySite, String initialDiagnosis, String clinicalDiagnosis, String tumorType, String stageClassification,
-                       String stageValue, String gradeClassification, String gradeValue, String sampleType, String strain, String mouseSex,
-                       String treatmentNaive, String engraftmentSite, String engraftmentType, String sourceUrl,
-                       String extractionMethod, String dateAtCollection, String accessibility,
-                       List<Treatment> treatments, List<Validation> validations, List<PdmrSample> samples) {
-        this.modelID = modelID;
-        this.patientID = patientID;
-        this.gender = gender;
-        this.age = age;
-        this.race = race;
-        this.ethnicity = ethnicity;
-        this.specimenSite = specimenSite;
-        this.primarySite = primarySite;
-        this.initialDiagnosis = initialDiagnosis;
-        this.clinicalDiagnosis = clinicalDiagnosis;
-        this.tumorType = tumorType;
-        this.stageClassification = stageClassification;
-        this.stageValue = stageValue;
-        this.gradeClassification = gradeClassification;
-        this.gradeValue = gradeValue;
-        this.sampleType = sampleType;
-        this.strain = strain;
-        this.mouseSex = mouseSex;
-        this.treatmentNaive = treatmentNaive;
-        this.engraftmentSite = engraftmentSite;
-        this.engraftmentType = engraftmentType;
-        this.sourceUrl = sourceUrl;
-        this.extractionMethod = extractionMethod;
-        this.dateAtCollection = dateAtCollection;
-        this.accessibility = accessibility;
-        this.treatments = treatments;
-        this.validations = validations;
-        this.samples = samples;
+    public PdxDto() {
     }
 
     @JsonProperty("Model ID")
@@ -128,8 +91,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Model ID")
-    public void setModelID(String modelID) {
+    public PdxDto setModelID(String modelID) {
         this.modelID = modelID;
+        return this;
     }
 
     @JsonProperty("Patient ID")
@@ -138,8 +102,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Patient ID")
-    public void setPatientID(String patientID) {
+    public PdxDto setPatientID(String patientID) {
         this.patientID = patientID;
+        return this;
     }
 
     @JsonProperty("Gender")
@@ -148,8 +113,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Gender")
-    public void setGender(String gender) {
+    public PdxDto setGender(String gender) {
         this.gender = gender;
+        return this;
     }
 
     @JsonProperty("Age")
@@ -158,8 +124,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Age")
-    public void setAge(String age) {
+    public PdxDto setAge(String age) {
         this.age = age;
+        return this;
     }
 
     @JsonProperty("Race")
@@ -168,8 +135,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Race")
-    public void setRace(String race) {
+    public PdxDto setRace(String race) {
         this.race = race;
+        return this;
     }
 
     @JsonProperty("Ethnicity")
@@ -178,8 +146,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Ethnicity")
-    public void setEthnicity(String ethnicity) {
+    public PdxDto setEthnicity(String ethnicity) {
         this.ethnicity = ethnicity;
+        return this;
     }
 
     @JsonProperty("Specimen Site")
@@ -188,8 +157,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Specimen Site")
-    public void setSpecimenSite(String specimenSite) {
+    public PdxDto setSpecimenSite(String specimenSite) {
         this.specimenSite = specimenSite;
+        return this;
     }
 
     @JsonProperty("Primary Site")
@@ -198,8 +168,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Primary Site")
-    public void setPrimarySite(String primarySite) {
+    public PdxDto setPrimarySite(String primarySite) {
         this.primarySite = primarySite;
+        return this;
     }
 
     @JsonProperty("Initial Diagnosis")
@@ -208,8 +179,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Initial Diagnosis")
-    public void setInitialDiagnosis(String initialDiagnosis) {
+    public PdxDto setInitialDiagnosis(String initialDiagnosis) {
         this.initialDiagnosis = initialDiagnosis;
+        return this;
     }
 
     @JsonProperty("Clinical Diagnosis")
@@ -218,8 +190,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Clinical Diagnosis")
-    public void setClinicalDiagnosis(String clinicalDiagnosis) {
+    public PdxDto setClinicalDiagnosis(String clinicalDiagnosis) {
         this.clinicalDiagnosis = clinicalDiagnosis;
+        return this;
     }
 
     @JsonProperty("Tumor Type")
@@ -228,8 +201,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Tumor Type")
-    public void setTumorType(String tumorType) {
+    public PdxDto setTumorType(String tumorType) {
         this.tumorType = tumorType;
+        return this;
     }
 
     @JsonProperty("Stage Classification")
@@ -238,8 +212,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Stage Classification")
-    public void setStageClassification(String stageClassification) {
+    public PdxDto setStageClassification(String stageClassification) {
         this.stageClassification = stageClassification;
+        return this;
     }
 
     @JsonProperty("Stage Value")
@@ -249,8 +224,9 @@ public class PdmrPdxInfo {
 
 
     @JsonProperty("Stage Value")
-    public void setStageValue(String stageValue) {
+    public PdxDto setStageValue(String stageValue) {
         this.stageValue = stageValue;
+        return this;
     }
 
     @JsonProperty("Grade Classification")
@@ -259,8 +235,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Grade Classification")
-    public void setGradeClassification(String gradeClassification) {
+    public PdxDto setGradeClassification(String gradeClassification) {
         this.gradeClassification = gradeClassification;
+        return this;
     }
 
     @JsonProperty("Grade Value")
@@ -269,8 +246,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Grade Value")
-    public void setGradeValue(String gradeValue) {
+    public PdxDto setGradeValue(String gradeValue) {
         this.gradeValue = gradeValue;
+        return this;
     }
 
     @JsonProperty("Sample Type")
@@ -279,8 +257,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Sample Type")
-    public void setSampleType(String sampleType) {
+    public PdxDto setSampleType(String sampleType) {
         this.sampleType = sampleType;
+        return this;
     }
 
     @JsonProperty("Strain")
@@ -289,8 +268,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Strain")
-    public void setStrain(String strain) {
+    public PdxDto setStrain(String strain) {
         this.strain = strain;
+        return this;
     }
 
     @JsonProperty("Mouse Sex")
@@ -299,18 +279,20 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Mouse Sex")
-    public void setMouseSex(String mouseSex) {
+    public PdxDto setMouseSex(String mouseSex) {
         this.mouseSex = mouseSex;
+        return this;
     }
 
     @JsonProperty("Treatments")
-    public void setTreatments(List<Treatment> treatments) {
-        this.treatments = treatments;
+    public PdxDto setTreatmentDtos(List<TreatmentDto> treatmentDtos) {
+        this.treatmentDtos = treatmentDtos;
+        return this;
     }
 
     @JsonProperty("Treatments")
-    public List<Treatment> getTreatments() {
-        return treatments;
+    public List<TreatmentDto> getTreatmentDtos() {
+        return treatmentDtos;
     }
 
     @JsonProperty("Treatment Naive")
@@ -319,8 +301,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Treatment Naive")
-    public void setTreatmentNaive(String treatmentNaive) {
+    public PdxDto setTreatmentNaive(String treatmentNaive) {
         this.treatmentNaive = treatmentNaive;
+        return this;
     }
 
     @JsonProperty("Engraftment Site")
@@ -329,8 +312,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Engraftment Site")
-    public void setEngraftmentSite(String engraftmentSite) {
+    public PdxDto setEngraftmentSite(String engraftmentSite) {
         this.engraftmentSite = engraftmentSite;
+        return this;
     }
 
     @JsonProperty("Engraftment Type")
@@ -339,8 +323,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Engraftment Type")
-    public void setEngraftmentType(String engraftmentType) {
+    public PdxDto setEngraftmentType(String engraftmentType) {
         this.engraftmentType = engraftmentType;
+        return this;
     }
 
     @JsonProperty("Source url")
@@ -349,8 +334,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Source url")
-    public void setSourceUrl(String sourceUrl) {
+    public PdxDto setSourceUrl(String sourceUrl) {
         this.sourceUrl = sourceUrl;
+        return this;
     }
 
     @JsonProperty("Extraction Method")
@@ -359,8 +345,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Extraction Method")
-    public void setExtractionMethod(String extractionMethod) {
+    public PdxDto setExtractionMethod(String extractionMethod) {
         this.extractionMethod = extractionMethod;
+        return this;
     }
 
     @JsonProperty("Date At Collection")
@@ -369,8 +356,9 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Date At Collection")
-    public void setDateAtCollection(String dateAtCollection) {
+    public PdxDto setDateAtCollection(String dateAtCollection) {
         this.dateAtCollection = dateAtCollection;
+        return this;
     }
 
     @JsonProperty("Accessibility")
@@ -379,18 +367,38 @@ public class PdmrPdxInfo {
     }
 
     @JsonProperty("Accessibility")
-    public void setAccessibility(String accessibility) {
+    public PdxDto setAccessibility(String accessibility) {
         this.accessibility = accessibility;
+        return this;
     }
 
     @JsonProperty("Validations")
-    public List<Validation> getValidations() {
-        return validations;
+    public List<ValidationDto> getValidationDtos() {
+        return validationDtos;
     }
 
     @JsonProperty("Samples")
-    public List<PdmrSample> getSamples() {
-        return samples;
+    public List<SampleDto> getSampleDtos() {
+        return sampleDtos;
+    }
+
+    public PdxDto setId(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public PdxDto setValidationDtos(List<ValidationDto> validationDtos) {
+        this.validationDtos = validationDtos;
+        return this;
+    }
+
+    public PdxDto setSampleDtos(List<SampleDto> sampleDtos) {
+        this.sampleDtos = sampleDtos;
+        return this;
+    }
+
+    public PdxDto build() {
+        return this;
     }
 }
 

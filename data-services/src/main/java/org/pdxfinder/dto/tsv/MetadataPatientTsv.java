@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "age_at_initial_diagnosis",
 })
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class MetadataPatient {
+public class MetadataPatientTsv {
 
     @JsonProperty("Field")
     private String field;
@@ -41,42 +41,42 @@ public class MetadataPatient {
     @JsonProperty("age_at_initial_diagnosis")
     private String ageAtInitialDiagnosis;
 
-    public MetadataPatient setField(String field) {
+    public MetadataPatientTsv setField(String field) {
         this.field = field;
         return this;
     }
 
-    public MetadataPatient setPatientId(String patientId) {
+    public MetadataPatientTsv setPatientId(String patientId) {
         this.patientId = patientId;
         return this;
     }
 
-    public MetadataPatient setSex(String sex) {
+    public MetadataPatientTsv setSex(String sex) {
         this.sex = sex;
         return this;
     }
 
-    public MetadataPatient setHistory(String history) {
+    public MetadataPatientTsv setHistory(String history) {
         this.history = history;
         return this;
     }
 
-    public MetadataPatient setEthnicity(String ethnicity) {
+    public MetadataPatientTsv setEthnicity(String ethnicity) {
         this.ethnicity = ethnicity;
         return this;
     }
 
-    public MetadataPatient setEthnicityAssessmentMethod(String ethnicityAssessmentMethod) {
+    public MetadataPatientTsv setEthnicityAssessmentMethod(String ethnicityAssessmentMethod) {
         this.ethnicityAssessmentMethod = ethnicityAssessmentMethod;
         return this;
     }
 
-    public MetadataPatient setInitialDiagnosis(String initialDiagnosis) {
+    public MetadataPatientTsv setInitialDiagnosis(String initialDiagnosis) {
         this.initialDiagnosis = initialDiagnosis;
         return this;
     }
 
-    public MetadataPatient setAgeAtInitialDiagnosis(String ageAtInitialDiagnosis) {
+    public MetadataPatientTsv setAgeAtInitialDiagnosis(String ageAtInitialDiagnosis) {
         this.ageAtInitialDiagnosis = ageAtInitialDiagnosis;
         return this;
     }
@@ -85,7 +85,7 @@ public class MetadataPatient {
         return field;
     }
 
-    public MetadataPatient createMetadataPatient() {
+    public MetadataPatientTsv createMetadataPatient() {
         return this;
     }
 
