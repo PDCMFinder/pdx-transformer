@@ -69,25 +69,11 @@ public class TransformDataService {
 
         WritePatientTsvUtil.writeTsv(pdxDtos, outputDirectory);
         WriteModelTsvUtil.writeTsv(pdxDtos, outputDirectory);
+        WriteSampleTsvUtil.writeTsv(pdxDtos, outputDirectory);
 
         return pdxDtos;
     }
 
 
-    public List<MetadataModelTsv> readFile() throws IOException {
-
-        InputStream contents = FileUtil.loadFixedTsvDescriptionRows();
-
-        CsvSchema.Builder builder = CsvSchema.builder();
-        CsvSchema schema = builder.build().withHeader().withColumnSeparator('\t');
-
-        CsvMapper mapper = new CsvMapper();
-        MappingIterator<MetadataModelTsv> iterator = mapper.readerFor(MetadataModelTsv.class).with(schema).readValues(contents);
-        List<MetadataModelTsv> metadataModelTsvs = iterator.readAll();
-
-        metadataModelTsvs.forEach(metadataModelTsv -> log.info(metadataModelTsv.toString()));
-
-        return metadataModelTsvs;
-    }
 
 }
