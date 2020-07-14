@@ -11,8 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,23 +31,23 @@ public class TransformDataService {
     public List<PdxDto> transformerData() throws IOException {
 
         ExtractDto extracted = extractService.execute();
-        List<String> modelIDList = new ArrayList<>();
-        List<PdxDto> pdxDtoList = new ArrayList<>();
+        List<String> modelIds = new ArrayList<>();
+        List<PdxDto> pdxDtos = new ArrayList<>();
 
         for (SpecimenSearch specimenSearch : extracted.getSpecimenSearchList()) {
 
             TransformUtil transformUtil = new TransformUtil(specimenSearch, extracted);
 
-            String modelID = transformUtil.getModelId();
-            if (modelID.isEmpty() || modelIDList.contains(modelID)) {
+            String modelId = transformUtil.getModelId();
+            if (modelId.isEmpty() || modelIds.contains(modelId)) {
                 continue;
             }
-            modelIDList.add(modelID);
+            modelIds.add(modelId);
 
             PdxDto pdxDto = SpecimenDataUtil.get(specimenSearch, extracted);
             List<TreatmentDto> treatmentDtos = TreatmentUtil.getCurrentTherapies(specimenSearch, extracted);
 
-            pdxDto.setModelID(modelID)
+            pdxDto.setModelID(modelId)
                     .setPatientID(specimenSearch.getPatientid())
                     .setPrimarySite(specimenSearch.getDiseaselocationdescription())
                     .setSampleType(specimenSearch.getTissuetypedescription())
@@ -64,35 +64,30 @@ public class TransformDataService {
                     .setTreatmentNaive(null)
                     .setTreatmentDtos(treatmentDtos);
 
-            pdxDtoList.add(pdxDto);
+            pdxDtos.add(pdxDto);
         }
 
-        WritePatientTsvUtil.writeTsv(pdxDtoList, outputDirectory);
-        WriteModelTsvUtil.writeTsv(pdxDtoList, outputDirectory);
+        WritePatientTsvUtil.writeTsv(pdxDtos, outputDirectory);
+        WriteModelTsvUtil.writeTsv(pdxDtos, outputDirectory);
 
-        return pdxDtoList;
+        return pdxDtos;
     }
 
 
-    public List<WriteModelDto> readFile() throws IOException {
+    public List<MetadataModelTsv> readFile() throws IOException {
 
-        File csvFile = new File(System.getProperty("user.dir") + "/init.tsv");
+        InputStream contents = FileUtil.loadFixedTsvDescriptionRows();
 
         CsvSchema.Builder builder = CsvSchema.builder();
         CsvSchema schema = builder.build().withHeader().withColumnSeparator('\t');
 
         CsvMapper mapper = new CsvMapper();
-        MappingIterator<WriteModelDto> iterator = mapper
-                .readerFor(WriteModelDto.class)
-                .with(schema).readValues(csvFile);
+        MappingIterator<MetadataModelTsv> iterator = mapper.readerFor(MetadataModelTsv.class).with(schema).readValues(contents);
+        List<MetadataModelTsv> metadataModelTsvs = iterator.readAll();
 
+        metadataModelTsvs.forEach(metadataModelTsv -> log.info(metadataModelTsv.toString()));
 
-        List<WriteModelDto> writeModelDtos = iterator.readAll();
-        writeModelDtos.forEach(writeModelDto -> {
-            log.info(writeModelDto.toString());
-        });
-
-        return iterator.readAll();
+        return metadataModelTsvs;
     }
 
 }

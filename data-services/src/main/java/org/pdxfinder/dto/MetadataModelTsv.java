@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "publications",
 })
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class WriteModelDto {
+public class MetadataModelTsv {
 
     @JsonProperty("Field")
     private String field;
@@ -49,52 +49,52 @@ public class WriteModelDto {
     @JsonProperty("publications")
     private String publications;
 
-    public WriteModelDto setField(String field) {
+    public MetadataModelTsv setField(String field) {
         this.field = field;
         return this;
     }
 
-    public WriteModelDto setModelId(String modelId) {
+    public MetadataModelTsv setModelId(String modelId) {
         this.modelId = modelId;
         return this;
     }
 
-    public WriteModelDto setHostStrain(String hostStrain) {
+    public MetadataModelTsv setHostStrain(String hostStrain) {
         this.hostStrain = hostStrain;
         return this;
     }
 
-    public WriteModelDto setHostStrainFull(String hostStrainFull) {
+    public MetadataModelTsv setHostStrainFull(String hostStrainFull) {
         this.hostStrainFull = hostStrainFull;
         return this;
     }
 
-    public WriteModelDto setEngraftmentSite(String engraftmentSite) {
+    public MetadataModelTsv setEngraftmentSite(String engraftmentSite) {
         this.engraftmentSite = engraftmentSite;
         return this;
     }
 
-    public WriteModelDto setEngraftmentType(String engraftmentType) {
+    public MetadataModelTsv setEngraftmentType(String engraftmentType) {
         this.engraftmentType = engraftmentType;
         return this;
     }
 
-    public WriteModelDto setSampleType(String sampleType) {
+    public MetadataModelTsv setSampleType(String sampleType) {
         this.sampleType = sampleType;
         return this;
     }
 
-    public WriteModelDto setSampleState(String sampleState) {
+    public MetadataModelTsv setSampleState(String sampleState) {
         this.sampleState = sampleState;
         return this;
     }
 
-    public WriteModelDto setPassageNumber(String passageNumber) {
+    public MetadataModelTsv setPassageNumber(String passageNumber) {
         this.passageNumber = passageNumber;
         return this;
     }
 
-    public WriteModelDto setPublications(String publications) {
+    public MetadataModelTsv setPublications(String publications) {
         this.publications = publications;
         return this;
     }
@@ -103,7 +103,7 @@ public class WriteModelDto {
         return field;
     }
 
-    public WriteModelDto createMetadataModel() {
+    public MetadataModelTsv createMetadataModel() {
         return this;
     }
 

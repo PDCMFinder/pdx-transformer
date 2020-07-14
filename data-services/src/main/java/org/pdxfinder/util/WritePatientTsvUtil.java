@@ -1,6 +1,6 @@
 package org.pdxfinder.util;
 
-import org.pdxfinder.dto.WritePatientDto;
+import org.pdxfinder.dto.MetadataPatientTsv;
 import org.pdxfinder.dto.PdxDto;
 
 import java.io.IOException;
@@ -14,8 +14,8 @@ public class WritePatientTsvUtil {
     }
 
     public static void writeTsv(List<PdxDto> pdxDtoList, String outputDirectory) throws IOException {
-        List<WritePatientDto> patients = new ArrayList<>();
-        pdxDtoList.forEach(pdxDto -> patients.add(new WritePatientDto()
+        List<MetadataPatientTsv> patients = new ArrayList<>();
+        pdxDtoList.forEach(pdxDto -> patients.add(new MetadataPatientTsv()
                                                     .setPatientId(pdxDto.getPatientID())
                                                     .setSex(pdxDto.getGender())
                                                     .setHistory("")

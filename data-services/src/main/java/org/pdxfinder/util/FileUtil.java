@@ -24,14 +24,9 @@ public class FileUtil {
         }
     }
 
-    public static Object loadFixedTsvDescriptionRows() throws IOException {
-        String contents = "";
-        try (InputStream inputStream = FileUtil.class.getResourceAsStream("/templates/head_metadata-model.tsv");
-             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-            contents = reader.lines()
-                    .collect(Collectors.joining(System.lineSeparator()));
-        }
-        return contents;
+    public static InputStream loadFixedTsvDescriptionRows() throws IOException {
+
+        return FileUtil.class.getResourceAsStream("/templates/head_metadata-model.tsv");
     }
 
     public static String serializePojoToTsv(List<?> pojoList) throws IOException {
