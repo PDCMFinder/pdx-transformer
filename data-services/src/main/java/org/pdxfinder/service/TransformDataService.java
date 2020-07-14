@@ -1,18 +1,18 @@
 package org.pdxfinder.service;
 
-import com.fasterxml.jackson.databind.MappingIterator;
-import com.fasterxml.jackson.dataformat.csv.CsvMapper;
-import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import org.pdxfinder.*;
 import org.pdxfinder.dto.*;
 import org.pdxfinder.util.*;
+import org.pdxfinder.util.tsv.WriteModelTsvUtil;
+import org.pdxfinder.util.tsv.WritePatientTsvUtil;
+import org.pdxfinder.util.tsv.WriteSampleTsvUtil;
+import org.pdxfinder.util.tsv.WriteSharingTsvUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +70,7 @@ public class TransformDataService {
         WritePatientTsvUtil.writeTsv(pdxDtos, outputDirectory);
         WriteModelTsvUtil.writeTsv(pdxDtos, outputDirectory);
         WriteSampleTsvUtil.writeTsv(pdxDtos, outputDirectory);
+        WriteSharingTsvUtil.writeTsv(pdxDtos, outputDirectory);
 
         return pdxDtos;
     }

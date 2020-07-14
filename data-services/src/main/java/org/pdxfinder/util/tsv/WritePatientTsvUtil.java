@@ -1,7 +1,8 @@
-package org.pdxfinder.util;
+package org.pdxfinder.util.tsv;
 
-import org.pdxfinder.dto.MetadataPatientTsv;
+import org.pdxfinder.dto.tsv.MetadataPatientTsv;
 import org.pdxfinder.dto.PdxDto;
+import org.pdxfinder.util.FileUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;

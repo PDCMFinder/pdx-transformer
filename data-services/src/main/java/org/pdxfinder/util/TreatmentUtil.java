@@ -2,14 +2,16 @@ package org.pdxfinder.util;
 
 import org.pdxfinder.*;
 import org.pdxfinder.dto.ExtractDto;
-import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.dto.TreatmentDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import static java.lang.System.out;
 
 public class TreatmentUtil {
+
+    private static final Logger log = LoggerFactory.getLogger(TreatmentUtil.class);
 
     private TreatmentUtil() {
     }
@@ -26,7 +28,7 @@ public class TreatmentUtil {
                 try {
                     startingDate = startingDate.equals("null") ? "Not Specified" : startingDate.substring(0, 10);
                 } catch (Exception e) {
-                    out.println(e.getMessage());
+                    log.warn(e.getMessage());
                 }
                 for (StandardizedRegimens standardRegimen : extracted.getStandardRegimens()) {
                     if (currentTherapy.getStandardizedregimenseqnbr().equals(standardRegimen.getRegimenseqnbr())) {
@@ -65,7 +67,7 @@ public class TreatmentUtil {
                 try {
                     priorDate = priorDate.equals("null") ? "Not Specified" : priorDate.substring(0, 10);
                 } catch (Exception e) {
-                    out.println(e.getMessage());
+                    log.warn(e.getMessage());
                 }
 
                 String duration = priorTherapy.getDurationmonths() + " Months";

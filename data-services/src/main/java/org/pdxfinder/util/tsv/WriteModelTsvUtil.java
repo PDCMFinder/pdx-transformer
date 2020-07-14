@@ -1,11 +1,12 @@
-package org.pdxfinder.util;
+package org.pdxfinder.util.tsv;
 
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.dto.SampleDto;
-import org.pdxfinder.dto.MetadataModelTsv;
+import org.pdxfinder.dto.tsv.MetadataModelTsv;
+import org.pdxfinder.util.FileUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
