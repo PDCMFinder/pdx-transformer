@@ -3,10 +3,7 @@ package org.pdxfinder.service;
 import org.pdxfinder.*;
 import org.pdxfinder.dto.*;
 import org.pdxfinder.util.*;
-import org.pdxfinder.util.tsv.WriteModelTsvUtil;
-import org.pdxfinder.util.tsv.WritePatientTsvUtil;
-import org.pdxfinder.util.tsv.WriteSampleTsvUtil;
-import org.pdxfinder.util.tsv.WriteSharingTsvUtil;
+import org.pdxfinder.util.tsv.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -71,6 +68,7 @@ public class TransformDataService {
         WriteModelTsvUtil.writeTsv(pdxDtos, outputDirectory);
         WriteSampleTsvUtil.writeTsv(pdxDtos, outputDirectory);
         WriteSharingTsvUtil.writeTsv(pdxDtos, outputDirectory);
+        WriteModelValidationTsvUtil.writeTsv(pdxDtos, outputDirectory);
 
         return pdxDtos;
     }

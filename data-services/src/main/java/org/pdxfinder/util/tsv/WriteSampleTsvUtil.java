@@ -23,11 +23,9 @@ public class WriteSampleTsvUtil {
         CsvSchema.Builder builder = CsvSchema.builder();
         CsvMapper mapper = new CsvMapper();
         CsvSchema schema = builder.build().withHeader().withColumnSeparator('\t');
-
         MappingIterator<MetadataSampleTsv> iterator = mapper.readerFor(MetadataSampleTsv.class).with(schema).readValues(contents);
 
         List<MetadataSampleTsv> metadataSampleTsvs = iterator.readAll();
-
         pdxDtoList.forEach(pdxDto -> metadataSampleTsvs.add(new MetadataSampleTsv()
                                                                     .setField("")
                                                                     .setPatientId(pdxDto.getPatientID())

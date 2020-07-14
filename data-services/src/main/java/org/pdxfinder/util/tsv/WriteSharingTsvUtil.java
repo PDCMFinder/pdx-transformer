@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import org.pdxfinder.dto.PdxDto;
-import org.pdxfinder.dto.tsv.MetadataSampleTsv;
 import org.pdxfinder.dto.tsv.MetadataSharingTsv;
 import org.pdxfinder.util.FileUtil;
 
@@ -25,10 +24,10 @@ public class WriteSharingTsvUtil {
         CsvMapper mapper = new CsvMapper();
         CsvSchema schema = builder.build().withHeader().withColumnSeparator('\t');
 
-        MappingIterator<MetadataSharingTsv> iterator = mapper.readerFor(MetadataSharingTsv.class).with(schema).readValues(contents);
+        MappingIterator<MetadataSharingTsv> iterator =
+                mapper.readerFor(MetadataSharingTsv.class).with(schema).readValues(contents);
 
         List<MetadataSharingTsv> metadataSharingTsvs = iterator.readAll();
-
         pdxDtoList.forEach(pdxDto -> metadataSharingTsvs.add(new MetadataSharingTsv()
                                                                      .setField("")
                                                                      .setModelId(pdxDto.getModelID())
