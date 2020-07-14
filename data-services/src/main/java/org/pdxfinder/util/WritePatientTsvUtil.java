@@ -1,7 +1,7 @@
 package org.pdxfinder.util;
 
 import org.pdxfinder.dto.WritePatientDto;
-import org.pdxfinder.dto.TransformPdx;
+import org.pdxfinder.dto.PdxDto;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,15 +13,15 @@ public class WritePatientTsvUtil {
         // Never Called
     }
 
-    public static void writeTsv(List<TransformPdx> pdxList, String outputDirectory) throws IOException {
+    public static void writeTsv(List<PdxDto> pdxDtoList, String outputDirectory) throws IOException {
         List<WritePatientDto> patients = new ArrayList<>();
-        pdxList.forEach(pdx -> patients.add(new WritePatientDto()
-                                                    .setPatientId(pdx.getPatientID())
-                                                    .setSex(pdx.getGender())
+        pdxDtoList.forEach(pdxDto -> patients.add(new WritePatientDto()
+                                                    .setPatientId(pdxDto.getPatientID())
+                                                    .setSex(pdxDto.getGender())
                                                     .setHistory("")
-                                                    .setEthnicity(pdx.getEthnicity())
+                                                    .setEthnicity(pdxDto.getEthnicity())
                                                     .setEthnicityAssessmentMethod("")
-                                                    .setInitialDiagnosis(pdx.getInitialDiagnosis())
+                                                    .setInitialDiagnosis(pdxDto.getInitialDiagnosis())
                                                     .setAgeAtInitialDiagnosis("")));
 
         String patientMetaData = FileUtil.serializePojoToTsv(patients);

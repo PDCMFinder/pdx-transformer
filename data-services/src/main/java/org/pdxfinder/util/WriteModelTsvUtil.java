@@ -1,7 +1,7 @@
 package org.pdxfinder.util;
 
-import org.pdxfinder.dto.TransformPdx;
-import org.pdxfinder.dto.TransformSample;
+import org.pdxfinder.dto.PdxDto;
+import org.pdxfinder.dto.SampleDto;
 import org.pdxfinder.dto.WriteModelDto;
 
 import java.io.IOException;
@@ -16,21 +16,21 @@ public class WriteModelTsvUtil {
         // Never Called
     }
 
-    public static void writeTsv(List<TransformPdx> pdxList, String outputDirectory) throws IOException {
+    public static void writeTsv(List<PdxDto> pdxDtoList, String outputDirectory) throws IOException {
         List<WriteModelDto> models = new ArrayList<>();
-        pdxList.forEach(pdx -> {
-            Set<String> passages = pdx.getSamples().stream()
-                    .filter(sample -> sample.getPassage() != null)
-                    .map(TransformSample::getPassage)
+        pdxDtoList.forEach(pdxDto -> {
+            Set<String> passages = pdxDto.getSampleDtos().stream()
+                    .filter(sampleDto -> sampleDto.getPassage() != null)
+                    .map(SampleDto::getPassage)
                     .collect(Collectors.toSet());
             models.add(new WriteModelDto()
                                .setField("")
-                               .setModelId(pdx.getModelID())
+                               .setModelId(pdxDto.getModelID())
                                .setHostStrain("NOD scid gamma")
-                               .setHostStrainFull(pdx.getStrain())
-                               .setEngraftmentSite(pdx.getEngraftmentSite())
-                               .setEngraftmentType(pdx.getEngraftmentType())
-                               .setSampleType(pdx.getSampleType())
+                               .setHostStrainFull(pdxDto.getStrain())
+                               .setEngraftmentSite(pdxDto.getEngraftmentSite())
+                               .setEngraftmentType(pdxDto.getEngraftmentType())
+                               .setSampleType(pdxDto.getSampleType())
                                .setSampleState("Not Specified")
                                .setPublications("")
                                .setPassageNumber(String.join(",", passages)));
