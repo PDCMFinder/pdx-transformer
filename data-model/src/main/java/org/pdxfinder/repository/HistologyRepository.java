@@ -1,7 +1,7 @@
 package org.pdxfinder.repository;
 
 import org.pdxfinder.domain.Histology;
-import org.pdxfinder.domain.projection.HistologyProjection;
+import org.pdxfinder.domain.projection.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

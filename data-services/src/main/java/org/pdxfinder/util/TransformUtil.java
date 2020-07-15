@@ -4,7 +4,7 @@ import org.pdxfinder.domain.*;
 import org.pdxfinder.dto.ExtractDto;
 import org.pdxfinder.dto.SampleDto;
 import org.pdxfinder.dto.ValidationDto;
-import org.pdxfinder.domain.projection.HistologyProjection;
+import org.pdxfinder.domain.projection.*;
 import java.util.ArrayList;
 import java.util.List;
 

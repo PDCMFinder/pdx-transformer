@@ -1,7 +1,7 @@
 package org.pdxfinder.dto;
 
 import org.pdxfinder.domain.*;
-import org.pdxfinder.domain.projection.HistologyProjection;
+import org.pdxfinder.domain.projection.*;
 
 import java.util.List;
 
