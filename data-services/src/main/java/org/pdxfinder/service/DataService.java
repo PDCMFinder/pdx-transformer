@@ -1,7 +1,8 @@
 package org.pdxfinder.service;
 
-import org.pdxfinder.*;
-import org.pdxfinder.projection.HistologyProjection;
+import org.pdxfinder.domain.*;
+import org.pdxfinder.domain.projection.HistologyProjection;
+import org.pdxfinder.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

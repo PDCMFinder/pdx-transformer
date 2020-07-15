@@ -1,6 +1,6 @@
 package org.pdxfinder.util;
 
-import org.pdxfinder.*;
+import org.pdxfinder.domain.*;
 import org.pdxfinder.dto.ExtractDto;
 import org.pdxfinder.dto.TreatmentDto;
 import org.slf4j.Logger;

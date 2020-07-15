@@ -22,7 +22,7 @@ public class WriteModelTsvUtil {
 
     public static void writeTsv(List<PdxDto> pdxDtoList, String outputDirectory) throws IOException {
 
-        InputStream contents = FileUtil.loadFixedTsvDescriptionRows();
+        InputStream contents = FileUtil.class.getResourceAsStream("/templates/head_metadata-model.tsv");
         CsvSchema.Builder builder = CsvSchema.builder();
         CsvMapper mapper = new CsvMapper();
         CsvSchema schema = builder.build().withHeader().withColumnSeparator('\t');

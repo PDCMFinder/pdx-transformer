@@ -1,10 +1,10 @@
 package org.pdxfinder.util;
 
-import org.pdxfinder.*;
+import org.pdxfinder.domain.*;
 import org.pdxfinder.dto.ExtractDto;
 import org.pdxfinder.dto.SampleDto;
 import org.pdxfinder.dto.ValidationDto;
-import org.pdxfinder.projection.HistologyProjection;
+import org.pdxfinder.domain.projection.HistologyProjection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,7 +88,7 @@ public class TransformUtil {
 
     public String getGradeValue(){
         String gradeValue = "";
-        for (org.pdxfinder.Sample dSample : extracted.getSamples()) {
+        for (Sample dSample : extracted.getSamples()) {
             if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
                 for (HistologyProjection histology : extracted.getHistologies()) {
                     if (dSample.getSampleseqnbr().equals(histology.getSampleSeqnbr())) {

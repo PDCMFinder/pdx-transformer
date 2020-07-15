@@ -1,6 +1,6 @@
 package org.pdxfinder.service;
 
-import org.pdxfinder.*;
+import org.pdxfinder.domain.SpecimenSearch;
 import org.pdxfinder.dto.*;
 import org.pdxfinder.util.*;
 import org.slf4j.Logger;
