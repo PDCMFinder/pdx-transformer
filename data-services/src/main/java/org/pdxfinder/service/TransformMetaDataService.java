@@ -1,6 +1,6 @@
 package org.pdxfinder.service;
 
-import org.pdxfinder.domain.SpecimenSearch;
+import org.pdxfinder.domain.*;
 import org.pdxfinder.dto.*;
 import org.pdxfinder.util.*;
 import org.slf4j.Logger;
@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class TransformDataService {
+public class TransformMetaDataService {
 
-    private final Logger log = LoggerFactory.getLogger(TransformDataService.class);
+    private final Logger log = LoggerFactory.getLogger(TransformMetaDataService.class);
 
-    public List<PdxDto> transformerData(ExtractDto extracted) {
+    public List<PdxDto> execute(ExtractDto extracted) {
 
-        log.info("Start Transforming data-sets");
+        log.info("Start Transforming metadata data-sets");
         List<String> modelIds = new ArrayList<>();
         List<PdxDto> pdxDtos = new ArrayList<>();
 
@@ -55,7 +55,5 @@ public class TransformDataService {
 
         return pdxDtos;
     }
-
-
 
 }

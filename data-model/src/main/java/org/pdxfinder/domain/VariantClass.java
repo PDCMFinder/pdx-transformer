@@ -1,4 +1,4 @@
-package org.pdxfinder.domain.omic;
+package org.pdxfinder.domain;
 
 import javax.persistence.*;
 

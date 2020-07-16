@@ -1,4 +1,4 @@
-package org.pdxfinder.domain.projection;
+package org.pdxfinder.projection;
 
 public interface HistologyProjection {
 

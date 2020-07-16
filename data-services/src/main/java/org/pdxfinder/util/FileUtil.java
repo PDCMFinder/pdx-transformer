@@ -49,4 +49,14 @@ public class FileUtil {
         return csvMapper.writer(schema).writeValueAsString(csvData);
     }
 
+    public static boolean isNumeric(String val) {
+        boolean report = false;
+        try {
+            Double.parseDouble(val);
+            report = true;
+        } catch (Exception e) {
+        }
+        return report;
+    }
+
 }

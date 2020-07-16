@@ -4,7 +4,10 @@ import org.pdxfinder.domain.*;
 import org.pdxfinder.dto.ExtractDto;
 import org.pdxfinder.dto.SampleDto;
 import org.pdxfinder.dto.ValidationDto;
-import org.pdxfinder.domain.projection.*;
+import org.pdxfinder.projection.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +15,7 @@ import static java.lang.System.*;
 
 public class TransformUtil {
 
+    private Logger log = LoggerFactory.getLogger(TransformUtil.class);
     private SpecimenSearch specimenSearch;
     private ExtractDto extracted;
 
@@ -19,8 +23,6 @@ public class TransformUtil {
         this.specimenSearch = specimenSearch;
         this.extracted = extracted;
     }
-
-
 
     public String getModelId(){
         String pdmTypeDesc = specimenSearch.getPdmtypedescription();
@@ -65,12 +67,12 @@ public class TransformUtil {
                 String samplePassage = String.valueOf(dSample.getPassageofthissample());
                 String sampleTumorType = "";
 
-                if (isNumeric(samplePassage)) {
+                if (FileUtil.isNumeric(samplePassage)) {
                     if (!sampleId.contains("CAF")) {
                         sampleTumorType = "engrafted Tumor";
                         sampleDtoList.add(new SampleDto(sampleId, sampleTumorType, samplePassage, wholeExomeSeqYn, wholeExomeSeqYn, wholeExomeSeqYn, rnaSeqYn, rnaSeqYn));
                     }else {
-                        out.println("This is Strange, CAF Culture that has passage number");
+                        log.warn("This is Strange, CAF Culture that has passage number");
                     }
                 } else {
                     if (sampleId.equals("ORIGINATOR")) {
@@ -78,7 +80,7 @@ public class TransformUtil {
                         samplePassage = null;
                         sampleDtoList.add(new SampleDto(sampleId, sampleTumorType, samplePassage, wholeExomeSeqYn, wholeExomeSeqYn, wholeExomeSeqYn, rnaSeqYn, rnaSeqYn));
                     }else {
-                        out.println("This is neither PDX nor Patient Sample ");
+                        log.info("This is neither PDX nor Patient Sample ");
                     }
                 }
             }
@@ -103,18 +105,6 @@ public class TransformUtil {
             }
         }
         return gradeValue;
-    }
-
-
-
-    public boolean isNumeric(String val) {
-        boolean report = false;
-        try {
-            Double.parseDouble(val);
-            report = true;
-        } catch (Exception e) {
-        }
-        return report;
     }
 
 

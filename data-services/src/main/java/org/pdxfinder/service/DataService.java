@@ -1,7 +1,7 @@
 package org.pdxfinder.service;
 
 import org.pdxfinder.domain.*;
-import org.pdxfinder.domain.projection.*;
+import org.pdxfinder.projection.*;
 import org.pdxfinder.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +29,10 @@ public class DataService {
     private final TumorGradesRepo tumorGradesRepo;
     private final TumorGradeStageTypesRepo tumorGradeStageTypesRepo;
     private final HistologyRepository histologyRepository;
+    private OncokbGenePanelRepo oncokbGenePanelRepo;
+    private HugoGeneSymbolRepo hugoGeneSymbolRepo;
+    private VariantClassRepo variantClassRepo;
+
 
     public DataService(GendersRepository gendersRepository,
                        SpecimenRepository specimenRepository,
@@ -45,7 +49,10 @@ public class DataService {
                        TissueTypesRepo tissueTypesRepo,
                        TumorGradesRepo tumorGradesRepo,
                        TumorGradeStageTypesRepo tumorGradeStageTypesRepo,
-                       HistologyRepository histologyRepository) {
+                       HistologyRepository histologyRepository,
+                       OncokbGenePanelRepo oncokbGenePanelRepo,
+                       HugoGeneSymbolRepo hugoGeneSymbolRepo,
+                       VariantClassRepo variantClassRepo) {
         this.gendersRepository = gendersRepository;
         this.specimenRepository = specimenRepository;
         this.clinicalResponsesRepo = clinicalResponsesRepo;
@@ -62,6 +69,9 @@ public class DataService {
         this.tumorGradesRepo = tumorGradesRepo;
         this.tumorGradeStageTypesRepo = tumorGradeStageTypesRepo;
         this.histologyRepository = histologyRepository;
+        this.oncokbGenePanelRepo = oncokbGenePanelRepo;
+        this.hugoGeneSymbolRepo = hugoGeneSymbolRepo;
+        this.variantClassRepo = variantClassRepo;
     }
 
 
@@ -142,6 +152,21 @@ public class DataService {
     public List<HistologyProjection> getAllHistologies(){
         log.info("Loading Histology data");
         return   histologyRepository.findAllHistology();
+    }
+
+    public List<OncokbGenePanel> getAllOncokbGenePanel(){
+        log.info("Hugo oncokb gene panel data");
+        return oncokbGenePanelRepo.findAll();
+    }
+
+    public List<HugoGeneSymbol> getAllHugoGeneSymbols(){
+        log.info("Hugo gene symbol data");
+        return hugoGeneSymbolRepo.findAll();
+    }
+
+    public List<VariantClass> getAllVariantClasses(){
+        log.info("Variant class data");
+        return variantClassRepo.findAll();
     }
 
     public Genders getOneGender(Integer seqNumber) {

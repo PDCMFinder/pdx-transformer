@@ -1,6 +1,6 @@
 package org.pdxfinder.repository;
 
-import org.pdxfinder.domain.omic.HugoGeneSymbol;
+import org.pdxfinder.domain.HugoGeneSymbol;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
