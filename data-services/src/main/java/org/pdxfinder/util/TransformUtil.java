@@ -75,7 +75,7 @@ public class TransformUtil {
                 } else {
                     if (sampleId.equals("ORIGINATOR")) {
                         sampleTumorType = "patient Tumor";
-                        samplePassage = null;
+                        samplePassage = "";
                         sampleDtoList.add(new SampleDto(sampleId, sampleTumorType, samplePassage, wholeExomeSeqYn, wholeExomeSeqYn, wholeExomeSeqYn, rnaSeqYn, rnaSeqYn));
                     }else {
                         log.info("{} is neither PDX nor Patient Sample ", sampleId);

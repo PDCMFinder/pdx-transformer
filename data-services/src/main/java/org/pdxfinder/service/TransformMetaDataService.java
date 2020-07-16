@@ -46,8 +46,9 @@ public class TransformMetaDataService {
                     .setValidationDtos(transformUtil.getValidations())
                     .setSampleDtos(transformUtil.getSamples())
                     .setStageValue("Not Specified")
+                    .setHostStrain(pdxDto.getHostStrainFull().isEmpty() ? "" : "NOD scid gamma")
                     .setMouseSex("")
-                    .setTreatmentNaive(null)
+                    .setTreatmentNaive("")
                     .setTreatmentDtos(treatmentDtos);
 
             pdxDtos.add(pdxDto);

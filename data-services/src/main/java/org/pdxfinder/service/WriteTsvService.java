@@ -23,6 +23,8 @@ public class WriteTsvService {
 
         WriteModelValidationTsvUtil.writeTsv(pdxDtos, outputDirectory);
 
+        WriteSamplePlatformTsvUtil.writeTsv(pdxDtos, outputDirectory);
+
         WriteOmicTsv.writeTsv(omicTsvs,  outputDirectory);
 
     }

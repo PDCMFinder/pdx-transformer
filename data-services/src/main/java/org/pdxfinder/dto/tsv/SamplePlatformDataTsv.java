@@ -6,17 +6,22 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({
         "Field",
+        "sample_id",
+        "sample_origin",
+        "passage",
+        "engrafted_tumor_collection_site",
         "model_id",
-        "provider_type",
-        "accessibility",
-        "europdx_access_modality",
-        "email",
-        "name",
-        "form_url",
-        "database_url",
-        "provider_name",
-        "provider_abbreviation",
-        "project"
+        "host_strain_name",
+        "host_strain_nomenclature",
+        "molecular_characterisation_type",
+        "platform",
+        "platform_type",
+        "platform_notes",
+        "analysis_protocol",
+        "processed_data_file",
+        "raw_data_sharable",
+        "raw_data_file",
+        "internal_protocol_url"
 })
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SamplePlatformDataTsv {

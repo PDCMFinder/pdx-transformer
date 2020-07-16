@@ -12,7 +12,7 @@ public class SpecimenDataUtil {
 
     public static PdxDto get(SpecimenSearch specimenSearch, ExtractDto extracted){
         return getBasicData(specimenSearch, extracted)
-                .setStrain(getStrain(specimenSearch, extracted))
+                .setHostStrainFull(getHostStrainFull(specimenSearch, extracted))
                 .setTumorType(getTumorType(specimenSearch, extracted))
                 .setEngraftmentSite(getEngraftmentSite(specimenSearch, extracted))
                 .setEngraftmentType(getEngraftmentType(specimenSearch, extracted));
@@ -51,18 +51,18 @@ public class SpecimenDataUtil {
                 .build();
     }
 
-    public static String getStrain(SpecimenSearch specimenSearch, ExtractDto extracted){
-        String strain = "";
+    public static String getHostStrainFull(SpecimenSearch specimenSearch, ExtractDto extracted){
+        String hostStrainFull = "";
         for (Specimen specimen : extracted.getSpecimenList()) {
             if (specimenSearch.getSpecimenid().equals(specimen.getSpecimenid())) {
                 for (MouseStrains mouseStrain : extracted.getMouseStrains()) {
                     if (specimen.getMousestrainseqnbr().equals(mouseStrain.getMousestrainseqnbr())) {
-                        strain = mouseStrain.getMousestraindescript();
+                        hostStrainFull = mouseStrain.getMousestraindescript();
                     }
                 }
             }
         }
-        return strain;
+        return hostStrainFull;
     }
 
     public static String getTumorType(SpecimenSearch specimenSearch, ExtractDto extracted){
