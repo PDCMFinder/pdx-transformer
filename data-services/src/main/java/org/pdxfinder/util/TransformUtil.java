@@ -4,14 +4,12 @@ import org.pdxfinder.domain.*;
 import org.pdxfinder.dto.ExtractDto;
 import org.pdxfinder.dto.SampleDto;
 import org.pdxfinder.dto.ValidationDto;
-import org.pdxfinder.projection.*;
+import org.pdxfinder.projection.HistologyProjection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.lang.System.*;
 
 public class TransformUtil {
 
@@ -80,7 +78,7 @@ public class TransformUtil {
                         samplePassage = null;
                         sampleDtoList.add(new SampleDto(sampleId, sampleTumorType, samplePassage, wholeExomeSeqYn, wholeExomeSeqYn, wholeExomeSeqYn, rnaSeqYn, rnaSeqYn));
                     }else {
-                        log.info("This is neither PDX nor Patient Sample ");
+                        log.info("{} is neither PDX nor Patient Sample ", sampleId);
                     }
                 }
             }

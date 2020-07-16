@@ -39,8 +39,7 @@ public class TransformOmicDataService {
                     .setEnsemblGeneId("")
                     .setEnsemblTranscriptId("")
                     .setGenomeAssembly("hg19")
-                    .setPlatform("OncoKB Gene Panel")
-                    .setFunctionalPrediction("");
+                    .setPlatform("OncoKB Gene Panel");
 
             samples.forEach(sample -> {
 

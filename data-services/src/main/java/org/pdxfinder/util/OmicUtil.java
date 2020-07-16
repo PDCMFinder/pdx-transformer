@@ -23,7 +23,7 @@ public class OmicUtil {
                 .setCodingSequenceChange(OmicUtil.getCodingSequenceChange(oncoKb))
                 .setAminoAcidChange(OmicUtil.getAminoAcidChange(oncoKb))
                 .setConsequence(OmicUtil.getConsequence(oncoKb, extracted))
-                .setConsequence(OmicUtil.getFunctionalPrediction(oncoKb))
+                .setFunctionalPrediction(OmicUtil.getFunctionalPrediction(oncoKb))
                 .setChromosome(OmicUtil.getChromosome(oncoKb))
                 .setVariationId(OmicUtil.getVariantId(oncoKb));
     }
