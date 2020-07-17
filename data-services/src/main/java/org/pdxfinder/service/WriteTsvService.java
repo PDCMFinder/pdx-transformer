@@ -4,7 +4,9 @@ import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.dto.tsv.OmicTsv;
 import org.pdxfinder.util.tsv.*;
 import org.springframework.stereotype.Service;
+import org.apache.commons.io.FileUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -13,19 +15,22 @@ public class WriteTsvService {
 
     public void execute(List<PdxDto> pdxDtos, List<OmicTsv> omicTsvs, String outputDirectory) throws IOException {
 
-        WriteModelTsvUtil.writeTsv(pdxDtos, outputDirectory);
+        String destination = String.format("%s/PDMR", outputDirectory);
 
-        WritePatientTsvUtil.writeTsv(pdxDtos, outputDirectory);
+        FileUtils.forceMkdir(new File(destination));
 
-        WriteSampleTsvUtil.writeTsv(pdxDtos, outputDirectory);
+        WriteModelTsvUtil.writeTsv(pdxDtos, destination);
 
-        WriteSharingTsvUtil.writeTsv(pdxDtos, outputDirectory);
+        WritePatientTsvUtil.writeTsv(pdxDtos, destination);
 
-        WriteModelValidationTsvUtil.writeTsv(pdxDtos, outputDirectory);
+        WriteSampleTsvUtil.writeTsv(pdxDtos, destination);
 
-        WriteSamplePlatformTsvUtil.writeTsv(pdxDtos, outputDirectory);
+        WriteSharingTsvUtil.writeTsv(pdxDtos, destination);
 
-        WriteOmicTsv.writeTsv(omicTsvs,  outputDirectory);
+        WriteModelValidationTsvUtil.writeTsv(pdxDtos, destination);
 
+        WriteSamplePlatformTsvUtil.writeTsv(pdxDtos, destination);
+
+        WriteOmicTsv.writeTsv(omicTsvs,  destination);
     }
 }
