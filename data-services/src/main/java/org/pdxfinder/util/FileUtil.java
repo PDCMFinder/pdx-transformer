@@ -17,6 +17,7 @@ public class FileUtil {
         // Never Called
     }
 
+
     public static void write(String data, String destination, Boolean shouldAppend) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(destination, shouldAppend))) {
             writer.append(data);

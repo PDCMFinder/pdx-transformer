@@ -3,6 +3,9 @@ package org.pdxfinder.util.tsv;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import org.pdxfinder.constant.DataConstants;
+import org.pdxfinder.constant.OutputFileNames;
+import org.pdxfinder.constant.TemplateLocations;
 import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.dto.SampleDto;
 import org.pdxfinder.dto.tsv.MetadataModelTsv;
@@ -22,7 +25,7 @@ public class WriteModelTsvUtil {
 
     public static void writeTsv(List<PdxDto> pdxDtoList, String outputDirectory) throws IOException {
 
-        InputStream contents = FileUtil.class.getResourceAsStream("/templates/head_metadata-model.tsv");
+        InputStream contents = FileUtil.class.getResourceAsStream(TemplateLocations.METADATA_MODEL_TEMPLATE);
         CsvSchema.Builder builder = CsvSchema.builder();
         CsvMapper mapper = new CsvMapper();
         CsvSchema schema = builder.build().withHeader().withColumnSeparator('\t');
@@ -44,13 +47,13 @@ public class WriteModelTsvUtil {
                                .setEngraftmentSite(pdxDto.getEngraftmentSite())
                                .setEngraftmentType(pdxDto.getEngraftmentType())
                                .setSampleType(pdxDto.getSampleType())
-                               .setSampleState("Not Specified")
-                               .setPublications("")
+                               .setSampleState(DataConstants.NOT_SPECIFIED)
+                               .setPublications(DataConstants.EMPTY)
                                .setPassageNumber(String.join(",", passages)));
         });
 
         String modelMetaData = FileUtil.serializePojoToTsv(metadataModelTsvs);
-        String output = String.format("%s/metadata-model.tsv", outputDirectory);
+        String output = String.format("%s%s", outputDirectory, OutputFileNames.METADATA_MODEL_TSV);
         FileUtil.write(modelMetaData, output, false);
     }
 }

@@ -1,5 +1,6 @@
 package org.pdxfinder.service;
 
+import org.pdxfinder.constant.Directories;
 import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.dto.tsv.OmicTsv;
 import org.pdxfinder.util.tsv.*;
@@ -15,9 +16,9 @@ public class WriteTsvService {
 
     public void execute(List<PdxDto> pdxDtos, List<OmicTsv> omicTsvs, String outputDirectory) throws IOException {
 
-        String destination = String.format("%s/PDMR", outputDirectory);
-        String treatment = String.format("%s/PDMR/treatment", outputDirectory);
-        String omic = String.format("%s/PDMR/mut", outputDirectory);
+        String destination = String.format("%s%s", outputDirectory, Directories.PDMR_OUT_DIR);
+        String treatment = String.format("%s%s%s", outputDirectory, Directories.PDMR_OUT_DIR, Directories.TREATMENT_OUT_DIR);
+        String omic = String.format("%s%s%s", outputDirectory, Directories.PDMR_OUT_DIR, Directories.MUTATION_OUT_DIR);
 
         FileUtils.forceMkdir(new File(destination));
         FileUtils.forceMkdir(new File(treatment));

@@ -3,6 +3,9 @@ package org.pdxfinder.util.tsv;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import org.pdxfinder.constant.DataConstants;
+import org.pdxfinder.constant.OutputFileNames;
+import org.pdxfinder.constant.TemplateLocations;
 import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.dto.ValidationDto;
 import org.pdxfinder.dto.tsv.MetadataModelValidationTsv;
@@ -21,7 +24,7 @@ public class WriteModelValidationTsvUtil {
 
     public static void writeTsv(List<PdxDto> pdxDtoList, String outputDirectory) throws IOException {
 
-        InputStream contents = FileUtil.class.getResourceAsStream("/templates/head_metadata-model_validation.tsv");
+        InputStream contents = FileUtil.class.getResourceAsStream(TemplateLocations.METADATA_MODEL_VALIDATION);
         CsvSchema.Builder builder = CsvSchema.builder();
         CsvMapper mapper = new CsvMapper();
         CsvSchema schema = builder.build().withHeader().withColumnSeparator('\t');
@@ -33,16 +36,16 @@ public class WriteModelValidationTsvUtil {
         pdxDtoList.forEach(pdxDto -> {
             List<ValidationDto> validations = pdxDto.getValidationDtos();
             validations.forEach(validation -> modelValidationTsvs.add(new MetadataModelValidationTsv()
-                                                                              .setField("")
+                                                                              .setField(DataConstants.EMPTY)
                                                                               .setModelId(pdxDto.getModelID())
                                                                               .setValidationTechnique(validation.getTechnique())
                                                                               .setDescription(validation.getDescription())
                                                                               .setPassagesTested(validation.getPassage())
-                                                                              .setValidationHostStrainFull("")));
+                                                                              .setValidationHostStrainFull(DataConstants.EMPTY)));
         });
 
         String modelMetaData = FileUtil.serializePojoToTsv(modelValidationTsvs);
-        String output = String.format("%s/metadata-model_validation.tsv", outputDirectory);
+        String output = String.format("%s%s", outputDirectory, OutputFileNames.METADATA_MODEL_VALIDATION_TSV);
         FileUtil.write(modelMetaData, output, false);
     }
 }

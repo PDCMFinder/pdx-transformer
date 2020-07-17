@@ -1,5 +1,6 @@
 package org.pdxfinder.util;
 
+import org.pdxfinder.constant.*;
 import org.pdxfinder.domain.*;
 import org.pdxfinder.dto.ExtractDto;
 import org.pdxfinder.dto.SampleDto;
@@ -26,8 +27,8 @@ public class TransformUtil {
         String pdmTypeDesc = specimenSearch.getPdmtypedescription();
         String tissueTypeDesc = specimenSearch.getTissuetypedescription();
         String modelID = "";
-        if ((pdmTypeDesc.equals("PDX") || pdmTypeDesc.equals("Patient/Originator Specimen"))
-                && (tissueTypeDesc.equals("Resection") || tissueTypeDesc.equals("Tumor Biopsy"))) {
+        if ((pdmTypeDesc.equals(CancerModelTypes.PDX_MODEL) || pdmTypeDesc.equals(CancerModelTypes.PATIENT_SPECIMEN))
+                && (tissueTypeDesc.equals(TissueTypeConstants.RESECTION) || tissueTypeDesc.equals(TissueTypeConstants.TUMOR_BIOPSY))) {
             modelID = String.format("%s-%s", specimenSearch.getPatientid(), specimenSearch.getSpecimenid());
         }
         return modelID;
@@ -38,17 +39,17 @@ public class TransformUtil {
         for (PatientInfo patient : extracted.getPatientList()) {
             if (specimenSearch.getPatientseqnbr().equals(patient.getPatientseqnbr())) {
                 if (patient.getDiagnosissubtype() != null) {
-                    clinicalDiagnosis.append(" | ").append(patient.getDiagnosissubtype());
+                    clinicalDiagnosis.append(DataConstants.PIPE_CHARACTER).append(patient.getDiagnosissubtype());
                 }
                 if (patient.getAdditionalmedicalhistory() != null) {
-                    clinicalDiagnosis.append(" | ").append(patient.getAdditionalmedicalhistory());
+                    clinicalDiagnosis.append(DataConstants.PIPE_CHARACTER).append(patient.getAdditionalmedicalhistory());
                 }
                 if (patient.getNotes() != null) {
-                    clinicalDiagnosis.append(" | ").append(patient.getNotes());
+                    clinicalDiagnosis.append(DataConstants.PIPE_CHARACTER).append(patient.getNotes());
                 }
             }
         }
-        clinicalDiagnosis = new StringBuilder(clinicalDiagnosis.toString().replaceAll("[^a-zA-Z,0-9 +_-]", "").trim());
+        clinicalDiagnosis = new StringBuilder(clinicalDiagnosis.toString().replaceAll("[^a-zA-Z,0-9 +_-]", DataConstants.EMPTY).trim());
         clinicalDiagnosis = new StringBuilder(clinicalDiagnosis.toString().replaceAll("\\s\\s", " "));
         return clinicalDiagnosis.toString();
     }
@@ -66,15 +67,15 @@ public class TransformUtil {
                 String sampleTumorType = "";
 
                 if (FileUtil.isNumeric(samplePassage)) {
-                    if (!sampleId.contains("CAF")) {
-                        sampleTumorType = "engrafted Tumor";
+                    if (!sampleId.contains(CancerModelTypes.CANCER_ASSOCIATED_FIBROBLASTS)) {
+                        sampleTumorType = TumorTypeConstants.ENGRAFTED_TUMOR;
                         sampleDtoList.add(new SampleDto(sampleId, sampleTumorType, samplePassage, wholeExomeSeqYn, wholeExomeSeqYn, wholeExomeSeqYn, rnaSeqYn, rnaSeqYn));
                     }else {
                         log.warn("This is Strange, CAF Culture that has passage number");
                     }
                 } else {
-                    if (sampleId.equals("ORIGINATOR")) {
-                        sampleTumorType = "patient Tumor";
+                    if (sampleId.equals(DataConstants.PDMR_PATIENT_SAMPLE_ID)) {
+                        sampleTumorType = TumorTypeConstants.PATIENT_TUMOR;
                         samplePassage = "";
                         sampleDtoList.add(new SampleDto(sampleId, sampleTumorType, samplePassage, wholeExomeSeqYn, wholeExomeSeqYn, wholeExomeSeqYn, rnaSeqYn, rnaSeqYn));
                     }else {
@@ -95,7 +96,7 @@ public class TransformUtil {
                         for (TumorGrades tumorGrade : extracted.getTumorGradesList()) {
                             if (histology.getTumorGradeSeqNbr().equals(tumorGrade.getTumorgradeseqnbr())) {
                                 gradeValue = tumorGrade.getTumorgradeshortname();
-                                gradeValue = gradeValue.equals("---") ? "Not Specified" : gradeValue;
+                                gradeValue = gradeValue.equals("---") ? DataConstants.NOT_SPECIFIED : gradeValue;
                             }
                         }
                     }
@@ -116,7 +117,7 @@ public class TransformUtil {
                     stageClassification = dTumorGradeStageType.getTumorgradestageshortname();
                 } else {
                     //2,3,4,5,6,7,12,13
-                    stageClassification = "Not Specified";
+                    stageClassification = DataConstants.NOT_SPECIFIED ;
                 }
             }
         }
@@ -131,11 +132,11 @@ public class TransformUtil {
                 String x = specimenSearch.getTumorgradestageseqnbr();
                 if (x.equals("1") || x.equals("8") || x.equals("9") || x.equals("10") || x.equals("11")) {
                     //1,8,9,10,11
-                    gradeClassification = "Not Specified";
+                    gradeClassification = DataConstants.NOT_SPECIFIED ;
                 } else {
                     //2,3,4,5,6,7,12,13
                     gradeClassification = dTumorGradeStageType.getTumorgradestageshortname();
-                    gradeClassification = gradeClassification.equals("NA") ? "Not Specified" : gradeClassification;
+                    gradeClassification = gradeClassification.equals(DataConstants.NA) ? DataConstants.NOT_SPECIFIED  : gradeClassification;
                 }
             }
         }
@@ -155,9 +156,9 @@ public class TransformUtil {
     public List<ValidationDto> getValidations(){
         // Hardcode the validation techniques.
         List<ValidationDto> validationDtos = new ArrayList<>();
-        validationDtos.add(new ValidationDto("Fingerprinting", "Model validated against  patient tumour or P0 xenograft", "All"));
-        validationDtos.add(new ValidationDto("Human mouse/DNA", "Model validated against  patient tumour or P0 xenograft", "All"));
-        validationDtos.add(new ValidationDto("Histology", "Model validated against histological features of same diagnosis", "All"));
+        validationDtos.add(new ValidationDto(ValidationConstants.FINGER_PRINTING, ValidationConstants.FINGER_PRINTING_DESC, DataConstants.PASSAGE_ALL));
+        validationDtos.add(new ValidationDto(ValidationConstants.HUMAN_MOUSE_DNA, ValidationConstants.FINGER_PRINTING_DESC, DataConstants.PASSAGE_ALL));
+        validationDtos.add(new ValidationDto(ValidationConstants.HISTOLOGY, ValidationConstants.HISTOLOGY_DESC, DataConstants.PASSAGE_ALL));
 
         return validationDtos;
     }

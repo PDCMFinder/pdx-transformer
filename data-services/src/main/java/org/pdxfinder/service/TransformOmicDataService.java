@@ -1,5 +1,7 @@
 package org.pdxfinder.service;
 
+import org.pdxfinder.constant.DataConstants;
+import org.pdxfinder.constant.TumorTypeConstants;
 import org.pdxfinder.domain.OncokbGenePanel;
 import org.pdxfinder.domain.Sample;
 import org.pdxfinder.dto.ExtractDto;
@@ -34,12 +36,12 @@ public class TransformOmicDataService {
                     .setSeqStartPosition(oncoKb.getStartposition())
                     .setRefAllele(oncoKb.getReferenceallele())
                     .setAltAllele(oncoKb.getAltallele())
-                    .setUcscGeneId("")
-                    .setNcbiGeneId("")
-                    .setEnsemblGeneId("")
-                    .setEnsemblTranscriptId("")
-                    .setGenomeAssembly("hg19")
-                    .setPlatform("OncoKB Gene Panel");
+                    .setUcscGeneId(DataConstants.EMPTY)
+                    .setNcbiGeneId(DataConstants.EMPTY)
+                    .setEnsemblGeneId(DataConstants.EMPTY)
+                    .setEnsemblTranscriptId(DataConstants.EMPTY)
+                    .setGenomeAssembly(DataConstants.HG19_GENOME)
+                    .setPlatform(DataConstants.PDMR_PLATFORM);
 
             samples.forEach(sample -> {
 
@@ -47,17 +49,17 @@ public class TransformOmicDataService {
                     String modelId = OmicUtil.getModelId(sample, extracted);
                     String samplePassage = sample.getPassageofthissample();
                     omicDataRow.setModelId(modelId)
-                            .setDataSource("PDMR")
+                            .setDataSource(DataConstants.PDMR_ABBREV)
                             .setSampleId(sample.getSampleid())
-                            .setHostStrainName("NOD.Cg-Prkdcscid Il2rgtm1Wjl/SzJ");
+                            .setHostStrainName(DataConstants.NSG_HOST_STRAIN_FULL);
 
                     if (FileUtil.isNumeric(samplePassage)) {
-                        omicDataRow.setSampleOrigin("engrafted tumor");
+                        omicDataRow.setSampleOrigin(TumorTypeConstants.ENGRAFTED_TUMOR);
                         omicDataRow.setPassage(samplePassage);
                         validData.set(true);
-                    } else if (sample.getSampleid().equals("ORIGINATOR")) {
-                        omicDataRow.setSampleOrigin("patient tumor");
-                        omicDataRow.setPassage("");
+                    } else if (sample.getSampleid().equals(DataConstants.PDMR_PATIENT_SAMPLE_ID)) {
+                        omicDataRow.setSampleOrigin(TumorTypeConstants.PATIENT_TUMOR);
+                        omicDataRow.setPassage(DataConstants.EMPTY);
                         validData.set(true);
                     } else {
                         validData.set(false);

@@ -1,5 +1,6 @@
 package org.pdxfinder.service;
 
+import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.domain.*;
 import org.pdxfinder.dto.*;
 import org.pdxfinder.util.*;
@@ -45,14 +46,16 @@ public class TransformMetaDataService {
                     .setExtractionMethod(transformUtil.getExtractionMethod())
                     .setValidationDtos(transformUtil.getValidations())
                     .setSampleDtos(transformUtil.getSamples())
-                    .setStageValue("Not Specified")
-                    .setHostStrain(pdxDto.getHostStrainFull().isEmpty() ? "" : "NOD scid gamma")
-                    .setMouseSex("")
-                    .setTreatmentNaive("")
+                    .setStageValue(DataConstants.NOT_SPECIFIED)
+                    .setHostStrain(pdxDto.getHostStrainFull().isEmpty() ? DataConstants.EMPTY : DataConstants.NSG_HOST_STRAIN
+                    )
+                    .setMouseSex(DataConstants.EMPTY)
+                    .setTreatmentNaive(DataConstants.EMPTY)
                     .setTreatmentDtos(treatmentDtos);
 
             pdxDtos.add(pdxDto);
         }
+        log.info("Finished Transforming metadata data-sets");
 
         return pdxDtos;
     }
