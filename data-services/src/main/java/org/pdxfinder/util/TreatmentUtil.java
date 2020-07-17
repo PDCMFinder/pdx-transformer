@@ -42,8 +42,8 @@ public class TreatmentUtil {
                     }
                 }
 
-                currentTherapies.add(new TreatmentDto(cleanDrugs(drug), null, null, null, duration, null,
-                                                      null, response, null, startingDate, null));
+                currentTherapies.add(new TreatmentDto(cleanDrugs(drug), null, "", "", duration, "",
+                                                      "", response, "", startingDate, ""));
             }
         }
 
@@ -83,8 +83,8 @@ public class TreatmentUtil {
                     }
                 }
 
-                treatmentDtos.add(new TreatmentDto(null, cleanDrugs(drug), null, null, duration, null,
-                                                   null, response, null, null, priorDate));
+                treatmentDtos.add(new TreatmentDto(null, cleanDrugs(drug), "", "", duration, "",
+                                                   "", response, "", "", priorDate));
             }
         }
         return treatmentDtos;

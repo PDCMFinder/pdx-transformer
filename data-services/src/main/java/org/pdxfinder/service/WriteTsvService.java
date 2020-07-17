@@ -16,8 +16,12 @@ public class WriteTsvService {
     public void execute(List<PdxDto> pdxDtos, List<OmicTsv> omicTsvs, String outputDirectory) throws IOException {
 
         String destination = String.format("%s/PDMR", outputDirectory);
+        String treatment = String.format("%s/PDMR/treatment", outputDirectory);
+        String omic = String.format("%s/PDMR/mut", outputDirectory);
 
         FileUtils.forceMkdir(new File(destination));
+        FileUtils.forceMkdir(new File(treatment));
+        FileUtils.forceMkdir(new File(omic));
 
         WriteModelTsvUtil.writeTsv(pdxDtos, destination);
 
@@ -31,6 +35,8 @@ public class WriteTsvService {
 
         WriteSamplePlatformTsvUtil.writeTsv(pdxDtos, destination);
 
-        WriteOmicTsv.writeTsv(omicTsvs,  destination);
+        WritePatientTreatmentTsvUtil.writeTsv(pdxDtos, treatment);
+
+        WriteOmicTsv.writeTsv(omicTsvs,  omic);
     }
 }

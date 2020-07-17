@@ -5,7 +5,6 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import org.pdxfinder.dto.tsv.MetadataPatientTsv;
 import org.pdxfinder.dto.PdxDto;
-import org.pdxfinder.dto.tsv.MetadataSharingTsv;
 import org.pdxfinder.util.FileUtil;
 
 import java.io.IOException;
@@ -30,6 +29,7 @@ public class WritePatientTsvUtil {
 
         List<MetadataPatientTsv> patients = iterator.readAll();
         pdxDtoList.forEach(pdxDto -> patients.add(new MetadataPatientTsv()
+                                                    .setField("")
                                                     .setPatientId(pdxDto.getPatientID())
                                                     .setSex(pdxDto.getGender())
                                                     .setHistory("")

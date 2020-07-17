@@ -125,7 +125,7 @@ public class DataService {
     }
 
     public List<ImplantationSites> getAllImplantationSites() {
-        log.info("Loading implantatio sites");
+        log.info("Loading implantation sites");
         return implantationSitesRepo.findAll();
     }
 
@@ -155,21 +155,17 @@ public class DataService {
     }
 
     public List<OncokbGenePanel> getAllOncokbGenePanel(){
-        log.info("Hugo oncokb gene panel data");
+        log.info("Loading Hugo oncokb gene panel data");
         return oncokbGenePanelRepo.findAll();
     }
 
     public List<HugoGeneSymbol> getAllHugoGeneSymbols(){
-        log.info("Hugo gene symbol data");
+        log.info("Loading Hugo gene symbol data");
         return hugoGeneSymbolRepo.findAll();
     }
 
     public List<VariantClass> getAllVariantClasses(){
-        log.info("Variant class data");
+        log.info("Loading Variant class data");
         return variantClassRepo.findAll();
-    }
-
-    public Genders getOneGender(Integer seqNumber) {
-        return gendersRepository.findByGenderSeqnbr(seqNumber).orElse(new Genders());
     }
 }
