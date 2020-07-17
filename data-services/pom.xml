@@ -18,7 +18,7 @@
 
         <dependency>
             <groupId>org.pdxfinder</groupId>
-            <artifactId>data-repository</artifactId>
+            <artifactId>data-model</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
@@ -32,6 +32,11 @@
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-csv</artifactId>
             <version>2.11.1</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.7</version>
         </dependency>
 
     </dependencies>

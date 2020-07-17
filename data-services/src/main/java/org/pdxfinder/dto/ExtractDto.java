@@ -1,7 +1,7 @@
 package org.pdxfinder.dto;
 
-import org.pdxfinder.*;
-import org.pdxfinder.projection.HistologyProjection;
+import org.pdxfinder.domain.*;
+import org.pdxfinder.projection.*;
 
 import java.util.List;
 
@@ -22,6 +22,9 @@ public class ExtractDto {
     private List<ProvidedTissueOrigins> tissueOrigins;
     private List<Specimen> specimenList;
     private List<SpecimenSearch> specimenSearchList;
+    private List<OncokbGenePanel> oncokbGenePanels;
+    private List<HugoGeneSymbol> hugoGeneSymbols;
+    private List<VariantClass> variantClasses;
 
 
     public List<PatientInfo> getPatientList() {
@@ -82,6 +85,18 @@ public class ExtractDto {
 
     public List<SpecimenSearch> getSpecimenSearchList() {
         return specimenSearchList;
+    }
+
+    public List<OncokbGenePanel> getOncokbGenePanels() {
+        return oncokbGenePanels;
+    }
+
+    public List<HugoGeneSymbol> getHugoGeneSymbols() {
+        return hugoGeneSymbols;
+    }
+
+    public List<VariantClass> getVariantClasses() {
+        return variantClasses;
     }
 
     public ExtractDto setPatientList(List<PatientInfo> patientList) {
@@ -159,7 +174,24 @@ public class ExtractDto {
         return this;
     }
 
-    public ExtractDto createExtractDataDto() {
+    public ExtractDto setOncokbGenePanels(List<OncokbGenePanel> oncokbGenePanels) {
+        this.oncokbGenePanels = oncokbGenePanels;
         return this;
     }
+
+    public ExtractDto setHugoGeneSymbols(List<HugoGeneSymbol> hugoGeneSymbols) {
+        this.hugoGeneSymbols = hugoGeneSymbols;
+        return this;
+    }
+
+    public ExtractDto setVariantClasses(List<VariantClass> variantClasses) {
+        this.variantClasses = variantClasses;
+        return this;
+    }
+
+    public ExtractDto build() {
+        return this;
+    }
+
+
 }

@@ -1,6 +1,8 @@
 package org.pdxfinder.util;
 
-import org.pdxfinder.*;
+import org.pdxfinder.constant.DataConstants;
+import org.pdxfinder.constant.EngraftmentTypeConstants;
+import org.pdxfinder.domain.*;
 import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.dto.ExtractDto;
 
@@ -12,7 +14,7 @@ public class SpecimenDataUtil {
 
     public static PdxDto get(SpecimenSearch specimenSearch, ExtractDto extracted){
         return getBasicData(specimenSearch, extracted)
-                .setStrain(getStrain(specimenSearch, extracted))
+                .setHostStrainFull(getHostStrainFull(specimenSearch, extracted))
                 .setTumorType(getTumorType(specimenSearch, extracted))
                 .setEngraftmentSite(getEngraftmentSite(specimenSearch, extracted))
                 .setEngraftmentType(getEngraftmentType(specimenSearch, extracted));
@@ -24,10 +26,10 @@ public class SpecimenDataUtil {
         String dateAtCollection = "";
         String accessibility = "";
 
-        String gender = specimenSearch.getGender().equals("M") ? "Male" : "Female";
-        String race = specimenSearch.getRacedescription().equals("Not Provided") ? "Not Specified" : specimenSearch.getRacedescription();
-        String ethnicity = specimenSearch.getEthnicitydescription().equals("Not Provided") ? "Not Specified" : specimenSearch.getEthnicitydescription();
-        String sourceUrl = "https://pdmdb.cancer.gov/pls/apex/f?p=101:4:0::NO:4:P4_SPECIMENSEQNBR:" + specimenSearch.getSpecimenseqnbr();
+        String gender = specimenSearch.getGender().equals("M") ? DataConstants.GENDER_MALE : DataConstants.GENDER_FEMALE;
+        String race = specimenSearch.getRacedescription().equals(DataConstants.NOT_PROVIDED) ? DataConstants.NOT_SPECIFIED : specimenSearch.getRacedescription();
+        String ethnicity = specimenSearch.getEthnicitydescription().equals(DataConstants.NOT_PROVIDED) ? DataConstants.NOT_SPECIFIED : specimenSearch.getEthnicitydescription();
+        String sourceUrl = DataConstants.PDMR_SOURCE_URL_PREFIX + specimenSearch.getSpecimenseqnbr();
 
         for (Specimen specimen : extracted.getSpecimenList()) {
             if (specimenSearch.getSpecimenid().equals(specimen.getSpecimenid())) {
@@ -36,7 +38,7 @@ public class SpecimenDataUtil {
                 dateAtCollection = specimen.getCollectiondate().toString().substring(0, 10);
                 accessibility = specimen.getPublicaccessyn();
                 if (accessibility.equals("Y")) {
-                    accessibility = "Public";
+                    accessibility = DataConstants.ACCESSIBILITY_PUBLIC;
                 }
             }
         }
@@ -51,18 +53,18 @@ public class SpecimenDataUtil {
                 .build();
     }
 
-    public static String getStrain(SpecimenSearch specimenSearch, ExtractDto extracted){
-        String strain = "";
+    public static String getHostStrainFull(SpecimenSearch specimenSearch, ExtractDto extracted){
+        String hostStrainFull = "";
         for (Specimen specimen : extracted.getSpecimenList()) {
             if (specimenSearch.getSpecimenid().equals(specimen.getSpecimenid())) {
                 for (MouseStrains mouseStrain : extracted.getMouseStrains()) {
                     if (specimen.getMousestrainseqnbr().equals(mouseStrain.getMousestrainseqnbr())) {
-                        strain = mouseStrain.getMousestraindescript();
+                        hostStrainFull = mouseStrain.getMousestraindescript();
                     }
                 }
             }
         }
-        return strain;
+        return hostStrainFull;
     }
 
     public static String getTumorType(SpecimenSearch specimenSearch, ExtractDto extracted){
@@ -72,7 +74,7 @@ public class SpecimenDataUtil {
                 for (ProvidedTissueOrigins tissueOrigin : extracted.getTissueOrigins()) {
                     if (specimen.getProvidedtissueoriginseqnbr().equals(tissueOrigin.getProvidedtissueoriginseqnbr())) {
                         tumorType = tissueOrigin.getProvidedtissueorigindescript();
-                        tumorType = tumorType.equals("Metastatic Site") ? "Metastatic" : tumorType;
+                        tumorType = tumorType.equals(DataConstants.TUMORTYPE_METASTATIC_SITE) ? DataConstants.TUMORTYPE_METASTATIC : tumorType;
                     }
                 }
             }
@@ -91,7 +93,7 @@ public class SpecimenDataUtil {
                 }
 
                 if (specimen.getImplantationsiteseqnbr().equals("99")) {
-                    engraftmentSite = "Not Specified";
+                    engraftmentSite = DataConstants.NOT_SPECIFIED;
                 }
             }
         }
@@ -104,11 +106,11 @@ public class SpecimenDataUtil {
             if (specimenSearch.getSpecimenid().equals(specimen.getSpecimenid())) {
 
                 if (specimen.getImplantationsiteseqnbr().equals("0")) {
-                    engraftmentType = "Heterotopic";
+                    engraftmentType = EngraftmentTypeConstants.HETEROTROPIC;
                 } else if (specimen.getImplantationsiteseqnbr().equals("99")) {
-                    engraftmentType = "Not Specified";
+                    engraftmentType = DataConstants.NOT_SPECIFIED;
                 } else {
-                    engraftmentType = "Orthotopic";
+                    engraftmentType = EngraftmentTypeConstants.ORTHOTOPIC;
                 }
             }
         }

@@ -1,6 +1,8 @@
 package org.pdxfinder.util;
 
-import org.pdxfinder.*;
+import org.pdxfinder.constant.DataConstants;
+import org.pdxfinder.constant.DrugConstants;
+import org.pdxfinder.domain.*;
 import org.pdxfinder.dto.ExtractDto;
 import org.pdxfinder.dto.TreatmentDto;
 import org.slf4j.Logger;
@@ -20,13 +22,13 @@ public class TreatmentUtil {
         List<TreatmentDto> currentTherapies = new ArrayList<>();
         for (CurrentTherapy currentTherapy : extracted.getCurrentTherapies()) {
             String drug = "";
-            String duration = "Not Specified";
+            String duration = DataConstants.NOT_SPECIFIED;
             String response = "";
 
             if (specimenSearch.getPatientseqnbr().equals(currentTherapy.getPatientseqnbr())) {
                 String startingDate = String.valueOf(currentTherapy.getDateregimenstarted());
                 try {
-                    startingDate = startingDate.equals("null") ? "Not Specified" : startingDate.substring(0, 10);
+                    startingDate = startingDate.equals(DataConstants.NULL_STRING) ? DataConstants.NOT_SPECIFIED : startingDate.substring(0, 10);
                 } catch (Exception e) {
                     log.warn(e.getMessage());
                 }
@@ -38,12 +40,12 @@ public class TreatmentUtil {
                 for (ClinicalResponses dClinicalResponse : extracted.getClinicalResponses()) {
                     if (currentTherapy.getBestresponseseqnbr().equals(dClinicalResponse.getClinicalresponseseqnbr())) {
                         response = dClinicalResponse.getClinicalresponsedescription();
-                        response = response.equals("<Unknown>") ? "Not Specified" : response;
+                        response = response.equals(DataConstants.UNKNOWN) ? "Not Specified" : response;
                     }
                 }
 
-                currentTherapies.add(new TreatmentDto(cleanDrugs(drug), null, null, null, duration, null,
-                                                      null, response, null, startingDate, null));
+                currentTherapies.add(new TreatmentDto(cleanDrugs(drug), null, DataConstants.EMPTY, DataConstants.EMPTY, duration, DataConstants.EMPTY,
+                                                      DataConstants.EMPTY, response, DataConstants.EMPTY, startingDate, DataConstants.EMPTY));
             }
         }
 
@@ -65,7 +67,7 @@ public class TreatmentUtil {
             if (specimenSearch.getPatientseqnbr().equals(priorTherapy.getPatientseqnbr())) {
                 priorDate = String.valueOf(priorTherapy.getDateregimenstarted());
                 try {
-                    priorDate = priorDate.equals("null") ? "Not Specified" : priorDate.substring(0, 10);
+                    priorDate = priorDate.equals(DataConstants.NULL_STRING) ?DataConstants.NOT_SPECIFIED : priorDate.substring(0, 10);
                 } catch (Exception e) {
                     log.warn(e.getMessage());
                 }
@@ -79,12 +81,12 @@ public class TreatmentUtil {
                 for (ClinicalResponses clinicalResponse : extracted.getClinicalResponses()) {
                     if (clinicalResponse.getClinicalresponseseqnbr().equals(priorTherapy.getBestresponseseqnbr())) {
                         response = clinicalResponse.getClinicalresponsedescription();
-                        response = response.equals("<Unknown>") ? "Not Specified" : response;
+                        response = response.equals(DataConstants.UNKNOWN) ? DataConstants.NOT_SPECIFIED : response;
                     }
                 }
 
-                treatmentDtos.add(new TreatmentDto(null, cleanDrugs(drug), null, null, duration, null,
-                                                   null, response, null, null, priorDate));
+                treatmentDtos.add(new TreatmentDto(null, cleanDrugs(drug), DataConstants.EMPTY, DataConstants.EMPTY, duration, DataConstants.EMPTY,
+                                                   DataConstants.EMPTY, response, DataConstants.EMPTY, DataConstants.EMPTY, priorDate));
             }
         }
         return treatmentDtos;
@@ -93,12 +95,12 @@ public class TreatmentUtil {
 
 
     private static String cleanDrugs(String drug) {
-        String drugString = drug.contains("FOLFOX") ? drug.replace("FOLFOX", "Fluorouracil + Leucovorin Calcium + Oxaliplatin") : drug;
+        String drugString = drug.contains(DrugConstants.FOLFOX) ? drug.replace(DrugConstants.FOLFOX, DrugConstants.FOLFOX_COMBO) : drug;
         // Always replace FOLFIRINOX before FOLFIRI
-        drugString = drugString.contains("FOLFIRINOX") ? drugString.replace("FOLFIRINOX", "Fluorouracil + irinotecan + Leucovorin calcium + Oxaliplatin") : drugString;
-        drugString = drugString.contains("FOLFIRI") ? drugString.replace("FOLFIRI", "Folinic acid + Fluorouracil + Irinotecan") : drugString;
-        drugString = drugString.contains("MVAC") ? drugString.replace("MVAC", "Cisplatin + Doxorubicin + Methotrexate + Vinblastine") : drugString;
-        drugString = drugString.contains("XELOX") ? drugString.replace("XELOX", "Capecitabine + Oxaliplatin") : drugString;
+        drugString = drugString.contains(DrugConstants.FOLFIRINOX) ? drugString.replace(DrugConstants.FOLFIRINOX, DrugConstants.FOLFIRINOX_COMBO) : drugString;
+        drugString = drugString.contains(DrugConstants.FOLFIRI) ? drugString.replace(DrugConstants.FOLFIRI, DrugConstants.FOLFIRI_COMBO) : drugString;
+        drugString = drugString.contains(DrugConstants.MVAC) ? drugString.replace(DrugConstants.MVAC, DrugConstants.MVAC_COMBO) : drugString;
+        drugString = drugString.contains(DrugConstants.XELOX) ? drugString.replace(DrugConstants.XELOX, DrugConstants.XELOX_COMBO) : drugString;
         return drugString;
     }
 }

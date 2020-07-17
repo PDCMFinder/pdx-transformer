@@ -1,10 +1,10 @@
 package org.pdxfinder.service;
 
-import org.pdxfinder.*;
-import org.pdxfinder.projection.HistologyProjection;
+import org.pdxfinder.domain.*;
+import org.pdxfinder.projection.*;
+import org.pdxfinder.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -29,9 +29,9 @@ public class DataService {
     private final TumorGradesRepo tumorGradesRepo;
     private final TumorGradeStageTypesRepo tumorGradeStageTypesRepo;
     private final HistologyRepository histologyRepository;
-
-    @Value("${output.directory}")
-    private String outputDirectory;
+    private OncokbGenePanelRepo oncokbGenePanelRepo;
+    private HugoGeneSymbolRepo hugoGeneSymbolRepo;
+    private VariantClassRepo variantClassRepo;
 
 
     public DataService(GendersRepository gendersRepository,
@@ -49,7 +49,10 @@ public class DataService {
                        TissueTypesRepo tissueTypesRepo,
                        TumorGradesRepo tumorGradesRepo,
                        TumorGradeStageTypesRepo tumorGradeStageTypesRepo,
-                       HistologyRepository histologyRepository) {
+                       HistologyRepository histologyRepository,
+                       OncokbGenePanelRepo oncokbGenePanelRepo,
+                       HugoGeneSymbolRepo hugoGeneSymbolRepo,
+                       VariantClassRepo variantClassRepo) {
         this.gendersRepository = gendersRepository;
         this.specimenRepository = specimenRepository;
         this.clinicalResponsesRepo = clinicalResponsesRepo;
@@ -66,6 +69,9 @@ public class DataService {
         this.tumorGradesRepo = tumorGradesRepo;
         this.tumorGradeStageTypesRepo = tumorGradeStageTypesRepo;
         this.histologyRepository = histologyRepository;
+        this.oncokbGenePanelRepo = oncokbGenePanelRepo;
+        this.hugoGeneSymbolRepo = hugoGeneSymbolRepo;
+        this.variantClassRepo = variantClassRepo;
     }
 
 
@@ -119,7 +125,7 @@ public class DataService {
     }
 
     public List<ImplantationSites> getAllImplantationSites() {
-        log.info("Loading implantatio sites");
+        log.info("Loading implantation sites");
         return implantationSitesRepo.findAll();
     }
 
@@ -148,7 +154,18 @@ public class DataService {
         return   histologyRepository.findAllHistology();
     }
 
-    public Genders getOneGender(Integer seqNumber) {
-        return gendersRepository.findByGenderSeqnbr(seqNumber).orElse(new Genders());
+    public List<OncokbGenePanel> getAllOncokbGenePanel(){
+        log.info("Loading Hugo oncokb gene panel data");
+        return oncokbGenePanelRepo.findAll();
+    }
+
+    public List<HugoGeneSymbol> getAllHugoGeneSymbols(){
+        log.info("Loading Hugo gene symbol data");
+        return hugoGeneSymbolRepo.findAll();
+    }
+
+    public List<VariantClass> getAllVariantClasses(){
+        log.info("Loading Variant class data");
+        return variantClassRepo.findAll();
     }
 }

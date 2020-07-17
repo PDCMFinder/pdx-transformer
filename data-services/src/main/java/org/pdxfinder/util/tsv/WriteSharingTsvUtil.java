@@ -3,6 +3,9 @@ package org.pdxfinder.util.tsv;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import org.pdxfinder.constant.DataConstants;
+import org.pdxfinder.constant.OutputFileNames;
+import org.pdxfinder.constant.TemplateLocations;
 import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.dto.tsv.MetadataSharingTsv;
 import org.pdxfinder.util.FileUtil;
@@ -19,7 +22,7 @@ public class WriteSharingTsvUtil {
 
     public static void writeTsv(List<PdxDto> pdxDtoList, String outputDirectory) throws IOException {
 
-        InputStream contents = FileUtil.class.getResourceAsStream("/templates/head_metadata-sharing.tsv");
+        InputStream contents = FileUtil.class.getResourceAsStream(TemplateLocations.META_DATA_SHARING);
         CsvSchema.Builder builder = CsvSchema.builder();
         CsvMapper mapper = new CsvMapper();
         CsvSchema schema = builder.build().withHeader().withColumnSeparator('\t');
@@ -29,20 +32,21 @@ public class WriteSharingTsvUtil {
 
         List<MetadataSharingTsv> metadataSharingTsvs = iterator.readAll();
         pdxDtoList.forEach(pdxDto -> metadataSharingTsvs.add(new MetadataSharingTsv()
-                                                                     .setField("")
+                                                                     .setField(DataConstants.EMPTY)
                                                                      .setModelId(pdxDto.getModelID())
-                                                                     .setProviderType("")
-                                                                     .setAccessibility("")
-                                                                     .setEuropdxAccessModality("")
-                                                                     .setEmail("")
-                                                                     .setFormUrl("")
+                                                                     .setProviderType(DataConstants.EMPTY)
+                                                                     .setAccessibility(DataConstants.EMPTY)
+                                                                     .setEuropdxAccessModality(DataConstants.EMPTY)
+                                                                     .setEmail(DataConstants.EMPTY)
+                                                                     .setName(DataConstants.EMPTY)
+                                                                     .setFormUrl(DataConstants.PDMR_CONTACT_URL)
                                                                      .setDatabaseUrl(pdxDto.getSourceUrl())
-                                                                     .setProviderName("")
-                                                                     .setProviderAbbreviation("")
-                                                                     .setProject("")));
+                                                                     .setProviderName(DataConstants.PDMR_FULL_NAME)
+                                                                     .setProviderAbbreviation(DataConstants.PDMR_ABBREV)
+                                                                     .setProject(DataConstants.EMPTY)));
 
         String modelMetaData = FileUtil.serializePojoToTsv(metadataSharingTsvs);
-        String output = String.format("%s/metadata-sharing.tsv", outputDirectory);
+        String output = String.format("%s%s", outputDirectory, OutputFileNames.METADATA_SHARING_TSV);
         FileUtil.write(modelMetaData, output, false);
     }
 

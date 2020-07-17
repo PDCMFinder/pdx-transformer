@@ -1,8 +1,8 @@
 package org.pdxfinder.service;
 
-import org.pdxfinder.*;
+import org.pdxfinder.domain.*;
 import org.pdxfinder.dto.ExtractDto;
-import org.pdxfinder.projection.HistologyProjection;
+import org.pdxfinder.projection.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -38,6 +38,10 @@ public class ExtractService {
         List<ProvidedTissueOrigins> tissueOrigins = dataService.getAllProvidedTissueOrigins();
         List<Specimen> specimenList = dataService.getAllPdmrSpecimen();
         List<SpecimenSearch> specimenSearchList = dataService.getAllSpecimenSearch();
+
+        List<OncokbGenePanel> oncokbGenePanels = dataService.getAllOncokbGenePanel();
+        List<HugoGeneSymbol> hugoGeneSymbols = dataService.getAllHugoGeneSymbols();
+        List<VariantClass> variantClasses = dataService.getAllVariantClasses();
         log.info("Finished Loading Oracle data-sets");
 
         return new ExtractDto().setPatientList(patientList)
@@ -54,7 +58,10 @@ public class ExtractService {
                 .setImplantationSites(implantationSites)
                 .setTissueOrigins(tissueOrigins)
                 .setSpecimenList(specimenList)
-                .setSpecimenSearchList(specimenSearchList);
+                .setSpecimenSearchList(specimenSearchList)
+                .setOncokbGenePanels(oncokbGenePanels)
+                .setHugoGeneSymbols(hugoGeneSymbols)
+                .setVariantClasses(variantClasses);
     }
 
 }

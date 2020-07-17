@@ -29,7 +29,8 @@ import java.util.List;
         "Grade Value",
         "Sample Type",
         "Samples",
-        "Strain",
+        "host_strain",
+        "host_strain_full",
         "Mouse Sex",
         "Treatments",
         "Treatment Naive",
@@ -65,7 +66,8 @@ public class PdxDto {
     private String gradeValue;
 
     private String sampleType;
-    private String strain;
+    private String hostStrain;
+    private String hostStrainFull;
     private String mouseSex;
 
     private String treatmentNaive;
@@ -263,13 +265,23 @@ public class PdxDto {
     }
 
     @JsonProperty("Strain")
-    public String getStrain() {
-        return strain;
+    public String getHostStrainFull() {
+        return hostStrainFull;
     }
 
-    @JsonProperty("Strain")
-    public PdxDto setStrain(String strain) {
-        this.strain = strain;
+    public String getHostStrain() {
+        return hostStrain;
+    }
+
+    @JsonProperty("host_strain_full")
+    public PdxDto setHostStrainFull(String hostStrainFull) {
+        this.hostStrainFull = hostStrainFull;
+        return this;
+    }
+
+    @JsonProperty("host_strain")
+    public PdxDto setHostStrain(String hostStrain) {
+        this.hostStrain = hostStrain;
         return this;
     }
 
