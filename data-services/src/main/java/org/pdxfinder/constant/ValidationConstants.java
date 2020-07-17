@@ -2,6 +2,10 @@ package org.pdxfinder.constant;
 
 public class ValidationConstants {
 
+    private ValidationConstants(){
+        // Never called
+    }
+
     public static final String FINGER_PRINTING = "Fingerprinting";
 
     public static final String HUMAN_MOUSE_DNA = "Human mouse/DNA";

@@ -2,6 +2,10 @@ package org.pdxfinder.constant;
 
 public class OutputFileNames {
 
+    private OutputFileNames(){
+        // Never called
+    }
+
     public static final String METADATA_MODEL_TSV = "/metadata-model.tsv";
 
     public static final String METADATA_MODEL_VALIDATION_TSV = "/metadata-model_validation.tsv";

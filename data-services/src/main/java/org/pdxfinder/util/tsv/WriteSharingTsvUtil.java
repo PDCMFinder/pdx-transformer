@@ -38,6 +38,7 @@ public class WriteSharingTsvUtil {
                                                                      .setAccessibility(DataConstants.EMPTY)
                                                                      .setEuropdxAccessModality(DataConstants.EMPTY)
                                                                      .setEmail(DataConstants.EMPTY)
+                                                                     .setName(DataConstants.EMPTY)
                                                                      .setFormUrl(DataConstants.PDMR_CONTACT_URL)
                                                                      .setDatabaseUrl(pdxDto.getSourceUrl())
                                                                      .setProviderName(DataConstants.PDMR_FULL_NAME)

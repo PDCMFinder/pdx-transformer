@@ -2,6 +2,10 @@ package org.pdxfinder.constant;
 
 public class DrugConstants {
 
+    private DrugConstants(){
+        // Never called
+    }
+
     public static final String FOLFOX = "FOLFOX";
 
     public static final String FOLFOX_COMBO = "Fluorouracil + Leucovorin Calcium + Oxaliplatin"; // DrugNameConstants.FOLFIRINOX

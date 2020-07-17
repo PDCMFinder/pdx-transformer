@@ -2,6 +2,10 @@ package org.pdxfinder.constant;
 
 public class Directories {
 
+    private Directories(){
+        // Never called
+    }
+
     public static final String PDMR_OUT_DIR = "/PDMR";
 
     public static final String TREATMENT_OUT_DIR = "/treatment";

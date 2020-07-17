@@ -2,7 +2,11 @@ package org.pdxfinder.constant;
 
 public class CancerModelTypes {
 
-    public static final String PDX_MODEL = "PDX"; // CancerModelTypes.PATIENT_SPECIMEN
+    private CancerModelTypes(){
+        // Never called
+    }
+
+    public static final String PDX_MODEL = "PDX";
 
     public static final String CANCER_ASSOCIATED_FIBROBLASTS = "CAF";
 
