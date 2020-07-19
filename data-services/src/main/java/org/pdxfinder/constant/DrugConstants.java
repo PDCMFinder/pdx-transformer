@@ -8,7 +8,7 @@ public class DrugConstants {
 
     public static final String FOLFOX = "FOLFOX";
 
-    public static final String FOLFOX_COMBO = "Fluorouracil + Leucovorin Calcium + Oxaliplatin"; // DrugNameConstants.FOLFIRINOX
+    public static final String FOLFOX_COMBO = "Fluorouracil + Leucovorin Calcium + Oxaliplatin";
 
     public static final String FOLFIRINOX = "FOLFIRINOX";
 

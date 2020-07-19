@@ -1,10 +1,7 @@
 package org.pdxfinder.dto;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.*;
 
 import java.util.List;
 
@@ -29,7 +26,7 @@ import java.util.List;
         "Grade Value",
         "Sample Type",
         "Samples",
-        "host_strain",
+        "Strain",
         "host_strain_full",
         "Mouse Sex",
         "Treatments",
@@ -46,350 +43,346 @@ public class PdxDto {
 
     private Integer id;
 
+    @JsonProperty("Model ID")
     private String modelID;
 
+    @JsonProperty("Patient ID")
     private String patientID;
+
+    @JsonProperty("Gender")
     private String gender;
+
+    @JsonProperty("Age")
     private String age;
+
+    @JsonProperty("Race")
     private String race;
+
+    @JsonProperty("Ethnicity")
     private String ethnicity;
+
+    @JsonProperty("Specimen Site")
     private String specimenSite;
+
+    @JsonProperty("Primary Site")
     private String primarySite;
+
+    @JsonProperty("Initial Diagnosis")
     private String initialDiagnosis;
 
+    @JsonProperty("Clinical Diagnosis")
     private String clinicalDiagnosis;
+
+    @JsonProperty("Tumor Type")
     private String tumorType;
 
+    @JsonProperty("Stage Classification")
     private String stageClassification;
+
+    @JsonProperty("Stage Value")
+    @JsonAlias("Tumor Stage")
     private String stageValue;
+
+    @JsonProperty("Grade Classification")
     private String gradeClassification;
+
+    @JsonProperty("Grade Value")
+    @JsonAlias("Grades")
     private String gradeValue;
 
+    @JsonProperty("Sample Type")
     private String sampleType;
+
+    @JsonProperty("Strain")
     private String hostStrain;
+
+    @JsonProperty("host_strain_full")
     private String hostStrainFull;
+
+    @JsonProperty("Mouse Sex")
     private String mouseSex;
 
+    @JsonProperty("Treatment Naive")
     private String treatmentNaive;
+
+    @JsonProperty("Engraftment Site")
     private String engraftmentSite;
+
+    @JsonProperty("Engraftment Type")
     private String engraftmentType;
+
+    @JsonProperty("Source url")
     private String sourceUrl;
 
+    @JsonProperty("Extraction Method")
     private String extractionMethod;
+
+    @JsonProperty("Date At Collection")
     private String dateAtCollection;
+
+    @JsonProperty("Accessibility")
     private String accessibility;
 
+    @JsonProperty("Treatments")
     private List<TreatmentDto> treatmentDtos;
+
+    @JsonProperty("Validations")
     private List<ValidationDto> validationDtos;
+
+    @JsonProperty("Samples")
     private List<SampleDto> sampleDtos;
 
 
     public PdxDto() {
     }
 
-    @JsonProperty("Model ID")
     public String getModelID() {
         return modelID;
     }
 
-    @JsonProperty("Model ID")
     public PdxDto setModelID(String modelID) {
         this.modelID = modelID;
         return this;
     }
 
-    @JsonProperty("Patient ID")
     public String getPatientID() {
         return patientID;
     }
 
-    @JsonProperty("Patient ID")
     public PdxDto setPatientID(String patientID) {
         this.patientID = patientID;
         return this;
     }
 
-    @JsonProperty("Gender")
     public String getGender() {
         return gender;
     }
 
-    @JsonProperty("Gender")
     public PdxDto setGender(String gender) {
         this.gender = gender;
         return this;
     }
 
-    @JsonProperty("Age")
     public String getAge() {
         return age;
     }
 
-    @JsonProperty("Age")
     public PdxDto setAge(String age) {
         this.age = age;
         return this;
     }
 
-    @JsonProperty("Race")
     public String getRace() {
         return race;
     }
 
-    @JsonProperty("Race")
     public PdxDto setRace(String race) {
         this.race = race;
         return this;
     }
 
-    @JsonProperty("Ethnicity")
     public String getEthnicity() {
         return ethnicity;
     }
 
-    @JsonProperty("Ethnicity")
     public PdxDto setEthnicity(String ethnicity) {
         this.ethnicity = ethnicity;
         return this;
     }
 
-    @JsonProperty("Specimen Site")
     public String getSpecimenSite() {
         return specimenSite;
     }
 
-    @JsonProperty("Specimen Site")
     public PdxDto setSpecimenSite(String specimenSite) {
         this.specimenSite = specimenSite;
         return this;
     }
 
-    @JsonProperty("Primary Site")
     public String getPrimarySite() {
         return primarySite;
     }
 
-    @JsonProperty("Primary Site")
     public PdxDto setPrimarySite(String primarySite) {
         this.primarySite = primarySite;
         return this;
     }
 
-    @JsonProperty("Initial Diagnosis")
     public String getInitialDiagnosis() {
         return initialDiagnosis;
     }
 
-    @JsonProperty("Initial Diagnosis")
     public PdxDto setInitialDiagnosis(String initialDiagnosis) {
         this.initialDiagnosis = initialDiagnosis;
         return this;
     }
 
-    @JsonProperty("Clinical Diagnosis")
     public String getClinicalDiagnosis() {
         return clinicalDiagnosis;
     }
 
-    @JsonProperty("Clinical Diagnosis")
     public PdxDto setClinicalDiagnosis(String clinicalDiagnosis) {
         this.clinicalDiagnosis = clinicalDiagnosis;
         return this;
     }
 
-    @JsonProperty("Tumor Type")
     public String getTumorType() {
         return tumorType;
     }
 
-    @JsonProperty("Tumor Type")
     public PdxDto setTumorType(String tumorType) {
         this.tumorType = tumorType;
         return this;
     }
 
-    @JsonProperty("Stage Classification")
     public String getStageClassification() {
         return stageClassification;
     }
 
-    @JsonProperty("Stage Classification")
     public PdxDto setStageClassification(String stageClassification) {
         this.stageClassification = stageClassification;
         return this;
     }
 
-    @JsonProperty("Stage Value")
     public String getStageValue() {
         return stageValue;
     }
 
-
-    @JsonProperty("Stage Value")
     public PdxDto setStageValue(String stageValue) {
         this.stageValue = stageValue;
         return this;
     }
 
-    @JsonProperty("Grade Classification")
     public String getGradeClassification() {
         return gradeClassification;
     }
 
-    @JsonProperty("Grade Classification")
     public PdxDto setGradeClassification(String gradeClassification) {
         this.gradeClassification = gradeClassification;
         return this;
     }
 
-    @JsonProperty("Grade Value")
     public String getGradeValue() {
         return gradeValue;
     }
 
-    @JsonProperty("Grade Value")
     public PdxDto setGradeValue(String gradeValue) {
         this.gradeValue = gradeValue;
         return this;
     }
 
-    @JsonProperty("Sample Type")
     public String getSampleType() {
         return sampleType;
     }
 
-    @JsonProperty("Sample Type")
     public PdxDto setSampleType(String sampleType) {
         this.sampleType = sampleType;
         return this;
     }
 
-    @JsonProperty("Strain")
     public String getHostStrainFull() {
         return hostStrainFull;
+    }
+
+    public PdxDto setHostStrainFull(String hostStrainFull) {
+        this.hostStrainFull = hostStrainFull;
+        return this;
     }
 
     public String getHostStrain() {
         return hostStrain;
     }
 
-    @JsonProperty("host_strain_full")
-    public PdxDto setHostStrainFull(String hostStrainFull) {
-        this.hostStrainFull = hostStrainFull;
-        return this;
-    }
-
-    @JsonProperty("host_strain")
     public PdxDto setHostStrain(String hostStrain) {
         this.hostStrain = hostStrain;
         return this;
     }
 
-    @JsonProperty("Mouse Sex")
     public String getMouseSex() {
         return mouseSex;
     }
 
-    @JsonProperty("Mouse Sex")
     public PdxDto setMouseSex(String mouseSex) {
         this.mouseSex = mouseSex;
         return this;
     }
 
-    @JsonProperty("Treatments")
     public PdxDto setTreatmentDtos(List<TreatmentDto> treatmentDtos) {
         this.treatmentDtos = treatmentDtos;
         return this;
     }
 
-    @JsonProperty("Treatments")
     public List<TreatmentDto> getTreatmentDtos() {
         return treatmentDtos;
     }
 
-    @JsonProperty("Treatment Naive")
     public String getTreatmentNaive() {
         return treatmentNaive;
     }
 
-    @JsonProperty("Treatment Naive")
     public PdxDto setTreatmentNaive(String treatmentNaive) {
         this.treatmentNaive = treatmentNaive;
         return this;
     }
 
-    @JsonProperty("Engraftment Site")
     public String getEngraftmentSite() {
         return engraftmentSite;
     }
 
-    @JsonProperty("Engraftment Site")
     public PdxDto setEngraftmentSite(String engraftmentSite) {
         this.engraftmentSite = engraftmentSite;
         return this;
     }
 
-    @JsonProperty("Engraftment Type")
     public String getEngraftmentType() {
         return engraftmentType;
     }
 
-    @JsonProperty("Engraftment Type")
     public PdxDto setEngraftmentType(String engraftmentType) {
         this.engraftmentType = engraftmentType;
         return this;
     }
 
-    @JsonProperty("Source url")
     public String getSourceUrl() {
         return sourceUrl;
     }
 
-    @JsonProperty("Source url")
     public PdxDto setSourceUrl(String sourceUrl) {
         this.sourceUrl = sourceUrl;
         return this;
     }
 
-    @JsonProperty("Extraction Method")
     public String getExtractionMethod() {
         return extractionMethod;
     }
 
-    @JsonProperty("Extraction Method")
     public PdxDto setExtractionMethod(String extractionMethod) {
         this.extractionMethod = extractionMethod;
         return this;
     }
 
-    @JsonProperty("Date At Collection")
     public String getDateAtCollection() {
         return dateAtCollection;
     }
 
-    @JsonProperty("Date At Collection")
     public PdxDto setDateAtCollection(String dateAtCollection) {
         this.dateAtCollection = dateAtCollection;
         return this;
     }
 
-    @JsonProperty("Accessibility")
     public String getAccessibility() {
         return accessibility;
     }
 
-    @JsonProperty("Accessibility")
     public PdxDto setAccessibility(String accessibility) {
         this.accessibility = accessibility;
         return this;
     }
 
-    @JsonProperty("Validations")
     public List<ValidationDto> getValidationDtos() {
         return validationDtos;
     }
 
-    @JsonProperty("Samples")
     public List<SampleDto> getSampleDtos() {
         return sampleDtos;
     }

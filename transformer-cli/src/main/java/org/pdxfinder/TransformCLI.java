@@ -36,7 +36,7 @@ public class TransformCLI implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        ExtractDto extracted = extractService.execute();
+        ExtractDto extracted = extractService.fromPdmrOracle();
         List<PdxDto> pdxDtos = transformMetaDataService.execute(extracted);
         List<OmicTsv> omicTsvs = transformOmicDataService.transformOmicData(extracted);
         writeTsvService.execute(pdxDtos, omicTsvs, outputDirectory);

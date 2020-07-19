@@ -51,7 +51,8 @@ public class TransformMetaDataService {
                     )
                     .setMouseSex(DataConstants.EMPTY)
                     .setTreatmentNaive(DataConstants.EMPTY)
-                    .setTreatmentDtos(treatmentDtos);
+                    .setTreatmentDtos(treatmentDtos)
+                    .build();
 
             pdxDtos.add(pdxDto);
         }

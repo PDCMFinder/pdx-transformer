@@ -20,7 +20,7 @@ public class ExtractService {
         this.dataService = dataService;
     }
 
-    public ExtractDto execute(){
+    public ExtractDto fromPdmrOracle(){
 
         log.info("Start Loading Oracle data-sets");
         List<PatientInfo> patientList = dataService.getAllPatientInfo();

@@ -46,9 +46,4 @@ public class DataConstants {
 
     public static final String TUMORTYPE_METASTATIC_SITE = "Metastatic Site";
 
-
-
-
-
-
 }
