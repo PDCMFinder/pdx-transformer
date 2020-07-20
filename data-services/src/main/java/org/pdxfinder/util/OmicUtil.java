@@ -20,13 +20,13 @@ public class OmicUtil {
     public static OmicTsv get(OncokbGenePanel oncoKb, ExtractDto extracted) {
 
         return new OmicTsv()
-                .setHgncSymbol(OmicUtil.getHugoGeneSymbol(oncoKb, extracted))
-                .setCodingSequenceChange(OmicUtil.getCodingSequenceChange(oncoKb))
-                .setAminoAcidChange(OmicUtil.getAminoAcidChange(oncoKb))
-                .setConsequence(OmicUtil.getConsequence(oncoKb, extracted))
-                .setFunctionalPrediction(OmicUtil.getFunctionalPrediction(oncoKb))
-                .setChromosome(OmicUtil.getChromosome(oncoKb))
-                .setVariationId(OmicUtil.getVariantId(oncoKb));
+                .setHgncSymbol(getHugoGeneSymbol(oncoKb, extracted))
+                .setCodingSequenceChange(getCodingSequenceChange(oncoKb))
+                .setAminoAcidChange(getAminoAcidChange(oncoKb))
+                .setConsequence(getConsequence(oncoKb, extracted))
+                .setFunctionalPrediction(getFunctionalPrediction(oncoKb))
+                .setChromosome(getChromosome(oncoKb))
+                .setVariationId(getVariantId(oncoKb));
     }
 
 
