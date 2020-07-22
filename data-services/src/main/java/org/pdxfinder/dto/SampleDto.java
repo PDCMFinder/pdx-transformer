@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "Sample ID",
         "Tumor Type",
         "Passage",
+        "Platform",
         "WES-VCF-File",
         "WES-Fasta-File",
         "NCI-Gene-Panel",
@@ -19,110 +20,119 @@ public class SampleDto {
 
     private Integer id;
 
+    @JsonProperty("Sample ID")
     private String sampleID;
+
+    @JsonProperty("Tumor Type")
     private String tumorType;
+
+    @JsonProperty("Passage")
     private String passage;
+
+    @JsonProperty("Platform")
+    private String platform;
+
+    @JsonProperty("WES-VCF-File")
     private String wESVCFFile;
+
+    @JsonProperty("WES-Fastq-File")
     private String wESFastaFile;
+
+    @JsonProperty("NCI-Gene-Panel")
     private String nCIGenePanel;
+
+    @JsonProperty("RNASeq-Fastq-File")
     private String rNASeqFastaFile;
+
+    @JsonProperty("RNASeq-RSEM-File")
     private String rNASeqRSEMFile;
 
-
-    public SampleDto() {
+    public Integer getId() {
+        return id;
     }
 
-    public SampleDto(String sampleID, String tumorType, String passage, String wESVCFFile, String wESFastaFile,
-                     String nCIGenePanel, String rNASeqFastaFile, String rNASeqRSEMFile) {
-        this.sampleID = sampleID;
-        this.tumorType = tumorType;
-        this.passage = passage;
-        this.wESVCFFile = wESVCFFile;
-        this.wESFastaFile = wESFastaFile;
-        this.nCIGenePanel = nCIGenePanel;
-        this.rNASeqFastaFile = rNASeqFastaFile;
-        this.rNASeqRSEMFile = rNASeqRSEMFile;
-    }
-
-
-    @JsonProperty("Sample ID")
     public String getSampleID() {
         return sampleID;
     }
 
-    @JsonProperty("Sample ID")
-    public void setSampleID(String sampleID) {
-        this.sampleID = sampleID;
-    }
-
-    @JsonProperty("Tumor Type")
     public String getTumorType() {
         return tumorType;
     }
 
-    @JsonProperty("Tumor Type")
-    public void setTumorType(String tumorType) {
-        this.tumorType = tumorType;
-    }
-
-    @JsonProperty("Passage")
     public String getPassage() {
         return passage;
     }
 
-    @JsonProperty("Passage")
-    public void setPassage(String passage) {
-        this.passage = passage;
+    public String getPlatform() {
+        return platform;
     }
 
-    @JsonProperty("WES-VCF-File")
-    public String getWESVCFFile() {
+    public String getwESVCFFile() {
         return wESVCFFile;
     }
 
-    @JsonProperty("WES-VCF-File")
-    public void setWESVCFFile(String wESVCFFile) {
-        this.wESVCFFile = wESVCFFile;
-    }
-
-    @JsonProperty("WES-Fastq-File")
-    public String getWESFastaFile() {
+    public String getwESFastaFile() {
         return wESFastaFile;
     }
 
-    @JsonProperty("WES-Fastq-File")
-    public void setWESFastaFile(String wESFastaFile) {
-        this.wESFastaFile = wESFastaFile;
-    }
-
-    @JsonProperty("NCI-Gene-Panel")
-    public String getNCIGenePanel() {
+    public String getnCIGenePanel() {
         return nCIGenePanel;
     }
 
-    @JsonProperty("NCI-Gene-Panel")
-    public void setNCIGenePanel(String nCIGenePanel) {
-        this.nCIGenePanel = nCIGenePanel;
-    }
-
-    @JsonProperty("RNASeq-Fastq-File")
-    public String getRNASeqFastaFile() {
+    public String getrNASeqFastaFile() {
         return rNASeqFastaFile;
     }
 
-    @JsonProperty("RNASeq-Fastq-File")
-    public void setRNASeqFastaFile(String rNASeqFastaFile) {
-        this.rNASeqFastaFile = rNASeqFastaFile;
-    }
-
-    @JsonProperty("RNASeq-RSEM-File")
-    public String getRNASeqRSEMFile() {
+    public String getrNASeqRSEMFile() {
         return rNASeqRSEMFile;
     }
 
-    @JsonProperty("RNASeq-RSEM-File")
-    public void setRNASeqRSEMFile(String rNASeqRSEMFile) {
-        this.rNASeqRSEMFile = rNASeqRSEMFile;
+    public SampleDto setSampleID(String sampleID) {
+        this.sampleID = sampleID;
+        return this;
     }
 
+    public SampleDto setTumorType(String tumorType) {
+        this.tumorType = tumorType;
+        return this;
+    }
+
+    public SampleDto setPassage(String passage) {
+        this.passage = passage;
+        return this;
+    }
+
+    public SampleDto setPlatform(String platform) {
+        this.platform = platform;
+        return this;
+    }
+
+    public SampleDto setwESVCFFile(String wESVCFFile) {
+        this.wESVCFFile = wESVCFFile;
+        return this;
+    }
+
+    public SampleDto setwESFastaFile(String wESFastaFile) {
+        this.wESFastaFile = wESFastaFile;
+        return this;
+    }
+
+    public SampleDto setnCIGenePanel(String nCIGenePanel) {
+        this.nCIGenePanel = nCIGenePanel;
+        return this;
+    }
+
+    public SampleDto setrNASeqFastaFile(String rNASeqFastaFile) {
+        this.rNASeqFastaFile = rNASeqFastaFile;
+        return this;
+    }
+
+    public SampleDto setrNASeqRSEMFile(String rNASeqRSEMFile) {
+        this.rNASeqRSEMFile = rNASeqRSEMFile;
+        return this;
+    }
+
+    public SampleDto build() {
+        return this;
+    }
 }
