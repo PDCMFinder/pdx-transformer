@@ -1,4 +1,4 @@
-package org.pdxfinder.util.tsv;
+package org.pdxfinder.util.template;
 
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
@@ -8,7 +8,7 @@ import org.pdxfinder.constant.OutputFileNames;
 import org.pdxfinder.constant.TemplateLocations;
 import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.dto.ValidationDto;
-import org.pdxfinder.dto.tsv.MetadataModelValidationTsv;
+import org.pdxfinder.dto.template.MetadataModelValidationTsv;
 import org.pdxfinder.util.FileUtil;
 
 import java.io.IOException;
@@ -46,6 +46,6 @@ public class WriteModelValidationTsvUtil {
 
         String modelMetaData = FileUtil.serializePojoToTsv(modelValidationTsvs);
         String output = String.format("%s%s", outputDirectory, OutputFileNames.METADATA_MODEL_VALIDATION_TSV);
-        FileUtil.write(modelMetaData, output, false);
+        FileUtil.write(modelMetaData, output);
     }
 }

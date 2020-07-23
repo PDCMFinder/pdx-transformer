@@ -32,6 +32,9 @@ public class SampleDto {
     @JsonProperty("Platform")
     private String platform;
 
+    @JsonProperty("Platform URL")
+    private String platformUrl;
+
     @JsonProperty("WES-VCF-File")
     private String wESVCFFile;
 
@@ -87,6 +90,10 @@ public class SampleDto {
         return rNASeqRSEMFile;
     }
 
+    public String getPlatformUrl() {
+        return platformUrl;
+    }
+
     public SampleDto setSampleID(String sampleID) {
         this.sampleID = sampleID;
         return this;
@@ -129,6 +136,11 @@ public class SampleDto {
 
     public SampleDto setrNASeqRSEMFile(String rNASeqRSEMFile) {
         this.rNASeqRSEMFile = rNASeqRSEMFile;
+        return this;
+    }
+
+    public SampleDto setPlatformUrl(String platformUrl) {
+        this.platformUrl = platformUrl;
         return this;
     }
 

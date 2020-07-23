@@ -1,4 +1,4 @@
-package org.pdxfinder.util.tsv;
+package org.pdxfinder.util.template;
 
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
@@ -6,7 +6,7 @@ import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.OutputFileNames;
 import org.pdxfinder.constant.TemplateLocations;
-import org.pdxfinder.dto.tsv.MetadataPatientTsv;
+import org.pdxfinder.dto.template.MetadataPatientTsv;
 import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.util.FileUtil;
 
@@ -35,15 +35,15 @@ public class WritePatientTsvUtil {
                                                     .setField(DataConstants.EMPTY)
                                                     .setPatientId(pdxDto.getPatientID())
                                                     .setSex(pdxDto.getGender())
-                                                    .setHistory(DataConstants.EMPTY)
+                                                    .setHistory(pdxDto.getHistory())
                                                     .setEthnicity(pdxDto.getEthnicity())
-                                                    .setEthnicityAssessmentMethod(DataConstants.EMPTY)
+                                                    .setEthnicityAssessmentMethod(pdxDto.getEthnicityAssessmentMethod())
                                                     .setInitialDiagnosis(pdxDto.getInitialDiagnosis())
-                                                    .setAgeAtInitialDiagnosis(DataConstants.EMPTY)));
+                                                    .setAgeAtInitialDiagnosis(pdxDto.getAgeAtInitialDiagnosis())));
 
         String patientMetaData = FileUtil.serializePojoToTsv(patients);
         String output = String.format("%s%s", outputDirectory, OutputFileNames.METADATA_PATIENT_TSV);
-        FileUtil.write(patientMetaData, output, false);
+        FileUtil.write(patientMetaData, output);
     }
 
 }

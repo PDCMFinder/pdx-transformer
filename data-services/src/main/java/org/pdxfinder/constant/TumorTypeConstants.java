@@ -6,7 +6,7 @@ public class TumorTypeConstants {
         // Never called
     }
 
-    public static final String ENGRAFTED_TUMOR = "engrafted tumor";
+    public static final String ENGRAFTED_TUMOR = "xenograft";
 
     public static final String PATIENT_TUMOR = "patient tumor";
 

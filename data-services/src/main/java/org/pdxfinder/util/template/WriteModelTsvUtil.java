@@ -1,14 +1,13 @@
-package org.pdxfinder.util.tsv;
+package org.pdxfinder.util.template;
 
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.OutputFileNames;
 import org.pdxfinder.constant.TemplateLocations;
 import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.dto.SampleDto;
-import org.pdxfinder.dto.tsv.MetadataModelTsv;
+import org.pdxfinder.dto.template.MetadataModelTsv;
 import org.pdxfinder.util.FileUtil;
 
 import java.io.IOException;
@@ -47,13 +46,13 @@ public class WriteModelTsvUtil {
                                .setEngraftmentSite(pdxDto.getEngraftmentSite())
                                .setEngraftmentType(pdxDto.getEngraftmentType())
                                .setSampleType(pdxDto.getSampleType())
-                               .setSampleState(DataConstants.NOT_SPECIFIED)
-                               .setPublications(DataConstants.EMPTY)
+                               .setSampleState(pdxDto.getSampleState())
+                               .setPublications(pdxDto.getPublications())
                                .setPassageNumber(String.join(",", passages)));
         });
 
         String modelMetaData = FileUtil.serializePojoToTsv(metadataModelTsvs);
         String output = String.format("%s%s", outputDirectory, OutputFileNames.METADATA_MODEL_TSV);
-        FileUtil.write(modelMetaData, output, false);
+        FileUtil.write(modelMetaData, output);
     }
 }

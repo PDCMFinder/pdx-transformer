@@ -5,7 +5,7 @@ import org.pdxfinder.domain.OncokbGenePanel;
 import org.pdxfinder.domain.Sample;
 import org.pdxfinder.domain.SpecimenSearch;
 import org.pdxfinder.dto.ExtractDto;
-import org.pdxfinder.dto.tsv.OmicTsv;
+import org.pdxfinder.dto.template.MutationTsv;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,9 +17,9 @@ public class OmicUtil {
         // Never called
     }
 
-    public static OmicTsv get(OncokbGenePanel oncoKb, ExtractDto extracted) {
+    public static MutationTsv main(OncokbGenePanel oncoKb, ExtractDto extracted) {
 
-        return new OmicTsv()
+        return new MutationTsv()
                 .setHgncSymbol(getHugoGeneSymbol(oncoKb, extracted))
                 .setCodingSequenceChange(getCodingSequenceChange(oncoKb))
                 .setAminoAcidChange(getAminoAcidChange(oncoKb))

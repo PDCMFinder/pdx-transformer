@@ -1,4 +1,4 @@
-package org.pdxfinder.util.tsv;
+package org.pdxfinder.util.template;
 
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
@@ -8,7 +8,7 @@ import org.pdxfinder.constant.OutputFileNames;
 import org.pdxfinder.constant.TemplateLocations;
 import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.dto.TreatmentDto;
-import org.pdxfinder.dto.tsv.PatientTreatmentTsv;
+import org.pdxfinder.dto.template.PatientTreatmentTsv;
 import org.pdxfinder.util.FileUtil;
 
 import java.io.IOException;
@@ -57,7 +57,7 @@ public class WritePatientTreatmentTsvUtil {
 
         String modelMetaData = FileUtil.serializePojoToTsv(patientTreatmentTsvList);
         String output = String.format("%s%s", outputDirectory, OutputFileNames.PATIENT_TREATMENT_TSV);
-        FileUtil.write(modelMetaData, output, false);
+        FileUtil.write(modelMetaData, output);
     }
 
 }

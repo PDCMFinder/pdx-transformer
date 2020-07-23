@@ -44,8 +44,17 @@ public class TreatmentUtil {
                     }
                 }
 
-                currentTherapies.add(new TreatmentDto(cleanDrugs(drug), null, DataConstants.EMPTY, DataConstants.EMPTY, duration, DataConstants.EMPTY,
-                                                      DataConstants.EMPTY, response, DataConstants.EMPTY, startingDate, DataConstants.EMPTY));
+                currentTherapies.add(new TreatmentDto().setCurrentDrug(cleanDrugs(drug))
+                                             .setPriorDrug(null)
+                                             .setManufacturer(DataConstants.EMPTY)
+                                             .setDose(DataConstants.EMPTY)
+                                             .setDuration(duration)
+                                             .setFrequency(DataConstants.EMPTY)
+                                             .setArmSize(DataConstants.EMPTY)
+                                             .setResponse(response)
+                                             .setPassageRange(DataConstants.EMPTY)
+                                             .setStartingDate(startingDate)
+                                             .setPriorDate(DataConstants.EMPTY).build());
             }
         }
 
@@ -85,8 +94,17 @@ public class TreatmentUtil {
                     }
                 }
 
-                treatmentDtos.add(new TreatmentDto(null, cleanDrugs(drug), DataConstants.EMPTY, DataConstants.EMPTY, duration, DataConstants.EMPTY,
-                                                   DataConstants.EMPTY, response, DataConstants.EMPTY, DataConstants.EMPTY, priorDate));
+                treatmentDtos.add(new TreatmentDto().setCurrentDrug(null)
+                                          .setPriorDrug(cleanDrugs(drug))
+                                          .setManufacturer(DataConstants.EMPTY)
+                                          .setDose(DataConstants.EMPTY)
+                                          .setDuration(duration)
+                                          .setFrequency(DataConstants.EMPTY)
+                                          .setArmSize(DataConstants.EMPTY)
+                                          .setResponse(response)
+                                          .setPassageRange(DataConstants.EMPTY)
+                                          .setStartingDate(DataConstants.EMPTY)
+                                          .setPriorDate(priorDate).build());
             }
         }
         return treatmentDtos;

@@ -2,12 +2,14 @@ package org.pdxfinder.dto;
 
 
 import com.fasterxml.jackson.annotation.*;
+import org.pdxfinder.dto.template.MetadataSampleTsv;
+import org.pdxfinder.dto.template.MetadataSharingTsv;
 
+import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "Model ID",
         "Patient ID",
@@ -26,7 +28,7 @@ import java.util.List;
         "Grade Value",
         "Sample Type",
         "Samples",
-        "Strain",
+        "Host Strain",
         "host_strain_full",
         "Mouse Sex",
         "Treatments",
@@ -37,7 +39,15 @@ import java.util.List;
         "Date At Collection",
         "Accessibility",
         "Validations",
-        "Source url"
+        "Source url",
+
+        "sample_state",
+        "publications",
+        "history",
+        "ethnicity_assessment_method",
+        "age_at_initial_diagnosis",
+        "sample_meta_data",
+        "sharing"
 })
 public class PdxDto {
 
@@ -93,7 +103,8 @@ public class PdxDto {
     @JsonProperty("Sample Type")
     private String sampleType;
 
-    @JsonProperty("Strain")
+    @JsonProperty("Host Strain")
+    @JsonAlias("Strain")
     private String hostStrain;
 
     @JsonProperty("host_strain_full")
@@ -131,6 +142,31 @@ public class PdxDto {
 
     @JsonProperty("Samples")
     private List<SampleDto> sampleDtos;
+
+
+    @JsonProperty("sample_state")
+    private String sampleState;
+
+    @JsonProperty("publications")
+    private String publications;
+
+    @JsonProperty("history")
+    private String history;
+
+    @JsonProperty("ethnicity_assessment_method")
+    private String ethnicityAssessmentMethod;
+
+    @JsonProperty("age_at_initial_diagnosis")
+    private String ageAtInitialDiagnosis;
+
+    @JsonProperty("sample_meta_data")
+    private MetadataSampleTsv metadataSampleTsv;
+
+    @JsonProperty("sharing")
+    private MetadataSharingTsv metadataSharingTsv;
+
+
+
 
 
     public PdxDto() {
@@ -221,6 +257,32 @@ public class PdxDto {
         return clinicalDiagnosis;
     }
 
+    public String getSampleState() {
+        return sampleState;
+    }
+
+    public String getPublications() {
+        return publications;
+    }
+
+    public String getHistory() {
+        return history;
+    }
+
+    public String getEthnicityAssessmentMethod() {
+        return ethnicityAssessmentMethod;
+    }
+
+    public String getAgeAtInitialDiagnosis() {
+        return ageAtInitialDiagnosis;
+    }
+
+    public MetadataSharingTsv getMetadataSharingTsv() {
+        return metadataSharingTsv;
+    }
+
+
+
     public PdxDto setClinicalDiagnosis(String clinicalDiagnosis) {
         this.clinicalDiagnosis = clinicalDiagnosis;
         return this;
@@ -293,6 +355,51 @@ public class PdxDto {
         return hostStrain;
     }
 
+    public List<ValidationDto> getValidationDtos() {
+        return validationDtos;
+    }
+
+    public List<TreatmentDto> getTreatmentDtos() {
+        return Optional.ofNullable(treatmentDtos).orElse(new ArrayList<>());
+    }
+
+    public String getTreatmentNaive() {
+        return treatmentNaive;
+    }
+
+    public String getEngraftmentSite() {
+        return engraftmentSite;
+    }
+
+    public String getEngraftmentType() {
+        return engraftmentType;
+    }
+
+    public String getSourceUrl() {
+        return sourceUrl;
+    }
+
+    public List<SampleDto> getSampleDtos() {
+        return sampleDtos;
+    }
+
+    public String getAccessibility() {
+        return accessibility;
+    }
+
+    public String getDateAtCollection() {
+        return dateAtCollection;
+    }
+
+    public String getExtractionMethod() {
+        return extractionMethod;
+    }
+
+    public MetadataSampleTsv getMetadataSampleTsv() {
+        return metadataSampleTsv;
+    }
+
+
     public PdxDto setHostStrain(String hostStrain) {
         this.hostStrain = hostStrain;
         return this;
@@ -312,21 +419,9 @@ public class PdxDto {
         return this;
     }
 
-    public List<TreatmentDto> getTreatmentDtos() {
-        return treatmentDtos;
-    }
-
-    public String getTreatmentNaive() {
-        return treatmentNaive;
-    }
-
     public PdxDto setTreatmentNaive(String treatmentNaive) {
         this.treatmentNaive = treatmentNaive;
         return this;
-    }
-
-    public String getEngraftmentSite() {
-        return engraftmentSite;
     }
 
     public PdxDto setEngraftmentSite(String engraftmentSite) {
@@ -334,17 +429,9 @@ public class PdxDto {
         return this;
     }
 
-    public String getEngraftmentType() {
-        return engraftmentType;
-    }
-
     public PdxDto setEngraftmentType(String engraftmentType) {
         this.engraftmentType = engraftmentType;
         return this;
-    }
-
-    public String getSourceUrl() {
-        return sourceUrl;
     }
 
     public PdxDto setSourceUrl(String sourceUrl) {
@@ -352,17 +439,9 @@ public class PdxDto {
         return this;
     }
 
-    public String getExtractionMethod() {
-        return extractionMethod;
-    }
-
     public PdxDto setExtractionMethod(String extractionMethod) {
         this.extractionMethod = extractionMethod;
         return this;
-    }
-
-    public String getDateAtCollection() {
-        return dateAtCollection;
     }
 
     public PdxDto setDateAtCollection(String dateAtCollection) {
@@ -370,21 +449,9 @@ public class PdxDto {
         return this;
     }
 
-    public String getAccessibility() {
-        return accessibility;
-    }
-
     public PdxDto setAccessibility(String accessibility) {
         this.accessibility = accessibility;
         return this;
-    }
-
-    public List<ValidationDto> getValidationDtos() {
-        return validationDtos;
-    }
-
-    public List<SampleDto> getSampleDtos() {
-        return sampleDtos;
     }
 
     public PdxDto setId(Integer id) {
@@ -399,6 +466,41 @@ public class PdxDto {
 
     public PdxDto setSampleDtos(List<SampleDto> sampleDtos) {
         this.sampleDtos = sampleDtos;
+        return this;
+    }
+
+    public PdxDto setSampleState(String sampleState) {
+        this.sampleState = sampleState;
+        return this;
+    }
+
+    public PdxDto setPublications(String publications) {
+        this.publications = publications;
+        return this;
+    }
+
+    public PdxDto setHistory(String history) {
+        this.history = history;
+        return this;
+    }
+
+    public PdxDto setEthnicityAssessmentMethod(String ethnicityAssessmentMethod) {
+        this.ethnicityAssessmentMethod = ethnicityAssessmentMethod;
+        return this;
+    }
+
+    public PdxDto setAgeAtInitialDiagnosis(String ageAtInitialDiagnosis) {
+        this.ageAtInitialDiagnosis = ageAtInitialDiagnosis;
+        return this;
+    }
+
+    public PdxDto setMetadataSampleTsv(MetadataSampleTsv metadataSampleTsv) {
+        this.metadataSampleTsv = metadataSampleTsv;
+        return this;
+    }
+
+    public PdxDto setMetadataSharingTsv(MetadataSharingTsv metadataSharingTsv) {
+        this.metadataSharingTsv = metadataSharingTsv;
         return this;
     }
 

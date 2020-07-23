@@ -24,8 +24,6 @@ public class DataConstants {
 
     public static final String HG19_GENOME = "hg19";
 
-    public static final String PDMR_PLATFORM = "OncoKB Gene Panel";
-
     public static final String PDMR_ABBREV = "PDMR";
 
     public static final String PDMR_FULL_NAME = "Patient-Derived Models Repository";
@@ -45,5 +43,13 @@ public class DataConstants {
     public static final String TUMORTYPE_METASTATIC = "Metastatic";
 
     public static final String TUMORTYPE_METASTATIC_SITE = "Metastatic Site";
+
+    public static final String JAX_ABBREV = "JAX";
+
+    public static final String JAX_FULL_NAME = "The Jackson Laboratory";
+
+    public static final String JAX_SOURCE_URL = "http://tumor.informatics.jax.org/mtbwi/pdxDetails.do?modelID=";
+
+    public static final String JAX_CONTACT = "http://tumor.informatics.jax.org/mtbwi/pdxRequest.do?mice=";
 
 }

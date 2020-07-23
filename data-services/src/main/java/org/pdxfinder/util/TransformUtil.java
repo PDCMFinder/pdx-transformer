@@ -69,7 +69,17 @@ public class TransformUtil {
                 if (FileUtil.isNumeric(samplePassage)) {
                     if (!sampleId.contains(CancerModelTypes.CANCER_ASSOCIATED_FIBROBLASTS)) {
                         sampleTumorType = TumorTypeConstants.ENGRAFTED_TUMOR;
-                        sampleDtoList.add(new SampleDto(sampleId, sampleTumorType, samplePassage, wholeExomeSeqYn, wholeExomeSeqYn, wholeExomeSeqYn, rnaSeqYn, rnaSeqYn));
+                        sampleDtoList.add(new SampleDto().setSampleID(sampleId)
+                                                  .setTumorType(sampleTumorType)
+                                                  .setPassage(samplePassage)
+                                                  .setPlatform(Platforms.PDMR_ONKOKB_PROTOCOL.get())
+                                                  .setPlatformUrl(Platforms.PDMR_ONKOKB_PROTOCOL.url())
+                                                  .setwESVCFFile(wholeExomeSeqYn)
+                                                  .setwESFastaFile(wholeExomeSeqYn)
+                                                  .setnCIGenePanel(wholeExomeSeqYn)
+                                                  .setrNASeqFastaFile(rnaSeqYn)
+                                                  .setrNASeqRSEMFile(rnaSeqYn)
+                                                  .build());
                     }else {
                         log.warn("This is Strange, CAF Culture that has passage number");
                     }
@@ -77,7 +87,16 @@ public class TransformUtil {
                     if (sampleId.equals(DataConstants.PDMR_PATIENT_SAMPLE_ID)) {
                         sampleTumorType = TumorTypeConstants.PATIENT_TUMOR;
                         samplePassage = "";
-                        sampleDtoList.add(new SampleDto(sampleId, sampleTumorType, samplePassage, wholeExomeSeqYn, wholeExomeSeqYn, wholeExomeSeqYn, rnaSeqYn, rnaSeqYn));
+                        sampleDtoList.add(new SampleDto().setSampleID(sampleId)
+                                                  .setTumorType(sampleTumorType)
+                                                  .setPassage(samplePassage)
+                                                  .setPlatform(Platforms.PDMR_ONKOKB_PROTOCOL.get())
+                                                  .setPlatformUrl(Platforms.PDMR_ONKOKB_PROTOCOL.url())
+                                                  .setwESVCFFile(wholeExomeSeqYn)
+                                                  .setwESFastaFile(wholeExomeSeqYn)
+                                                  .setnCIGenePanel(wholeExomeSeqYn)
+                                                  .setrNASeqFastaFile(rnaSeqYn)
+                                                  .setrNASeqRSEMFile(rnaSeqYn).build());
                     }else {
                         log.info("{} is neither PDX nor Patient Sample ", sampleId);
                     }
