@@ -1,4 +1,4 @@
-package org.pdxfinder.dto.tsv;
+package org.pdxfinder.dto.template;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

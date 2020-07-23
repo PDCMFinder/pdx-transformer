@@ -1,4 +1,4 @@
-package org.pdxfinder.dto.tsv;
+package org.pdxfinder.dto.template;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "ethnicity",
         "ethnicity_assessment_method",
         "initial_diagnosis",
-        "age_at_initial_diagnosis",
+        "age_at_initial_diagnosis"
 })
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MetadataPatientTsv {

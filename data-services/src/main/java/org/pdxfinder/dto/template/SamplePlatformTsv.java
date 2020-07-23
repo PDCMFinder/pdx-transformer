@@ -1,4 +1,4 @@
-package org.pdxfinder.dto.tsv;
+package org.pdxfinder.dto.template;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "internal_protocol_url"
 })
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SamplePlatformDataTsv {
+public class SamplePlatformTsv {
 
     @JsonProperty("Field")
     private String field;
@@ -77,92 +77,92 @@ public class SamplePlatformDataTsv {
     @JsonProperty("internal_protocol_url")
     private String internalProtocolUrl;
 
-    public SamplePlatformDataTsv setField(String field) {
+    public SamplePlatformTsv setField(String field) {
         this.field = field;
         return this;
     }
 
-    public SamplePlatformDataTsv setSampleId(String sampleId) {
+    public SamplePlatformTsv setSampleId(String sampleId) {
         this.sampleId = sampleId;
         return this;
     }
 
-    public SamplePlatformDataTsv setSampleOrigin(String sampleOrigin) {
+    public SamplePlatformTsv setSampleOrigin(String sampleOrigin) {
         this.sampleOrigin = sampleOrigin;
         return this;
     }
 
-    public SamplePlatformDataTsv setPassage(String passage) {
+    public SamplePlatformTsv setPassage(String passage) {
         this.passage = passage;
         return this;
     }
 
-    public SamplePlatformDataTsv setEngraftedTumorCollectionSite(String engraftedTumorCollectionSite) {
+    public SamplePlatformTsv setEngraftedTumorCollectionSite(String engraftedTumorCollectionSite) {
         this.engraftedTumorCollectionSite = engraftedTumorCollectionSite;
         return this;
     }
 
-    public SamplePlatformDataTsv setModelId(String modelId) {
+    public SamplePlatformTsv setModelId(String modelId) {
         this.modelId = modelId;
         return this;
     }
 
-    public SamplePlatformDataTsv setHostStrainName(String hostStrainName) {
+    public SamplePlatformTsv setHostStrainName(String hostStrainName) {
         this.hostStrainName = hostStrainName;
         return this;
     }
 
-    public SamplePlatformDataTsv setHostStrainNomenclature(String hostStrainNomenclature) {
+    public SamplePlatformTsv setHostStrainNomenclature(String hostStrainNomenclature) {
         this.hostStrainNomenclature = hostStrainNomenclature;
         return this;
     }
 
-    public SamplePlatformDataTsv setMolecularCharacterisationType(String molecularCharacterisationType) {
+    public SamplePlatformTsv setMolecularCharacterisationType(String molecularCharacterisationType) {
         this.molecularCharacterisationType = molecularCharacterisationType;
         return this;
     }
 
-    public SamplePlatformDataTsv setPlatform(String platform) {
+    public SamplePlatformTsv setPlatform(String platform) {
         this.platform = platform;
         return this;
     }
 
-    public SamplePlatformDataTsv setPlatformType(String platformType) {
+    public SamplePlatformTsv setPlatformType(String platformType) {
         this.platformType = platformType;
         return this;
     }
 
-    public SamplePlatformDataTsv setPlatformNotes(String platformNotes) {
+    public SamplePlatformTsv setPlatformNotes(String platformNotes) {
         this.platformNotes = platformNotes;
         return this;
     }
 
-    public SamplePlatformDataTsv setAnalysisProtocol(String analysisProtocol) {
+    public SamplePlatformTsv setAnalysisProtocol(String analysisProtocol) {
         this.analysisProtocol = analysisProtocol;
         return this;
     }
 
-    public SamplePlatformDataTsv setProcessedDataFile(String processedDataFile) {
+    public SamplePlatformTsv setProcessedDataFile(String processedDataFile) {
         this.processedDataFile = processedDataFile;
         return this;
     }
 
-    public SamplePlatformDataTsv setRawDataSharable(String rawDataSharable) {
+    public SamplePlatformTsv setRawDataSharable(String rawDataSharable) {
         this.rawDataSharable = rawDataSharable;
         return this;
     }
 
-    public SamplePlatformDataTsv setRawDataFile(String rawDataFile) {
+    public SamplePlatformTsv setRawDataFile(String rawDataFile) {
         this.rawDataFile = rawDataFile;
         return this;
     }
 
-    public SamplePlatformDataTsv setInternalProtocolUrl(String internalProtocolUrl) {
+    public SamplePlatformTsv setInternalProtocolUrl(String internalProtocolUrl) {
         this.internalProtocolUrl = internalProtocolUrl;
         return this;
     }
 
-    public SamplePlatformDataTsv build() {
+    public SamplePlatformTsv build() {
         return this;
     }
 

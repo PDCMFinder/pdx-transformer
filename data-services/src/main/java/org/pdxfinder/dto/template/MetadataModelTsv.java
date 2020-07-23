@@ -1,8 +1,9 @@
-package org.pdxfinder.dto.tsv;
+package org.pdxfinder.dto.template;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.*;
+import org.pdxfinder.constant.DataConstants;
+
+import java.util.Objects;
 
 @JsonPropertyOrder({
         "Field",
@@ -14,9 +15,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "sample_type",
         "sample_state",
         "passage_number",
-        "publications",
+        "publications"
 })
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class MetadataModelTsv {
 
     @JsonProperty("Field")
@@ -116,7 +116,7 @@ public class MetadataModelTsv {
     }
 
     public String getHostStrainFull() {
-        return hostStrainFull;
+        return Objects.toString(hostStrainFull, DataConstants.EMPTY);
     }
 
     public String getEngraftmentSite() {
@@ -124,7 +124,7 @@ public class MetadataModelTsv {
     }
 
     public String getEngraftmentType() {
-        return engraftmentType;
+        return Objects.toString(engraftmentType, DataConstants.EMPTY);
     }
 
     public String getSampleType() {

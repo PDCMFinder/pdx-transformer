@@ -1,101 +1,115 @@
-package org.pdxfinder.dto.tsv;
+package org.pdxfinder.dto.template;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.*;
 
 @JsonPropertyOrder({
-        "datasource",
-        "Model_ID",
-        "Sample_ID",
+        "model_id",
+        "sample_id",
         "sample_origin",
-        "Passage",
-        "host_strain_name",
-        "hgnc_symbol",
+        "host_strain_nomenclature",
+        "passage",
+        "symbol",
+        "biotype",
         "coding_sequence_change",
+        "variant_class",
+        "codon_change",
         "amino_acid_change",
         "consequence",
         "functional_prediction",
         "read_depth",
-        "Allele_frequency",
+        "allele_frequency",
         "chromosome",
         "seq_start_position",
         "ref_allele",
         "alt_allele",
         "ucsc_gene_id",
         "ncbi_gene_id",
+        "ncbi_transcript_id",
         "ensembl_gene_id",
         "ensembl_transcript_id",
         "variation_id",
-        "rs_id_Variant",
         "genome_assembly",
-        "Platform"
+        "platform"
 })
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class OmicTsv {
+public class MutationTsv {
 
-    @JsonProperty("datasource")
-    private String dataSource;
-
-    @JsonProperty("Model_ID")
+    @JsonProperty("model_id")
+    @JsonAlias("model id")
     private String modelId;
 
-    @JsonProperty("Sample_ID")
+    @JsonProperty("sample_id")
+    @JsonAlias("sample")
     private String sampleId;
 
     @JsonProperty("sample_origin")
     private String sampleOrigin;
 
-    @JsonProperty("Passage")
-    private String passage;
-
-    @JsonProperty("host_strain_name")
+    @JsonProperty("host_strain_nomenclature")
     private String hostStrainName;
 
-    @JsonProperty("hgnc_symbol")
+    @JsonProperty("passage")
+    @JsonAlias("passage num")
+    private String passage;
+
+    @JsonProperty("symbol")
+    @JsonAlias("gene symbol")
     private String hgncSymbol;
 
-    @JsonProperty("amino_acid_change")
-    private String aminoAcidChange;
-
-    @JsonProperty("functional_prediction")
-    private String functionalPrediction;
-
-    @JsonProperty("nucleotide_change")
-    private String nucleotideChange;
+    @JsonProperty("biotype")
+    private String bioType;
 
     @JsonProperty("coding_sequence_change")
     private String codingSequenceChange;
 
+    @JsonProperty("variant_class")
+    private String variantClass;
+
+    @JsonProperty("codon_change")
+    private String codonChange;
+
+    @JsonProperty("amino_acid_change")
+    @JsonAlias("amino acid change")
+    private String aminoAcidChange;
+
     @JsonProperty("consequence")
     private String consequence;
 
+    @JsonProperty("functional_prediction")
+    private String functionalPrediction;
+
     @JsonProperty("read_depth")
+    @JsonAlias("read depth")
     private String readDepth;
 
-    @JsonProperty("Allele_frequency")
+    @JsonProperty("allele_frequency")
+    @JsonAlias("allele frequency")
     private String alleleFrequency;
 
     @JsonProperty("chromosome")
     private String chromosome;
 
     @JsonProperty("seq_start_position")
+    @JsonAlias("seq position")
     private String seqStartPosition;
 
     @JsonProperty("ref_allele")
+    @JsonAlias("ref allele")
     private String refAllele;
 
-    @JsonProperty("variation_id")
-    private String variationId;
-
     @JsonProperty("alt_allele")
+    @JsonAlias("alt allele")
     private String altAllele;
 
     @JsonProperty("ucsc_gene_id")
+    @JsonAlias("gene id")
     private String ucscGeneId;
 
     @JsonProperty("ncbi_gene_id")
     private String ncbiGeneId;
+
+    @JsonProperty("ncbi_transcript_id")
+    private String ncbiTranscriptId;
 
     @JsonProperty("ensembl_gene_id")
     private String ensemblGeneId;
@@ -103,17 +117,48 @@ public class OmicTsv {
     @JsonProperty("ensembl_transcript_id")
     private String ensemblTranscriptId;
 
-    @JsonProperty("rs_id_Variant")
-    private String rsIdVariant;
+    @JsonProperty("variation_id")
+    @JsonAlias("rs variants")
+    private String variationId;
 
     @JsonProperty("genome_assembly")
+    @JsonAlias("genome assembly")
     private String genomeAssembly;
 
-    @JsonProperty("Platform")
+    @JsonProperty("platform")
     private String platform;
 
-    public String getDataSource() {
-        return dataSource;
+    @JsonProperty("datasource")
+    private String dataSource;
+
+    public MutationTsv() {
+        this.modelId = "";
+        this.sampleId = "";
+        this.sampleOrigin = "";
+        this.passage = "";
+        this.hostStrainName = "";
+        this.hgncSymbol = "";
+        this.bioType = "";
+        this.aminoAcidChange = "";
+        this.functionalPrediction = "";
+        this.codingSequenceChange = "";
+        this.consequence = "";
+        this.readDepth = "";
+        this.alleleFrequency = "";
+        this.chromosome = "";
+        this.seqStartPosition = "";
+        this.refAllele = "";
+        this.variationId = "";
+        this.altAllele = "";
+        this.ucscGeneId = "";
+        this.ncbiGeneId = "";
+        this.ncbiTranscriptId = "";
+        this.ensemblGeneId = "";
+        this.ensemblTranscriptId = "";
+        this.variantClass = "";
+        this.codonChange = "";
+        this.genomeAssembly = "";
+        this.platform = "";
     }
 
     public String getModelId() {
@@ -140,16 +185,16 @@ public class OmicTsv {
         return hgncSymbol;
     }
 
+    public String getBioType() {
+        return bioType;
+    }
+
     public String getAminoAcidChange() {
         return aminoAcidChange;
     }
 
     public String getFunctionalPrediction() {
         return functionalPrediction;
-    }
-
-    public String getNucleotideChange() {
-        return nucleotideChange;
     }
 
     public String getCodingSequenceChange() {
@@ -196,6 +241,10 @@ public class OmicTsv {
         return ncbiGeneId;
     }
 
+    public String getNcbiTranscriptId() {
+        return ncbiTranscriptId;
+    }
+
     public String getEnsemblGeneId() {
         return ensemblGeneId;
     }
@@ -204,8 +253,12 @@ public class OmicTsv {
         return ensemblTranscriptId;
     }
 
-    public String getRsIdVariant() {
-        return rsIdVariant;
+    public String getVariantClass() {
+        return variantClass;
+    }
+
+    public String getCodonChange() {
+        return codonChange;
     }
 
     public String getGenomeAssembly() {
@@ -216,137 +269,148 @@ public class OmicTsv {
         return platform;
     }
 
-    public OmicTsv setDataSource(String dataSource) {
+    public MutationTsv setDataSource(String dataSource) {
         this.dataSource = dataSource;
         return this;
     }
 
-    public OmicTsv setModelId(String modelId) {
+    public MutationTsv setModelId(String modelId) {
         this.modelId = modelId;
         return this;
     }
 
-    public OmicTsv setSampleId(String sampleId) {
+    public MutationTsv setSampleId(String sampleId) {
         this.sampleId = sampleId;
         return this;
     }
 
-    public OmicTsv setSampleOrigin(String sampleOrigin) {
+    public MutationTsv setSampleOrigin(String sampleOrigin) {
         this.sampleOrigin = sampleOrigin;
         return this;
     }
 
-    public OmicTsv setPassage(String passage) {
+    public MutationTsv setPassage(String passage) {
         this.passage = passage;
         return this;
     }
 
-    public OmicTsv setHostStrainName(String hostStrainName) {
+    public MutationTsv setHostStrainName(String hostStrainName) {
         this.hostStrainName = hostStrainName;
         return this;
     }
 
-    public OmicTsv setHgncSymbol(String hgncSymbol) {
+    public MutationTsv setHgncSymbol(String hgncSymbol) {
         this.hgncSymbol = hgncSymbol;
         return this;
     }
 
-    public OmicTsv setAminoAcidChange(String aminoAcidChange) {
+    public MutationTsv setBioType(String bioType) {
+        this.bioType = bioType;
+        return this;
+    }
+
+    public MutationTsv setAminoAcidChange(String aminoAcidChange) {
         this.aminoAcidChange = aminoAcidChange;
         return this;
     }
 
-    public OmicTsv setFunctionalPrediction(String functionalPrediction) {
+    public MutationTsv setFunctionalPrediction(String functionalPrediction) {
         this.functionalPrediction = functionalPrediction;
         return this;
     }
 
-    public OmicTsv setNucleotideChange(String nucleotideChange) {
-        this.nucleotideChange = nucleotideChange;
-        return this;
-    }
-
-    public OmicTsv setCodingSequenceChange(String codingSequenceChange) {
+    public MutationTsv setCodingSequenceChange(String codingSequenceChange) {
         this.codingSequenceChange = codingSequenceChange;
         return this;
     }
 
-    public OmicTsv setConsequence(String consequence) {
+    public MutationTsv setConsequence(String consequence) {
         this.consequence = consequence;
         return this;
     }
 
-    public OmicTsv setReadDepth(String readDepth) {
+    public MutationTsv setReadDepth(String readDepth) {
         this.readDepth = readDepth;
         return this;
     }
 
-    public OmicTsv setAlleleFrequency(String alleleFrequency) {
+    public MutationTsv setAlleleFrequency(String alleleFrequency) {
         this.alleleFrequency = alleleFrequency;
         return this;
     }
 
-    public OmicTsv setChromosome(String chromosome) {
+    public MutationTsv setChromosome(String chromosome) {
         this.chromosome = chromosome;
         return this;
     }
 
-    public OmicTsv setSeqStartPosition(String seqStartPosition) {
+    public MutationTsv setSeqStartPosition(String seqStartPosition) {
         this.seqStartPosition = seqStartPosition;
         return this;
     }
 
-    public OmicTsv setRefAllele(String refAllele) {
+    public MutationTsv setRefAllele(String refAllele) {
         this.refAllele = refAllele;
         return this;
     }
 
-    public OmicTsv setVariationId(String variationId) {
+    public MutationTsv setVariationId(String variationId) {
         this.variationId = variationId;
         return this;
     }
 
-    public OmicTsv setAltAllele(String altAllele) {
+    public MutationTsv setAltAllele(String altAllele) {
         this.altAllele = altAllele;
         return this;
     }
 
-    public OmicTsv setUcscGeneId(String ucscGeneId) {
+    public MutationTsv setUcscGeneId(String ucscGeneId) {
         this.ucscGeneId = ucscGeneId;
         return this;
     }
 
-    public OmicTsv setNcbiGeneId(String ncbiGeneId) {
+    public MutationTsv setNcbiGeneId(String ncbiGeneId) {
         this.ncbiGeneId = ncbiGeneId;
         return this;
     }
 
-    public OmicTsv setEnsemblGeneId(String ensemblGeneId) {
+    public MutationTsv setNcbiTranscriptId(String ncbiTranscriptId) {
+        this.ncbiTranscriptId = ncbiTranscriptId;
+        return this;
+    }
+
+    public MutationTsv setEnsemblGeneId(String ensemblGeneId) {
         this.ensemblGeneId = ensemblGeneId;
         return this;
     }
 
-    public OmicTsv setEnsemblTranscriptId(String ensemblTranscriptId) {
+    public MutationTsv setEnsemblTranscriptId(String ensemblTranscriptId) {
         this.ensemblTranscriptId = ensemblTranscriptId;
         return this;
     }
 
-    public OmicTsv setRsIdVariant(String rsIdVariant) {
-        this.rsIdVariant = rsIdVariant;
+    public MutationTsv setVariantClass(String variantClass) {
+        this.variantClass = variantClass;
         return this;
     }
 
-    public OmicTsv setGenomeAssembly(String genomeAssembly) {
+    public MutationTsv setCodonChange(String codonChange) {
+        this.codonChange = codonChange;
+        return this;
+    }
+
+    public MutationTsv setGenomeAssembly(String genomeAssembly) {
         this.genomeAssembly = genomeAssembly;
         return this;
     }
 
-    public OmicTsv setPlatform(String platform) {
+    public MutationTsv setPlatform(String platform) {
         this.platform = platform;
         return this;
     }
 
-    public OmicTsv createOmicTsv() {
+    public MutationTsv build() {
         return this;
     }
+    
 }
