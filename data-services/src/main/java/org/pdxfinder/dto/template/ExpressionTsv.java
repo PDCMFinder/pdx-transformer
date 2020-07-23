@@ -1,5 +1,6 @@
 package org.pdxfinder.dto.template;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -33,9 +34,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class ExpressionTsv {
 
     @JsonProperty("model_id")
+    @JsonAlias("model")
     private String modelId;
 
     @JsonProperty("sample_id")
+    @JsonAlias("sample")
     private String sampleId;
 
     @JsonProperty("sample_origin")
@@ -60,12 +63,13 @@ public class ExpressionTsv {
     private String seqEndPosition;
 
     @JsonProperty("symbol")
+    @JsonAlias("gene")
     private String symbol;
 
     @JsonProperty("ucsc_gene_id")
     private String ucscGeneId;
 
-    @JsonProperty("")
+    @JsonProperty("ncbi_gene_id")
     private String ncbiGeneId;
 
     @JsonProperty("ensembl_gene_id")
@@ -81,6 +85,7 @@ public class ExpressionTsv {
     private String rnaseqFpkm;
 
     @JsonProperty("rnaseq_tpm")
+    @JsonAlias("TPM")
     private String rnaseqTpm;
 
     @JsonProperty("rnaseq_count")
@@ -95,10 +100,11 @@ public class ExpressionTsv {
     @JsonProperty("illumina_hgea_probe_id")
     private String illuminaHgeaProbeId;
 
-    @JsonProperty("illuminaHgea_expression_value")
+    @JsonProperty("illumina_hgea_expression_value")
     private String illuminaHgeaExpressionValue;
 
     @JsonProperty("z_score")
+    @JsonAlias("z_score_percentile_rank")
     private String zScore;
 
     @JsonProperty("genome_assembly")
@@ -233,5 +239,25 @@ public class ExpressionTsv {
 
     public String getPlatform() {
         return platform;
+    }
+
+
+    public ExpressionTsv setPassage(String passage) {
+        this.passage = passage;
+        return this;
+    }
+
+    public ExpressionTsv setSampleOrigin(String sampleOrigin) {
+        this.sampleOrigin = sampleOrigin;
+        return this;
+    }
+
+    public ExpressionTsv setHostStrainNomenclature(String hostStrainNomenclature) {
+        this.hostStrainNomenclature = hostStrainNomenclature;
+        return this;
+    }
+
+    public ExpressionTsv build(){
+        return this;
     }
 }

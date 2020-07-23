@@ -1,13 +1,12 @@
-package org.pdxfinder.service;
+package org.pdxfinder.service.pdmr;
 
 import org.pdxfinder.domain.*;
-import org.pdxfinder.dto.ExtractDto;
+import org.pdxfinder.dto.*;
 import org.pdxfinder.projection.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ExtractService {
@@ -20,7 +19,7 @@ public class ExtractService {
         this.dataService = dataService;
     }
 
-    public ExtractDto fromPdmrOracle(){
+    public ExtractDto fromPdmrOracle() {
 
         log.info("Start Loading Oracle data-sets");
         List<PatientInfo> patientList = dataService.getAllPatientInfo();
@@ -63,5 +62,6 @@ public class ExtractService {
                 .setHugoGeneSymbols(hugoGeneSymbols)
                 .setVariantClasses(variantClasses);
     }
+
 
 }

@@ -1,11 +1,12 @@
-package org.pdxfinder.service;
+package org.pdxfinder.service.pdmr;
 
 import org.pdxfinder.constant.DataConstants;
+import org.pdxfinder.constant.Platforms;
 import org.pdxfinder.constant.TumorTypeConstants;
 import org.pdxfinder.domain.OncokbGenePanel;
 import org.pdxfinder.domain.Sample;
 import org.pdxfinder.dto.ExtractDto;
-import org.pdxfinder.dto.tsv.OmicTsv;
+import org.pdxfinder.dto.template.MutationTsv;
 import org.pdxfinder.util.FileUtil;
 import org.pdxfinder.util.OmicUtil;
 import org.slf4j.Logger;
@@ -21,16 +22,16 @@ public class TransformOmicDataService {
 
     private final Logger log = LoggerFactory.getLogger(TransformOmicDataService.class);
 
-    public List<OmicTsv> transformOmicData(ExtractDto extracted) {
+    public List<MutationTsv> transformOmicData(ExtractDto extracted) {
         log.info("Start Transforming Omic data-sets");
 
         List<OncokbGenePanel> oncokbGenePanels = extracted.getOncokbGenePanels();
         List<Sample> samples = extracted.getSamples();
 
-        List<OmicTsv> transformedData = new ArrayList<>();
+        List<MutationTsv> transformedData = new ArrayList<>();
         for (OncokbGenePanel oncoKb : oncokbGenePanels) {
             AtomicBoolean validData = new AtomicBoolean(false);
-            OmicTsv omicDataRow = OmicUtil.get(oncoKb, extracted)
+            MutationTsv omicDataRow = OmicUtil.main(oncoKb, extracted)
                     .setReadDepth(oncoKb.getTotalreads())
                     .setAlleleFrequency(oncoKb.getVariantadellefreq())
                     .setSeqStartPosition(oncoKb.getStartposition())
@@ -41,15 +42,15 @@ public class TransformOmicDataService {
                     .setEnsemblGeneId(DataConstants.EMPTY)
                     .setEnsemblTranscriptId(DataConstants.EMPTY)
                     .setGenomeAssembly(DataConstants.HG19_GENOME)
-                    .setPlatform(DataConstants.PDMR_PLATFORM);
+                    .setPlatform(Platforms.PDMR_ONKOKB_PROTOCOL.get());
 
             samples.forEach(sample -> {
 
                 if (oncoKb.getSampleseqnbr().equals(sample.getSampleseqnbr())) {
                     String modelId = OmicUtil.getModelId(sample, extracted);
                     String samplePassage = sample.getPassageofthissample();
-                    omicDataRow.setModelId(modelId)
-                            .setDataSource(DataConstants.PDMR_ABBREV)
+                    omicDataRow
+                            .setModelId(modelId)
                             .setSampleId(sample.getSampleid())
                             .setHostStrainName(DataConstants.NSG_HOST_STRAIN_FULL);
 

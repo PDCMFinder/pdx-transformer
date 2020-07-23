@@ -2,8 +2,8 @@ package org.pdxfinder.service;
 
 import org.pdxfinder.constant.Directories;
 import org.pdxfinder.dto.PdxDto;
-import org.pdxfinder.dto.tsv.OmicTsv;
-import org.pdxfinder.util.tsv.*;
+import org.pdxfinder.util.template.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.apache.commons.io.FileUtils;
 
@@ -14,15 +14,16 @@ import java.util.List;
 @Service
 public class WriteTsvService {
 
-    public void execute(List<PdxDto> pdxDtos, List<OmicTsv> omicTsvs, String outputDirectory) throws IOException {
+    @Value("${output.directory}")
+    private String workDIrectory;
 
-        String destination = String.format("%s%s", outputDirectory, Directories.PDMR_OUT_DIR);
-        String treatment = String.format("%s%s%s", outputDirectory, Directories.PDMR_OUT_DIR, Directories.TREATMENT_OUT_DIR);
-        String omic = String.format("%s%s%s", outputDirectory, Directories.PDMR_OUT_DIR, Directories.MUTATION_OUT_DIR);
+    public void metaData(List<PdxDto> pdxDtos, String dataSource) throws IOException {
+
+        String destination = String.format("%s%s", workDIrectory, dataSource);
+        String treatment = String.format("%s%s%s", workDIrectory, dataSource, Directories.TREATMENT_OUT_DIR);
 
         FileUtils.forceMkdir(new File(destination));
         FileUtils.forceMkdir(new File(treatment));
-        FileUtils.forceMkdir(new File(omic));
 
         WriteModelTsvUtil.writeTsv(pdxDtos, destination);
 
@@ -38,6 +39,12 @@ public class WriteTsvService {
 
         WritePatientTreatmentTsvUtil.writeTsv(pdxDtos, treatment);
 
-        WriteOmicTsv.writeTsv(omicTsvs,  omic);
     }
+
+    public void genomicData(List<?> mutationTsvs, String dataSource, String dataDir, String fileName) throws IOException {
+        String destination = String.format("%s%s%s", workDIrectory, dataSource, dataDir);
+        FileUtils.forceMkdir(new File(destination));
+        WriteOmicTsv.writeTsv(mutationTsvs, destination+fileName);
+    }
+
 }

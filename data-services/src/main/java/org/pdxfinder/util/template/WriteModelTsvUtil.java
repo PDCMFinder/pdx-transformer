@@ -3,8 +3,10 @@ package org.pdxfinder.util.template;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.FileNames;
 import org.pdxfinder.constant.TemplateLocations;
+import org.pdxfinder.constant.TumorTypeConstants;
 import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.dto.SampleDto;
 import org.pdxfinder.dto.template.MetadataModelTsv;
@@ -34,7 +36,7 @@ public class WriteModelTsvUtil {
 
         pdxDtoList.forEach(pdxDto -> {
             Set<String> passages = pdxDto.getSampleDtos().stream()
-                    .filter(sampleDto -> sampleDto.getPassage() != null)
+                    .filter(sampleDto -> !sampleDto.getTumorType().equals(DataConstants.PDMR_PATIENT_SAMPLE_ID))
                     .map(SampleDto::getPassage)
                     .collect(Collectors.toSet());
 

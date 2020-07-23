@@ -1,5 +1,6 @@
 package org.pdxfinder.dto.template;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -27,9 +28,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class CnaTsv {
 
     @JsonProperty("model_id")
+    @JsonAlias("model")
     private String modelId;
 
     @JsonProperty("sample_id")
+    @JsonAlias("sample")
     private String sampleId;
 
     @JsonProperty("sample_origin")
@@ -51,6 +54,7 @@ public class CnaTsv {
     private String seqEndPosition;
 
     @JsonProperty("symbol")
+    @JsonAlias("gene")
     private String symbol;
 
     @JsonProperty("ucsc_gene_id")
@@ -66,6 +70,7 @@ public class CnaTsv {
     private String log10rCna;
 
     @JsonProperty("log2r_cna")
+    @JsonAlias("logratio_ploidy")
     private String log2rCna;
 
     @JsonProperty("copy_number_status")
@@ -179,5 +184,24 @@ public class CnaTsv {
 
     public String getPlatform() {
         return platform;
+    }
+
+    public CnaTsv setPassage(String passage) {
+        this.passage = passage;
+        return this;
+    }
+
+    public CnaTsv setSampleOrigin(String sampleOrigin) {
+        this.sampleOrigin = sampleOrigin;
+        return this;
+    }
+
+    public CnaTsv setHostStrainNomenclature(String hostStrainNomenclature) {
+        this.hostStrainNomenclature = hostStrainNomenclature;
+        return this;
+    }
+
+    public CnaTsv build(){
+        return this;
     }
 }
