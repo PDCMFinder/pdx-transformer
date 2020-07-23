@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import org.pdxfinder.constant.DataConstants;
-import org.pdxfinder.constant.OutputFileNames;
+import org.pdxfinder.constant.FileNames;
 import org.pdxfinder.constant.TemplateLocations;
 import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.dto.TreatmentDto;
@@ -56,7 +56,7 @@ public class WritePatientTreatmentTsvUtil {
         });
 
         String modelMetaData = FileUtil.serializePojoToTsv(patientTreatmentTsvList);
-        String output = String.format("%s%s", outputDirectory, OutputFileNames.PATIENT_TREATMENT_TSV);
+        String output = String.format("%s%s", outputDirectory, FileNames.PATIENT_TREATMENT_TSV);
         FileUtil.write(modelMetaData, output);
     }
 

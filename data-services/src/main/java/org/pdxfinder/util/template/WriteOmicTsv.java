@@ -1,7 +1,5 @@
 package org.pdxfinder.util.template;
 
-import org.pdxfinder.constant.OutputFileNames;
-import org.pdxfinder.dto.template.MutationTsv;
 import org.pdxfinder.util.FileUtil;
 
 import java.io.IOException;
@@ -14,10 +12,9 @@ public class WriteOmicTsv {
         // Never Called
     }
 
-    public static void writeTsv(List<MutationTsv> mutationTsvs, String outputDirectory) throws IOException {
+    public static void writeTsv(List<?> mutationTsvs, String outputDirectory) throws IOException {
 
-        String patientMetaData = FileUtil.serializePojoToTsv(mutationTsvs);
-        String output = String.format("%s%s", outputDirectory, OutputFileNames.MUTATION_DATA_TSV);
-        FileUtil.write(patientMetaData, output);
+        String data = FileUtil.serializePojoToTsv(mutationTsvs);
+        FileUtil.write(data, outputDirectory);
     }
 }

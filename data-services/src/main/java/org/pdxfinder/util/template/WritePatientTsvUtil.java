@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import org.pdxfinder.constant.DataConstants;
-import org.pdxfinder.constant.OutputFileNames;
+import org.pdxfinder.constant.FileNames;
 import org.pdxfinder.constant.TemplateLocations;
 import org.pdxfinder.dto.template.MetadataPatientTsv;
 import org.pdxfinder.dto.PdxDto;
@@ -42,7 +42,7 @@ public class WritePatientTsvUtil {
                                                     .setAgeAtInitialDiagnosis(pdxDto.getAgeAtInitialDiagnosis())));
 
         String patientMetaData = FileUtil.serializePojoToTsv(patients);
-        String output = String.format("%s%s", outputDirectory, OutputFileNames.METADATA_PATIENT_TSV);
+        String output = String.format("%s%s", outputDirectory, FileNames.METADATA_PATIENT_TSV);
         FileUtil.write(patientMetaData, output);
     }
 

@@ -3,7 +3,7 @@ package org.pdxfinder.util.template;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import org.pdxfinder.constant.OutputFileNames;
+import org.pdxfinder.constant.FileNames;
 import org.pdxfinder.constant.TemplateLocations;
 import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.dto.template.MetadataSharingTsv;
@@ -33,7 +33,7 @@ public class WriteSharingTsvUtil {
         pdxDtoList.forEach(pdxDto -> metadataSharingTsvs.add(pdxDto.getMetadataSharingTsv()));
 
         String modelMetaData = FileUtil.serializePojoToTsv(metadataSharingTsvs);
-        String output = String.format("%s%s", outputDirectory, OutputFileNames.METADATA_SHARING_TSV);
+        String output = String.format("%s%s", outputDirectory, FileNames.METADATA_SHARING_TSV);
         FileUtil.write(modelMetaData, output);
     }
 

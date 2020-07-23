@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.MolCharTypes;
-import org.pdxfinder.constant.OutputFileNames;
+import org.pdxfinder.constant.FileNames;
 import org.pdxfinder.constant.TemplateLocations;
 import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.dto.SampleDto;
@@ -57,7 +57,7 @@ public class WriteSamplePlatformTsvUtil {
         });
 
         String modelMetaData = FileUtil.serializePojoToTsv(samplePlatformTsvs);
-        String output = String.format("%s%s", outputDirectory, OutputFileNames.SAMPLE_PLATFORM_TSV);
+        String output = String.format("%s%s", outputDirectory, FileNames.SAMPLE_PLATFORM_TSV);
         FileUtil.write(modelMetaData, output);
     }
 }
