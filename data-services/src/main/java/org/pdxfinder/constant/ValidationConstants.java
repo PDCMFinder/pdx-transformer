@@ -6,6 +6,8 @@ public class ValidationConstants {
         // Never called
     }
 
+    public static final String JAX_VALIDATION_DESC = "QC is Complete";
+
     public static final String FINGER_PRINTING = "Fingerprinting";
 
     public static final String HUMAN_MOUSE_DNA = "Human mouse/DNA";

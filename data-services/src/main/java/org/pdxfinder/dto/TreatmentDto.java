@@ -1,10 +1,14 @@
 package org.pdxfinder.dto;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.pdxfinder.constant.DataConstants;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
+import java.util.Objects;
+
+
 @JsonPropertyOrder({
         "Current Drug",
         "Prior Drug",
@@ -18,49 +22,47 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "Starting Date",
         "Prior Date"
 })
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class TreatmentDto {
 
-    private Integer id;
-
-    private String currentDrug;
-    private String priorDrug;
-    private String manufacturer;
-    private String dose;
-    private String duration;
-    private String frequency;
-    private String armSize;
-    private String response;
-    private String passageRange;
-    private String startingDate;
-    private String priorDate;
-
-
-    public TreatmentDto(String currentDrug, String priorDrug, String manufacturer,
-                        String dose, String duration,
-                        String frequency, String armSize,
-                        String response, String passageRange, String startingDate, String priorDate) {
-        this.priorDrug = priorDrug;
-        this.currentDrug = currentDrug;
-        this.manufacturer = manufacturer;
-        this.dose = dose;
-        this.duration = duration;
-        this.frequency = frequency;
-        this.armSize = armSize;
-        this.response = response;
-        this.passageRange = passageRange;
-        this.startingDate = startingDate;
-        this.priorDate = priorDate;
-    }
-
-    public TreatmentDto() {
-    }
 
     @JsonProperty("Current Drug")
+    @JsonAlias("Drug")
+    private String currentDrug;
+
+    @JsonProperty("Prior Drug")
+    private String priorDrug;
+
+    @JsonProperty("Manufacturer")
+    private String manufacturer;
+
+    @JsonProperty("Dose")
+    private String dose;
+    
+    @JsonProperty("Duration")
+    private String duration;
+
+    @JsonProperty("Frequency")
+    private String frequency;
+    
+    private String armSize;
+
+    @JsonProperty("Response")
+    private String response;
+
+    @JsonProperty("Passage Range")
+    private String passageRange;
+
+    @JsonProperty("Starting Date")
+    private String startingDate;
+
+    @JsonProperty("Prior Date")
+    private String priorDate;
+
     public String getCurrentDrug() {
         return currentDrug;
     }
 
-    @JsonProperty("Prior Drug")
     public String getPriorDrug() {
         return priorDrug;
     }
@@ -70,28 +72,21 @@ public class TreatmentDto {
     }
 
     public String getDose() {
-        return dose;
+        return Objects.toString(dose, DataConstants.EMPTY);
     }
 
-    @JsonProperty("Duration")
     public String getDuration() {
-        return duration;
+        return Objects.toString(duration, DataConstants.EMPTY);
     }
 
     public String getFrequency() {
         return frequency;
     }
 
-    @JsonProperty("Frequency")
-    public void setFrequency(String frequency) {
-        this.frequency = frequency;
-    }
-
     public String getArmSize() {
         return armSize;
     }
 
-    @JsonProperty("Response")
     public String getResponse() {
         return response;
     }
@@ -100,14 +95,70 @@ public class TreatmentDto {
         return passageRange;
     }
 
-    @JsonProperty("Starting Date")
     public String getStartingDate() {
-        return startingDate;
+        return  Objects.toString(startingDate, DataConstants.EMPTY);
     }
 
-    @JsonProperty("Prior Date")
     public String getPriorDate() {
         return priorDate;
     }
 
+    public TreatmentDto setCurrentDrug(String currentDrug) {
+        this.currentDrug = currentDrug;
+        return this;
+    }
+
+    public TreatmentDto setPriorDrug(String priorDrug) {
+        this.priorDrug = priorDrug;
+        return this;
+    }
+
+    public TreatmentDto setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+        return this;
+    }
+
+    public TreatmentDto setDose(String dose) {
+        this.dose = dose;
+        return this;
+    }
+
+    public TreatmentDto setDuration(String duration) {
+        this.duration = duration;
+        return this;
+    }
+
+    public TreatmentDto setFrequency(String frequency) {
+        this.frequency = frequency;
+        return this;
+    }
+
+    public TreatmentDto setArmSize(String armSize) {
+        this.armSize = armSize;
+        return this;
+    }
+
+    public TreatmentDto setResponse(String response) {
+        this.response = response;
+        return this;
+    }
+
+    public TreatmentDto setPassageRange(String passageRange) {
+        this.passageRange = passageRange;
+        return this;
+    }
+
+    public TreatmentDto setStartingDate(String startingDate) {
+        this.startingDate = startingDate;
+        return this;
+    }
+
+    public TreatmentDto setPriorDate(String priorDate) {
+        this.priorDate = priorDate;
+        return this;
+    }
+
+    public TreatmentDto build() {
+        return this;
+    }
 }

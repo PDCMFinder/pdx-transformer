@@ -12,8 +12,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 })
 public class ValidationDto {
 
-    private Integer id;
-
     private String technique;
     private String description;
     private String passage;
