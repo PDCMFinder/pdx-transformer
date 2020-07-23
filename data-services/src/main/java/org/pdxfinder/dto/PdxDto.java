@@ -2,8 +2,8 @@ package org.pdxfinder.dto;
 
 
 import com.fasterxml.jackson.annotation.*;
-import org.pdxfinder.dto.template.MetadataSampleTsv;
-import org.pdxfinder.dto.template.MetadataSharingTsv;
+import org.pdxfinder.result.dto.MetadataSampleTsv;
+import org.pdxfinder.result.dto.MetadataSharingTsv;
 
 import java.util.ArrayList;
 import java.util.List;
