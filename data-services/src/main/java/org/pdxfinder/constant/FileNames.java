@@ -1,16 +1,14 @@
 package org.pdxfinder.constant;
 
-public class OutputFileNames {
+public class FileNames {
 
-    private OutputFileNames(){
+    private FileNames(){
         // Never called
     }
 
     public static final String METADATA_MODEL_TSV = "/metadata-model.tsv";
 
     public static final String METADATA_MODEL_VALIDATION_TSV = "/metadata-model_validation.tsv";
-
-    public static final String MUTATION_DATA_TSV = "/mut.tsv";
 
     public static final String PATIENT_TREATMENT_TSV = "/patient-treatment.tsv";
 
@@ -21,5 +19,11 @@ public class OutputFileNames {
     public static final String SAMPLE_PLATFORM_TSV = "/sampleplatform-data.tsv";
 
     public static final String METADATA_SAMPLE_TSV = "/metadata-sample.tsv";
+
+    public static final String MUTATION_DATA_TSV = "/mut.tsv";
+
+    public static final String CNA_DATA_TSV = "/cna.tsv";
+
+    public static final String EXP_DATA_TSV = "/expr.tsv";
 
 }

@@ -8,5 +8,5 @@ public class MolCharTypes {
 
     public static final String MUTATION = "mutation";
 
-    public static final String COPY_NUMBER_ALTERATION = "cna";
+    public static final String COPY_NUMBER_ALTERATION = "Copy Number Alteration";
 }

@@ -52,4 +52,13 @@ public class DataConstants {
 
     public static final String JAX_CONTACT = "http://tumor.informatics.jax.org/mtbwi/pdxRequest.do?mice=";
 
+    public static final String METADATA_KEY = "pdxInfo";
+
+    public static final String MUTATION_KEY = "variation";
+
+    public static final String HISTOLOGY_KEY = "pdxHistology";
+
+    public static final String DATA_KEY = "data";
+
+
 }
