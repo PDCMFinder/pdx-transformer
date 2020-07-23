@@ -94,6 +94,29 @@ public class MetadataSampleTsv {
     @JsonProperty("model_id")
     private String modelId;
 
+    public MetadataSampleTsv() {
+        this.field = "";
+        this.patientId = "";
+        this.sampleId = "";
+        this.collectionDate = "";
+        this.collectionEvent = "";
+        this.monthsSinceCollectionOne = "";
+        this.ageInYearsAtCollection = "";
+        this.diagnosis = "";
+        this.tumourType = "";
+        this.primarySite = "";
+        this.collectionSite = "";
+        this.stage = "";
+        this.stagingSystem = "";
+        this.grade = "";
+        this.gradingSystem = "";
+        this.virologyStatus = "";
+        this.sharable = "";
+        this.treatmenNaiveAtCollection = "";
+        this.treated = "";
+        this.priorTreatment = "";
+        this.modelId = "";
+    }
 
     public MetadataSampleTsv setField(String field) {
         this.field = field;

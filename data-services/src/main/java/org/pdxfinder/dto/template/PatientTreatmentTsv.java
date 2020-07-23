@@ -53,6 +53,20 @@ public class PatientTreatmentTsv {
     @JsonProperty("Model ID")
     private String modelId;
 
+    public PatientTreatmentTsv() {
+        this.field = "";
+        this.patientId = "";
+        this.treatmentName = "";
+        this.treatmentDose = "";
+        this.treatmentStartingDate = "";
+        this.treatmentDuration = "";
+        this.treatmentEvent = "";
+        this.elapsedTime = "";
+        this.treatmentResponse = "";
+        this.responseClassification = "";
+        this.modelId = "";
+    }
+
     public String getField() {
         return field;
     }

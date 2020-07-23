@@ -77,6 +77,26 @@ public class SamplePlatformTsv {
     @JsonProperty("internal_protocol_url")
     private String internalProtocolUrl;
 
+    public SamplePlatformTsv() {
+        this.field = "";
+        this.sampleId = "";
+        this.sampleOrigin = "";
+        this.passage = "";
+        this.engraftedTumorCollectionSite = "";
+        this.modelId = "";
+        this.hostStrainName = "";
+        this.hostStrainNomenclature = "";
+        this.molecularCharacterisationType = "";
+        this.platform = "";
+        this.platformType = "";
+        this.platformNotes = "";
+        this.analysisProtocol = "";
+        this.processedDataFile = "";
+        this.rawDataSharable = "";
+        this.rawDataFile = "";
+        this.internalProtocolUrl = "";
+    }
+
     public SamplePlatformTsv setField(String field) {
         this.field = field;
         return this;

@@ -41,6 +41,17 @@ public class MetadataPatientTsv {
     @JsonProperty("age_at_initial_diagnosis")
     private String ageAtInitialDiagnosis;
 
+    public MetadataPatientTsv() {
+        this.field = "";
+        this.patientId = "";
+        this.sex = "";
+        this.history = "";
+        this.ethnicity = "";
+        this.ethnicityAssessmentMethod = "";
+        this.initialDiagnosis = "";
+        this.ageAtInitialDiagnosis = "";
+    }
+
     public MetadataPatientTsv setField(String field) {
         this.field = field;
         return this;

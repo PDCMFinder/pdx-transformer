@@ -33,6 +33,15 @@ public class MetadataModelValidationTsv {
     @JsonProperty("validation_host_strain_full")
     private String validationHostStrainFull;
 
+    public MetadataModelValidationTsv() {
+        this.field = "";
+        this.modelId = "";
+        this.validationTechnique = "";
+        this.description = "";
+        this.passagesTested = "";
+        this.validationHostStrainFull = "";
+    }
+
     public MetadataModelValidationTsv setField(String field) {
         this.field = field;
         return this;

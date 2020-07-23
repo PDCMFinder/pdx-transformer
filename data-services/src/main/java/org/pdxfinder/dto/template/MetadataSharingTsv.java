@@ -57,6 +57,21 @@ public class MetadataSharingTsv {
     @JsonProperty("project")
     private String project;
 
+    public MetadataSharingTsv() {
+        this.field = "";
+        this.modelId = "";
+        this.providerType = "";
+        this.accessibility = "";
+        this.europdxAccessModality = "";
+        this.email = "";
+        this.name = "";
+        this.formUrl = "";
+        this.databaseUrl = "";
+        this.providerName = "";
+        this.providerAbbreviation = "";
+        this.project = "";
+    }
+
     public MetadataSharingTsv setField(String field) {
         this.field = field;
         return this;

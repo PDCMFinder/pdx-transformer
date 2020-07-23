@@ -49,6 +49,19 @@ public class MetadataModelTsv {
     @JsonProperty("publications")
     private String publications;
 
+    public MetadataModelTsv() {
+        this.field = "";
+        this.modelId = "";
+        this.hostStrain = "";
+        this.hostStrainFull = "";
+        this.engraftmentSite = "";
+        this.engraftmentType = "";
+        this.sampleType = "";
+        this.sampleState = "";
+        this.passageNumber = "";
+        this.publications = "";
+    }
+
     public MetadataModelTsv setField(String field) {
         this.field = field;
         return this;
@@ -116,7 +129,7 @@ public class MetadataModelTsv {
     }
 
     public String getHostStrainFull() {
-        return Objects.toString(hostStrainFull, DataConstants.EMPTY);
+        return hostStrainFull;
     }
 
     public String getEngraftmentSite() {
