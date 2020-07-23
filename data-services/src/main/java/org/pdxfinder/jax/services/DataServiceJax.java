@@ -1,4 +1,4 @@
-package org.pdxfinder.jax;
+package org.pdxfinder.jax.services;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -7,7 +7,7 @@ import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.Directories;
 import org.pdxfinder.constant.UrlConstants;
 import org.pdxfinder.dto.PdxDto;
-import org.pdxfinder.jax.extractor.Extract;
+import org.pdxfinder.jax.extractor.ExtractJax;
 import org.pdxfinder.result.dto.CnaTsv;
 import org.pdxfinder.result.dto.ExpressionTsv;
 import org.pdxfinder.result.dto.MutationTsv;
@@ -22,19 +22,20 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-public class DataService {
+public class DataServiceJax {
 
-    private final Logger log = LoggerFactory.getLogger(DataService.class);
+    private final Logger log = LoggerFactory.getLogger(DataServiceJax.class);
     private ObjectMapper mapper = new ObjectMapper();
 
     @Value("${output.directory}")
-    private static String workDirectory;
+    private String workDirectory;
 
 
     public List<PdxDto> getAllMetadata() throws IOException {
         String metadataJson = FileUtil.parseJsonURL(UrlConstants.JAX_METADATA);
         this.writeJAXToFile(metadataJson, Directories.METADATA_OUT_DIR, "models");
-        return mapper.convertValue(mapper.readTree(metadataJson).get(DataConstants.METADATA_KEY), new TypeReference<List<PdxDto>>() {});
+        return mapper.convertValue(mapper.readTree(metadataJson).get(DataConstants.METADATA_KEY),
+                                   new TypeReference<List<PdxDto>>() {});
     }
 
     public List<MutationTsv> getAllMutationData(String modelId) throws IOException {
@@ -42,8 +43,9 @@ public class DataService {
 
         String omicData = FileUtil.parseJsonURL(UrlConstants.JAX_MUTATION + modelId);
         this.writeJAXToFile(omicData, Directories.MUTATION_OUT_DIR, modelId);
-        List<MutationTsv> mutationTsvList = mapper.convertValue(mapper.readTree(omicData).get(DataConstants.MUTATION_KEY), new TypeReference<List<MutationTsv>>() {});
-        return Extract.moreMutationData(mutationTsvList, modelId);
+        List<MutationTsv> mutationTsvList = mapper.convertValue(mapper.readTree(omicData).get(DataConstants.MUTATION_KEY),
+                                                                new TypeReference<List<MutationTsv>>() {});
+        return ExtractJax.moreMutationData(mutationTsvList, modelId);
     }
 
     public List<CnaTsv> getAllCopyNumberAlterationData(String modelId) throws IOException {
@@ -51,8 +53,9 @@ public class DataService {
 
         String cnaData = FileUtil.parseJsonURL(UrlConstants.JAX_CNA + modelId);
         this.writeJAXToFile(cnaData, Directories.CNA_OUT_DIR, modelId);
-        List<CnaTsv> cnaTsvList = mapper.convertValue(mapper.readTree(cnaData).get(DataConstants.DATA_KEY), new TypeReference<List<CnaTsv>>() {});
-        return Extract.moreCnaData(cnaTsvList);
+        List<CnaTsv> cnaTsvList = mapper.convertValue(mapper.readTree(cnaData).get(DataConstants.DATA_KEY),
+                                                      new TypeReference<List<CnaTsv>>() {});
+        return ExtractJax.moreCnaData(cnaTsvList);
     }
 
     public List<ExpressionTsv> getAllExpressionData(String modelId) throws IOException {
@@ -62,7 +65,7 @@ public class DataService {
         this.writeJAXToFile(data, Directories.EXPRESSION_OUT_DIR, modelId);
         List<ExpressionTsv> expressionTsvList = mapper.convertValue(mapper.readTree(data).get(DataConstants.DATA_KEY),
                                                                    new TypeReference<List<ExpressionTsv>>() {});
-        return Extract.moreExpressionData(expressionTsvList);
+        return ExtractJax.moreExpressionData(expressionTsvList);
     }
 
     public void getAllHistologyData(String modelId) throws IOException {

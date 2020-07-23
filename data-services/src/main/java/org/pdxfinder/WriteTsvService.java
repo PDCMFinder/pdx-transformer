@@ -3,6 +3,8 @@ package org.pdxfinder;
 import org.pdxfinder.constant.Directories;
 import org.pdxfinder.dto.PdxDto;
 import org.pdxfinder.result.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.apache.commons.io.FileUtils;
@@ -17,11 +19,12 @@ public class WriteTsvService {
     @Value("${output.directory}")
     private String workDIrectory;
 
+    Logger log = LoggerFactory.getLogger(WriteTsvService.class);
+
     public void metaData(List<PdxDto> pdxDtos, String dataSource) throws IOException {
 
         String destination = String.format("%s%s", workDIrectory, dataSource);
         String treatment = String.format("%s%s%s", workDIrectory, dataSource, Directories.TREATMENT_OUT_DIR);
-
         FileUtils.forceMkdir(new File(destination));
         FileUtils.forceMkdir(new File(treatment));
 
@@ -38,7 +41,6 @@ public class WriteTsvService {
         SamplePlatformTsvWriter.writeTsv(pdxDtos, destination);
 
         PatientTreatmentTsvWriter.writeTsv(pdxDtos, treatment);
-
     }
 
     public void genomicData(List<?> mutationTsvs, String dataSource, String dataDir, String fileName) throws IOException {

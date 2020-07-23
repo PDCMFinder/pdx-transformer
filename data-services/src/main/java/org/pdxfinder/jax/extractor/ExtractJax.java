@@ -12,9 +12,9 @@ import org.pdxfinder.result.dto.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Extract {
+public class ExtractJax {
 
-    private Extract() {
+    private ExtractJax() {
         // Never invoked
     }
 

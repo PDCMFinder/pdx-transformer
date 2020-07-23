@@ -5,12 +5,10 @@ import org.pdxfinder.constant.Directories;
 import org.pdxfinder.constant.FileNames;
 import org.pdxfinder.pdmr.dto.OracleDataDto;
 import org.pdxfinder.dto.PdxDto;
-import org.pdxfinder.result.dto.CnaTsv;
-import org.pdxfinder.result.dto.ExpressionTsv;
 import org.pdxfinder.result.dto.MutationTsv;
-import org.pdxfinder.pdmr.ExtractService;
-import org.pdxfinder.pdmr.TransformMetaDataService;
-import org.pdxfinder.pdmr.TransformOmicDataService;
+import org.pdxfinder.pdmr.services.ExtractService;
+import org.pdxfinder.pdmr.services.TransformMetaDataService;
+import org.pdxfinder.pdmr.services.TransformOmicDataService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

@@ -3,8 +3,7 @@ package org.pdxfinder;
 import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.Directories;
 import org.pdxfinder.constant.FileNames;
-import org.pdxfinder.dto.PdxDto;
-import org.pdxfinder.jax.ExtractService;
+import org.pdxfinder.jax.services.ExtractServiceJax;
 import org.pdxfinder.jax.dto.JaxDataDto;
 import org.pdxfinder.result.dto.CnaTsv;
 import org.pdxfinder.result.dto.ExpressionTsv;
@@ -18,11 +17,11 @@ import java.util.List;
 @Component
 public class JaxRunner implements CommandLineRunner {
 
-    private ExtractService extractService;
+    private ExtractServiceJax extractServiceJax;
     private WriteTsvService writeTsvService;
 
-    public JaxRunner(ExtractService extractService, WriteTsvService writeTsvService) {
-        this.extractService = extractService;
+    public JaxRunner(ExtractServiceJax extractServiceJax, WriteTsvService writeTsvService) {
+        this.extractServiceJax = extractServiceJax;
         this.writeTsvService = writeTsvService;
     }
 
@@ -32,7 +31,7 @@ public class JaxRunner implements CommandLineRunner {
     }
 
     private void transformJAXData() throws IOException {
-        JaxDataDto jaxDataDto = extractService.fromJAXFeed();
+        JaxDataDto jaxDataDto = extractServiceJax.fromJAXFeed();
         writeTsvService.metaData(jaxDataDto.getPdxDtos(), DataConstants.JAX_ABBREV);
 
         List<MutationTsv> mutationData = jaxDataDto.getMutationTsvs();

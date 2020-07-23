@@ -1,4 +1,4 @@
-package org.pdxfinder.pdmr;
+package org.pdxfinder.pdmr.services;
 
 import org.pdxfinder.domain.*;
 import org.pdxfinder.projection.*;
