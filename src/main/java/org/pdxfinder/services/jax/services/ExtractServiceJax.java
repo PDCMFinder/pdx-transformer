@@ -1,7 +1,7 @@
 package org.pdxfinder.services.jax.services;
 
-import org.pdxfinder.services.dto.MetadataDto;
-import org.pdxfinder.services.dto.SampleDto;
+import org.pdxfinder.services.common.dto.MetadataDto;
+import org.pdxfinder.services.common.dto.SampleDto;
 import org.pdxfinder.services.jax.dto.JaxDataDto;
 import org.pdxfinder.services.jax.extractor.ExtractJax;
 import org.pdxfinder.services.result.dto.CnaTsv;

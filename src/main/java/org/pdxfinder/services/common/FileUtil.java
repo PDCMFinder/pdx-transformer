@@ -1,4 +1,4 @@
-package org.pdxfinder.services;
+package org.pdxfinder.services.common;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;

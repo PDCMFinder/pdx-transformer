@@ -7,10 +7,10 @@ import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.MolCharTypes;
 import org.pdxfinder.constant.FileNames;
 import org.pdxfinder.constant.TemplateLocations;
-import org.pdxfinder.services.dto.MetadataDto;
-import org.pdxfinder.services.dto.SampleDto;
+import org.pdxfinder.services.common.dto.MetadataDto;
+import org.pdxfinder.services.common.dto.SampleDto;
 import org.pdxfinder.services.result.dto.SamplePlatformTsv;
-import org.pdxfinder.services.FileUtil;
+import org.pdxfinder.services.common.FileUtil;
 
 import java.io.IOException;
 import java.io.InputStream;

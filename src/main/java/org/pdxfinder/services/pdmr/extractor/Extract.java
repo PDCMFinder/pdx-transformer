@@ -2,12 +2,12 @@ package org.pdxfinder.services.pdmr.extractor;
 
 import org.pdxfinder.constant.*;
 import org.pdxfinder.data.model.*;
-import org.pdxfinder.services.dto.MetadataDto;
+import org.pdxfinder.services.common.dto.MetadataDto;
 import org.pdxfinder.services.pdmr.dto.OracleDataDto;
-import org.pdxfinder.services.dto.SampleDto;
-import org.pdxfinder.services.dto.ValidationDto;
+import org.pdxfinder.services.common.dto.SampleDto;
+import org.pdxfinder.services.common.dto.ValidationDto;
 import org.pdxfinder.data.model.projection.HistologyProjection;
-import org.pdxfinder.services.FileUtil;
+import org.pdxfinder.services.common.FileUtil;
 import org.pdxfinder.services.result.dto.MetadataSampleTsv;
 import org.pdxfinder.services.result.dto.MetadataSharingTsv;
 import org.slf4j.Logger;
@@ -76,8 +76,8 @@ public class Extract {
                         sampleDtoList.add(new SampleDto().setSampleID(sampleId)
                                                   .setTumorType(sampleTumorType)
                                                   .setPassage(samplePassage)
-                                                  .setPlatform(Platforms.PDMR_ONKOKB_PROTOCOL.get())
-                                                  .setPlatformUrl(Platforms.PDMR_ONKOKB_PROTOCOL.url())
+                                                  .setPlatform(Platforms.PDMR_ONKOKB.get())
+                                                  .setPlatformUrl(Platforms.PDMR_ONKOKB.url())
                                                   .setwESVCFFile(wholeExomeSeqYn)
                                                   .setwESFastaFile(wholeExomeSeqYn)
                                                   .setnCIGenePanel(wholeExomeSeqYn)
@@ -94,8 +94,8 @@ public class Extract {
                         sampleDtoList.add(new SampleDto().setSampleID(sampleId)
                                                   .setTumorType(sampleTumorType)
                                                   .setPassage(samplePassage)
-                                                  .setPlatform(Platforms.PDMR_ONKOKB_PROTOCOL.get())
-                                                  .setPlatformUrl(Platforms.PDMR_ONKOKB_PROTOCOL.url())
+                                                  .setPlatform(Platforms.PDMR_ONKOKB.get())
+                                                  .setPlatformUrl(Platforms.PDMR_ONKOKB.url())
                                                   .setwESVCFFile(wholeExomeSeqYn)
                                                   .setwESFastaFile(wholeExomeSeqYn)
                                                   .setnCIGenePanel(wholeExomeSeqYn)
@@ -221,7 +221,7 @@ public class Extract {
                 .setEuropdxAccessModality(DataConstants.EMPTY)
                 .setEmail(DataConstants.EMPTY)
                 .setName(DataConstants.EMPTY)
-                .setFormUrl(DataConstants.PDMR_CONTACT_URL)
+                .setFormUrl(UrlConstants.PDMR_CONTACT_URL)
                 .setDatabaseUrl(metadataDto.getSourceUrl())
                 .setProviderName(DataConstants.PDMR_FULL_NAME)
                 .setProviderAbbreviation(DataConstants.PDMR_ABBREV)

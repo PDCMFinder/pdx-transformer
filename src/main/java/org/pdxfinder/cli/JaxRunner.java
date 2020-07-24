@@ -3,7 +3,7 @@ package org.pdxfinder.cli;
 import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.Directories;
 import org.pdxfinder.constant.FileNames;
-import org.pdxfinder.services.WriteTsvService;
+import org.pdxfinder.services.common.WriteTsvService;
 import org.pdxfinder.services.jax.services.ExtractServiceJax;
 import org.pdxfinder.services.jax.dto.JaxDataDto;
 import org.pdxfinder.services.result.dto.CnaTsv;

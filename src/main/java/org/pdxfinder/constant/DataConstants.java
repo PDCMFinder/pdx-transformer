@@ -28,15 +28,11 @@ public class DataConstants {
 
     public static final String PDMR_FULL_NAME = "Patient-Derived Models Repository";
 
-    public static final String PDMR_CONTACT_URL = "https://pdmr.cancer.gov/request/default.htm";
-
     public static final String PDMR_PATIENT_SAMPLE_ID = "ORIGINATOR";
 
     public static final String GENDER_MALE = "Male";
 
     public static final String GENDER_FEMALE = "Female";
-
-    public static final String PDMR_SOURCE_URL_PREFIX = "https://pdmdb.cancer.gov/pls/apex/f?p=101:4:0::NO:4:P4_SPECIMENSEQNBR:";
 
     public static final String ACCESSIBILITY_PUBLIC = "Public";
 
@@ -48,10 +44,6 @@ public class DataConstants {
 
     public static final String JAX_FULL_NAME = "The Jackson Laboratory";
 
-    public static final String JAX_SOURCE_URL = "http://tumor.informatics.jax.org/mtbwi/pdxDetails.do?modelID=";
-
-    public static final String JAX_CONTACT = "http://tumor.informatics.jax.org/mtbwi/pdxRequest.do?mice=";
-
     public static final String METADATA_KEY = "pdxInfo";
 
     public static final String MUTATION_KEY = "variation";
@@ -59,6 +51,14 @@ public class DataConstants {
     public static final String HISTOLOGY_KEY = "pdxHistology";
 
     public static final String DATA_KEY = "data";
+
+    public static final String TECH_PDMR_ONKOKB = "OncoKB Gene Panel";
+
+    public static final String TECH_JAX_TRUSEQ = "Truseq_JAX";
+
+    public static final String TECH_JAX_CTP = "CTP";
+
+    public static final String TECH_JAX_EXOME = "Whole_Exome";
 
 
 }

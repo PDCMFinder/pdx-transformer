@@ -8,7 +8,7 @@ import org.pdxfinder.data.model.Sample;
 import org.pdxfinder.services.pdmr.dto.OracleDataDto;
 import org.pdxfinder.services.pdmr.extractor.ExtractOmic;
 import org.pdxfinder.services.result.dto.MutationTsv;
-import org.pdxfinder.services.FileUtil;
+import org.pdxfinder.services.common.FileUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -42,7 +42,7 @@ public class TransformOmicDataService {
                     .setEnsemblGeneId(DataConstants.EMPTY)
                     .setEnsemblTranscriptId(DataConstants.EMPTY)
                     .setGenomeAssembly(DataConstants.HG19_GENOME)
-                    .setPlatform(Platforms.PDMR_ONKOKB_PROTOCOL.get());
+                    .setPlatform(Platforms.PDMR_ONKOKB.get());
 
             samples.forEach(sample -> {
 

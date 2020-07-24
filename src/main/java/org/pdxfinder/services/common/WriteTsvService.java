@@ -1,7 +1,7 @@
-package org.pdxfinder.services;
+package org.pdxfinder.services.common;
 
 import org.pdxfinder.constant.Directories;
-import org.pdxfinder.services.dto.MetadataDto;
+import org.pdxfinder.services.common.dto.MetadataDto;
 import org.pdxfinder.services.result.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -7,8 +7,8 @@ import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.FileNames;
 import org.pdxfinder.constant.TemplateLocations;
 import org.pdxfinder.services.result.dto.MetadataPatientTsv;
-import org.pdxfinder.services.dto.MetadataDto;
-import org.pdxfinder.services.FileUtil;
+import org.pdxfinder.services.common.dto.MetadataDto;
+import org.pdxfinder.services.common.FileUtil;
 
 import java.io.IOException;
 import java.io.InputStream;

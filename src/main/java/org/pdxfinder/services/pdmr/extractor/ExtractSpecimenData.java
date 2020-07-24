@@ -2,8 +2,9 @@ package org.pdxfinder.services.pdmr.extractor;
 
 import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.EngraftmentTypeConstants;
+import org.pdxfinder.constant.UrlConstants;
 import org.pdxfinder.data.model.*;
-import org.pdxfinder.services.dto.MetadataDto;
+import org.pdxfinder.services.common.dto.MetadataDto;
 import org.pdxfinder.services.pdmr.dto.OracleDataDto;
 
 public class ExtractSpecimenData {
@@ -29,7 +30,7 @@ public class ExtractSpecimenData {
         String gender = specimenSearch.getGender().equals("M") ? DataConstants.GENDER_MALE : DataConstants.GENDER_FEMALE;
         String race = specimenSearch.getRacedescription().equals(DataConstants.NOT_PROVIDED) ? DataConstants.NOT_SPECIFIED : specimenSearch.getRacedescription();
         String ethnicity = specimenSearch.getEthnicitydescription().equals(DataConstants.NOT_PROVIDED) ? DataConstants.NOT_SPECIFIED : specimenSearch.getEthnicitydescription();
-        String sourceUrl = DataConstants.PDMR_SOURCE_URL_PREFIX + specimenSearch.getSpecimenseqnbr();
+        String sourceUrl = UrlConstants.PDMR_SOURCE_URL_PREFIX + specimenSearch.getSpecimenseqnbr();
 
         for (Specimen specimen : extracted.getSpecimenList()) {
             if (specimenSearch.getSpecimenid().equals(specimen.getSpecimenid())) {

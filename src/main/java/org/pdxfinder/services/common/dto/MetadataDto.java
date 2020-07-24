@@ -1,4 +1,4 @@
-package org.pdxfinder.services.dto;
+package org.pdxfinder.services.common.dto;
 
 
 import com.fasterxml.jackson.annotation.*;

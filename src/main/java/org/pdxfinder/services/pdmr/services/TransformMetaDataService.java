@@ -2,8 +2,8 @@ package org.pdxfinder.services.pdmr.services;
 
 import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.data.model.SpecimenSearch;
-import org.pdxfinder.services.dto.MetadataDto;
-import org.pdxfinder.services.dto.TreatmentDto;
+import org.pdxfinder.services.common.dto.MetadataDto;
+import org.pdxfinder.services.common.dto.TreatmentDto;
 import org.pdxfinder.services.pdmr.dto.OracleDataDto;
 import org.pdxfinder.services.pdmr.extractor.Extract;
 import org.pdxfinder.services.pdmr.extractor.ExtractSpecimenData;
