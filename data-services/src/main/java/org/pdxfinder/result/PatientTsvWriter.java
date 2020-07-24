@@ -7,7 +7,7 @@ import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.FileNames;
 import org.pdxfinder.constant.TemplateLocations;
 import org.pdxfinder.result.dto.MetadataPatientTsv;
-import org.pdxfinder.dto.PdxDto;
+import org.pdxfinder.dto.MetadataDto;
 import org.pdxfinder.FileUtil;
 
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class PatientTsvWriter {
         // Never Called
     }
 
-    public static void writeTsv(List<PdxDto> pdxDtoList, String outputDirectory) throws IOException {
+    public static void writeTsv(List<MetadataDto> metadataDtoList, String outputDirectory) throws IOException {
 
         InputStream contents = FileUtil.class.getResourceAsStream(TemplateLocations.METADATA_PATIENT);
         CsvSchema.Builder builder = CsvSchema.builder();
@@ -31,7 +31,7 @@ public class PatientTsvWriter {
                 mapper.readerFor(MetadataPatientTsv.class).with(schema).readValues(contents);
 
         List<MetadataPatientTsv> patients = iterator.readAll();
-        pdxDtoList.forEach(pdxDto -> patients.add(new MetadataPatientTsv()
+        metadataDtoList.forEach(pdxDto -> patients.add(new MetadataPatientTsv()
                                                     .setField(DataConstants.EMPTY)
                                                     .setPatientId(pdxDto.getPatientID())
                                                     .setSex(pdxDto.getGender())

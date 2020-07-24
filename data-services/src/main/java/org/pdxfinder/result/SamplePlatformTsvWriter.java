@@ -7,7 +7,7 @@ import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.MolCharTypes;
 import org.pdxfinder.constant.FileNames;
 import org.pdxfinder.constant.TemplateLocations;
-import org.pdxfinder.dto.PdxDto;
+import org.pdxfinder.dto.MetadataDto;
 import org.pdxfinder.dto.SampleDto;
 import org.pdxfinder.result.dto.SamplePlatformTsv;
 import org.pdxfinder.FileUtil;
@@ -22,7 +22,7 @@ public class SamplePlatformTsvWriter {
         // Never Called
     }
 
-    public static void writeTsv(List<PdxDto> pdxDtoList, String outputDirectory) throws IOException {
+    public static void writeTsv(List<MetadataDto> metadataDtoList, String outputDirectory) throws IOException {
 
         InputStream contents = FileUtil.class.getResourceAsStream(TemplateLocations.SAMPLE_PLATFORM);
         CsvSchema.Builder builder = CsvSchema.builder();
@@ -33,7 +33,7 @@ public class SamplePlatformTsvWriter {
                 mapper.readerFor(SamplePlatformTsv.class).with(schema).readValues(contents);
         List<SamplePlatformTsv> samplePlatformTsvs = iterator.readAll();
 
-        pdxDtoList.forEach(pdxDto -> {
+        metadataDtoList.forEach(pdxDto -> {
             List<SampleDto> sampleDtos = pdxDto.getSampleDtos();
             sampleDtos.forEach(sampleDto -> samplePlatformTsvs.add(new SamplePlatformTsv()
                                                                                .setField(DataConstants.EMPTY)

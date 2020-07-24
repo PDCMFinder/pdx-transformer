@@ -32,7 +32,7 @@ public class JaxRunner implements CommandLineRunner {
 
     private void transformJAXData() throws IOException {
         JaxDataDto jaxDataDto = extractServiceJax.fromJAXFeed();
-        writeTsvService.metaData(jaxDataDto.getPdxDtos(), DataConstants.JAX_ABBREV);
+        writeTsvService.metaData(jaxDataDto.getMetadataDtos(), DataConstants.JAX_ABBREV);
 
         List<MutationTsv> mutationData = jaxDataDto.getMutationTsvs();
         writeTsvService.genomicData(mutationData,

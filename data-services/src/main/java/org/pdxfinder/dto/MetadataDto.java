@@ -49,7 +49,7 @@ import java.util.Optional;
         "sample_meta_data",
         "sharing"
 })
-public class PdxDto {
+public class MetadataDto {
 
     private Integer id;
 
@@ -169,14 +169,14 @@ public class PdxDto {
 
 
 
-    public PdxDto() {
+    public MetadataDto() {
     }
 
     public String getModelID() {
         return modelID;
     }
 
-    public PdxDto setModelID(String modelID) {
+    public MetadataDto setModelID(String modelID) {
         this.modelID = modelID;
         return this;
     }
@@ -185,7 +185,7 @@ public class PdxDto {
         return patientID;
     }
 
-    public PdxDto setPatientID(String patientID) {
+    public MetadataDto setPatientID(String patientID) {
         this.patientID = patientID;
         return this;
     }
@@ -194,7 +194,7 @@ public class PdxDto {
         return gender;
     }
 
-    public PdxDto setGender(String gender) {
+    public MetadataDto setGender(String gender) {
         this.gender = gender;
         return this;
     }
@@ -203,7 +203,7 @@ public class PdxDto {
         return age;
     }
 
-    public PdxDto setAge(String age) {
+    public MetadataDto setAge(String age) {
         this.age = age;
         return this;
     }
@@ -212,7 +212,7 @@ public class PdxDto {
         return race;
     }
 
-    public PdxDto setRace(String race) {
+    public MetadataDto setRace(String race) {
         this.race = race;
         return this;
     }
@@ -221,7 +221,7 @@ public class PdxDto {
         return ethnicity;
     }
 
-    public PdxDto setEthnicity(String ethnicity) {
+    public MetadataDto setEthnicity(String ethnicity) {
         this.ethnicity = ethnicity;
         return this;
     }
@@ -230,7 +230,7 @@ public class PdxDto {
         return specimenSite;
     }
 
-    public PdxDto setSpecimenSite(String specimenSite) {
+    public MetadataDto setSpecimenSite(String specimenSite) {
         this.specimenSite = specimenSite;
         return this;
     }
@@ -239,7 +239,7 @@ public class PdxDto {
         return primarySite;
     }
 
-    public PdxDto setPrimarySite(String primarySite) {
+    public MetadataDto setPrimarySite(String primarySite) {
         this.primarySite = primarySite;
         return this;
     }
@@ -248,7 +248,7 @@ public class PdxDto {
         return initialDiagnosis;
     }
 
-    public PdxDto setInitialDiagnosis(String initialDiagnosis) {
+    public MetadataDto setInitialDiagnosis(String initialDiagnosis) {
         this.initialDiagnosis = initialDiagnosis;
         return this;
     }
@@ -283,7 +283,7 @@ public class PdxDto {
 
 
 
-    public PdxDto setClinicalDiagnosis(String clinicalDiagnosis) {
+    public MetadataDto setClinicalDiagnosis(String clinicalDiagnosis) {
         this.clinicalDiagnosis = clinicalDiagnosis;
         return this;
     }
@@ -292,7 +292,7 @@ public class PdxDto {
         return tumorType;
     }
 
-    public PdxDto setTumorType(String tumorType) {
+    public MetadataDto setTumorType(String tumorType) {
         this.tumorType = tumorType;
         return this;
     }
@@ -301,7 +301,7 @@ public class PdxDto {
         return stageClassification;
     }
 
-    public PdxDto setStageClassification(String stageClassification) {
+    public MetadataDto setStageClassification(String stageClassification) {
         this.stageClassification = stageClassification;
         return this;
     }
@@ -310,7 +310,7 @@ public class PdxDto {
         return stageValue;
     }
 
-    public PdxDto setStageValue(String stageValue) {
+    public MetadataDto setStageValue(String stageValue) {
         this.stageValue = stageValue;
         return this;
     }
@@ -319,7 +319,7 @@ public class PdxDto {
         return gradeClassification;
     }
 
-    public PdxDto setGradeClassification(String gradeClassification) {
+    public MetadataDto setGradeClassification(String gradeClassification) {
         this.gradeClassification = gradeClassification;
         return this;
     }
@@ -328,7 +328,7 @@ public class PdxDto {
         return gradeValue;
     }
 
-    public PdxDto setGradeValue(String gradeValue) {
+    public MetadataDto setGradeValue(String gradeValue) {
         this.gradeValue = gradeValue;
         return this;
     }
@@ -337,7 +337,7 @@ public class PdxDto {
         return sampleType;
     }
 
-    public PdxDto setSampleType(String sampleType) {
+    public MetadataDto setSampleType(String sampleType) {
         this.sampleType = sampleType;
         return this;
     }
@@ -346,7 +346,7 @@ public class PdxDto {
         return hostStrainFull;
     }
 
-    public PdxDto setHostStrainFull(String hostStrainFull) {
+    public MetadataDto setHostStrainFull(String hostStrainFull) {
         this.hostStrainFull = hostStrainFull;
         return this;
     }
@@ -400,7 +400,7 @@ public class PdxDto {
     }
 
 
-    public PdxDto setHostStrain(String hostStrain) {
+    public MetadataDto setHostStrain(String hostStrain) {
         this.hostStrain = hostStrain;
         return this;
     }
@@ -409,102 +409,102 @@ public class PdxDto {
         return mouseSex;
     }
 
-    public PdxDto setMouseSex(String mouseSex) {
+    public MetadataDto setMouseSex(String mouseSex) {
         this.mouseSex = mouseSex;
         return this;
     }
 
-    public PdxDto setTreatmentDtos(List<TreatmentDto> treatmentDtos) {
+    public MetadataDto setTreatmentDtos(List<TreatmentDto> treatmentDtos) {
         this.treatmentDtos = treatmentDtos;
         return this;
     }
 
-    public PdxDto setTreatmentNaive(String treatmentNaive) {
+    public MetadataDto setTreatmentNaive(String treatmentNaive) {
         this.treatmentNaive = treatmentNaive;
         return this;
     }
 
-    public PdxDto setEngraftmentSite(String engraftmentSite) {
+    public MetadataDto setEngraftmentSite(String engraftmentSite) {
         this.engraftmentSite = engraftmentSite;
         return this;
     }
 
-    public PdxDto setEngraftmentType(String engraftmentType) {
+    public MetadataDto setEngraftmentType(String engraftmentType) {
         this.engraftmentType = engraftmentType;
         return this;
     }
 
-    public PdxDto setSourceUrl(String sourceUrl) {
+    public MetadataDto setSourceUrl(String sourceUrl) {
         this.sourceUrl = sourceUrl;
         return this;
     }
 
-    public PdxDto setExtractionMethod(String extractionMethod) {
+    public MetadataDto setExtractionMethod(String extractionMethod) {
         this.extractionMethod = extractionMethod;
         return this;
     }
 
-    public PdxDto setDateAtCollection(String dateAtCollection) {
+    public MetadataDto setDateAtCollection(String dateAtCollection) {
         this.dateAtCollection = dateAtCollection;
         return this;
     }
 
-    public PdxDto setAccessibility(String accessibility) {
+    public MetadataDto setAccessibility(String accessibility) {
         this.accessibility = accessibility;
         return this;
     }
 
-    public PdxDto setId(Integer id) {
+    public MetadataDto setId(Integer id) {
         this.id = id;
         return this;
     }
 
-    public PdxDto setValidationDtos(List<ValidationDto> validationDtos) {
+    public MetadataDto setValidationDtos(List<ValidationDto> validationDtos) {
         this.validationDtos = validationDtos;
         return this;
     }
 
-    public PdxDto setSampleDtos(List<SampleDto> sampleDtos) {
+    public MetadataDto setSampleDtos(List<SampleDto> sampleDtos) {
         this.sampleDtos = sampleDtos;
         return this;
     }
 
-    public PdxDto setSampleState(String sampleState) {
+    public MetadataDto setSampleState(String sampleState) {
         this.sampleState = sampleState;
         return this;
     }
 
-    public PdxDto setPublications(String publications) {
+    public MetadataDto setPublications(String publications) {
         this.publications = publications;
         return this;
     }
 
-    public PdxDto setHistory(String history) {
+    public MetadataDto setHistory(String history) {
         this.history = history;
         return this;
     }
 
-    public PdxDto setEthnicityAssessmentMethod(String ethnicityAssessmentMethod) {
+    public MetadataDto setEthnicityAssessmentMethod(String ethnicityAssessmentMethod) {
         this.ethnicityAssessmentMethod = ethnicityAssessmentMethod;
         return this;
     }
 
-    public PdxDto setAgeAtInitialDiagnosis(String ageAtInitialDiagnosis) {
+    public MetadataDto setAgeAtInitialDiagnosis(String ageAtInitialDiagnosis) {
         this.ageAtInitialDiagnosis = ageAtInitialDiagnosis;
         return this;
     }
 
-    public PdxDto setMetadataSampleTsv(MetadataSampleTsv metadataSampleTsv) {
+    public MetadataDto setMetadataSampleTsv(MetadataSampleTsv metadataSampleTsv) {
         this.metadataSampleTsv = metadataSampleTsv;
         return this;
     }
 
-    public PdxDto setMetadataSharingTsv(MetadataSharingTsv metadataSharingTsv) {
+    public MetadataDto setMetadataSharingTsv(MetadataSharingTsv metadataSharingTsv) {
         this.metadataSharingTsv = metadataSharingTsv;
         return this;
     }
 
-    public PdxDto build() {
+    public MetadataDto build() {
         return this;
     }
 }

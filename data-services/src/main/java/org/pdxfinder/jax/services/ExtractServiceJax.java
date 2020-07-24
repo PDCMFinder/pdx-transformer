@@ -1,6 +1,6 @@
 package org.pdxfinder.jax.services;
 
-import org.pdxfinder.dto.PdxDto;
+import org.pdxfinder.dto.MetadataDto;
 import org.pdxfinder.dto.SampleDto;
 import org.pdxfinder.jax.dto.JaxDataDto;
 import org.pdxfinder.jax.extractor.ExtractJax;
@@ -30,16 +30,16 @@ public class ExtractServiceJax {
         List<CnaTsv> fullCnaData = new ArrayList<>();
         List<ExpressionTsv> fullExpressionData = new ArrayList<>();
 
-        List<PdxDto> pdxDtoList = dataServiceJax.getAllMetadata();
-        for (PdxDto pdxDto : pdxDtoList) {
+        List<MetadataDto> metadataDtoList = dataServiceJax.getAllMetadata();
+        for (MetadataDto metadataDto : metadataDtoList) {
 
-            String modelId = pdxDto.getModelID();
+            String modelId = metadataDto.getModelID();
             List<MutationTsv> mutationTsvList = dataServiceJax.getAllMutationData(modelId);
             List<CnaTsv> cnaTsvList = dataServiceJax.getAllCopyNumberAlterationData(modelId);
             List<ExpressionTsv> expressionTsvList = dataServiceJax.getAllExpressionData(modelId);
 
             List<SampleDto> sampleDtos = ExtractJax.getSamplesFromGenomicData(mutationTsvList);
-            pdxDto.setSampleDtos(sampleDtos)
+            metadataDto.setSampleDtos(sampleDtos)
                     .setHostStrainFull(DataConstants.NSG_HOST_STRAIN_FULL)
                     .setSampleState(DataConstants.NOT_SPECIFIED)
                     .setPublications(DataConstants.EMPTY)
@@ -47,8 +47,8 @@ public class ExtractServiceJax {
                     .setEthnicityAssessmentMethod(DataConstants.EMPTY)
                     .setAgeAtInitialDiagnosis(DataConstants.EMPTY)
                     .setValidationDtos(ExtractJax.getValidations())
-                    .setMetadataSampleTsv(ExtractJax.sampleTsv(pdxDto))
-                    .setMetadataSharingTsv(ExtractJax.sharingTsv(pdxDto));
+                    .setMetadataSampleTsv(ExtractJax.sampleTsv(metadataDto))
+                    .setMetadataSharingTsv(ExtractJax.sharingTsv(metadataDto));
 
             fullExpressionData.addAll(expressionTsvList);
             fullCnaData.addAll(cnaTsvList);
@@ -59,7 +59,7 @@ public class ExtractServiceJax {
 
         log.info("Finished Loading JAX data");
         return new JaxDataDto()
-                .setPdxDtos(pdxDtoList)
+                .setMetadataDtos(metadataDtoList)
                 .setMutationTsvs(fullMutationData)
                 .setCnaTsvs(fullCnaData)
                 .setExpressionTsvs(fullExpressionData)

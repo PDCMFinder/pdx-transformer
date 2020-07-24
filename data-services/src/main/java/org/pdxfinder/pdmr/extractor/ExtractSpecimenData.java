@@ -3,7 +3,7 @@ package org.pdxfinder.pdmr.extractor;
 import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.EngraftmentTypeConstants;
 import org.pdxfinder.domain.*;
-import org.pdxfinder.dto.PdxDto;
+import org.pdxfinder.dto.MetadataDto;
 import org.pdxfinder.pdmr.dto.OracleDataDto;
 
 public class ExtractSpecimenData {
@@ -12,7 +12,7 @@ public class ExtractSpecimenData {
         // Never Called
     }
 
-    public static PdxDto get(SpecimenSearch specimenSearch, OracleDataDto extracted){
+    public static MetadataDto get(SpecimenSearch specimenSearch, OracleDataDto extracted){
         return getBasicData(specimenSearch, extracted)
                 .setHostStrainFull(getHostStrainFull(specimenSearch, extracted))
                 .setTumorType(getTumorType(specimenSearch, extracted))
@@ -20,7 +20,7 @@ public class ExtractSpecimenData {
                 .setEngraftmentType(getEngraftmentType(specimenSearch, extracted));
     }
 
-    public static PdxDto getBasicData(SpecimenSearch specimenSearch, OracleDataDto extracted){
+    public static MetadataDto getBasicData(SpecimenSearch specimenSearch, OracleDataDto extracted){
         String age = "";
         String specimenSite = "";
         String dateAtCollection = "";
@@ -42,7 +42,7 @@ public class ExtractSpecimenData {
                 }
             }
         }
-        return new PdxDto().setAge(age)
+        return new MetadataDto().setAge(age)
                 .setSpecimenSite(specimenSite)
                 .setDateAtCollection(dateAtCollection)
                 .setAccessibility(accessibility)

@@ -1,7 +1,7 @@
 package org.pdxfinder;
 
 import org.pdxfinder.constant.Directories;
-import org.pdxfinder.dto.PdxDto;
+import org.pdxfinder.dto.MetadataDto;
 import org.pdxfinder.result.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,26 +21,26 @@ public class WriteTsvService {
 
     Logger log = LoggerFactory.getLogger(WriteTsvService.class);
 
-    public void metaData(List<PdxDto> pdxDtos, String dataSource) throws IOException {
+    public void metaData(List<MetadataDto> metadataDtos, String dataSource) throws IOException {
 
         String destination = String.format("%s%s", workDIrectory, dataSource);
         String treatment = String.format("%s%s%s", workDIrectory, dataSource, Directories.TREATMENT_OUT_DIR);
         FileUtils.forceMkdir(new File(destination));
         FileUtils.forceMkdir(new File(treatment));
 
-        ModelTsvWriter.writeTsv(pdxDtos, destination);
+        ModelTsvWriter.writeTsv(metadataDtos, destination);
 
-        PatientTsvWriter.writeTsv(pdxDtos, destination);
+        PatientTsvWriter.writeTsv(metadataDtos, destination);
 
-        SampleTsvWriter.writeTsv(pdxDtos, destination);
+        SampleTsvWriter.writeTsv(metadataDtos, destination);
 
-        SharingTsvWriter.writeTsv(pdxDtos, destination);
+        SharingTsvWriter.writeTsv(metadataDtos, destination);
 
-        ModelValidationTsvWriter.writeTsv(pdxDtos, destination);
+        ModelValidationTsvWriter.writeTsv(metadataDtos, destination);
 
-        SamplePlatformTsvWriter.writeTsv(pdxDtos, destination);
+        SamplePlatformTsvWriter.writeTsv(metadataDtos, destination);
 
-        PatientTreatmentTsvWriter.writeTsv(pdxDtos, treatment);
+        PatientTreatmentTsvWriter.writeTsv(metadataDtos, treatment);
     }
 
     public void genomicData(List<?> mutationTsvs, String dataSource, String dataDir, String fileName) throws IOException {

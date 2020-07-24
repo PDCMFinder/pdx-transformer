@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import org.pdxfinder.constant.FileNames;
 import org.pdxfinder.constant.TemplateLocations;
-import org.pdxfinder.dto.PdxDto;
+import org.pdxfinder.dto.MetadataDto;
 import org.pdxfinder.dto.SampleDto;
 import org.pdxfinder.result.dto.MetadataModelTsv;
 import org.pdxfinder.FileUtil;
@@ -22,7 +22,7 @@ public class ModelTsvWriter {
         // Never Called
     }
 
-    public static void writeTsv(List<PdxDto> pdxDtoList, String outputDirectory) throws IOException {
+    public static void writeTsv(List<MetadataDto> metadataDtoList, String outputDirectory) throws IOException {
 
         InputStream contents = FileUtil.class.getResourceAsStream(TemplateLocations.METADATA_MODEL_TEMPLATE);
         CsvSchema.Builder builder = CsvSchema.builder();
@@ -32,7 +32,7 @@ public class ModelTsvWriter {
         MappingIterator<MetadataModelTsv> iterator = mapper.readerFor(MetadataModelTsv.class).with(schema).readValues(contents);
         List<MetadataModelTsv> metadataModelTsvs = iterator.readAll();
 
-        pdxDtoList.forEach(pdxDto -> {
+        metadataDtoList.forEach(pdxDto -> {
             Set<String> passages = pdxDto.getSampleDtos().stream()
                     .filter(sampleDto -> !sampleDto.getPassage().isEmpty())
                     .map(SampleDto::getPassage)

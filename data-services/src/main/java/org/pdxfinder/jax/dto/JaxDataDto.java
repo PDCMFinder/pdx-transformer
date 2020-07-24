@@ -1,6 +1,6 @@
 package org.pdxfinder.jax.dto;
 
-import org.pdxfinder.dto.PdxDto;
+import org.pdxfinder.dto.MetadataDto;
 import org.pdxfinder.result.dto.CnaTsv;
 import org.pdxfinder.result.dto.ExpressionTsv;
 import org.pdxfinder.result.dto.MutationTsv;
@@ -12,7 +12,7 @@ public class JaxDataDto {
     private List<MutationTsv> mutationTsvs;
     private List<CnaTsv> cnaTsvs;
     private List<ExpressionTsv> expressionTsvs;
-    private List<PdxDto> pdxDtos;
+    private List<MetadataDto> metadataDtos;
 
     public List<MutationTsv> getMutationTsvs() {
         return mutationTsvs;
@@ -26,8 +26,8 @@ public class JaxDataDto {
         return expressionTsvs;
     }
 
-    public List<PdxDto> getPdxDtos() {
-        return pdxDtos;
+    public List<MetadataDto> getMetadataDtos() {
+        return metadataDtos;
     }
 
     public JaxDataDto setMutationTsvs(List<MutationTsv> mutationTsvs) {
@@ -45,8 +45,8 @@ public class JaxDataDto {
         return this;
     }
 
-    public JaxDataDto setPdxDtos(List<PdxDto> pdxDtos) {
-        this.pdxDtos = pdxDtos;
+    public JaxDataDto setMetadataDtos(List<MetadataDto> metadataDtos) {
+        this.metadataDtos = metadataDtos;
         return this;
     }
 

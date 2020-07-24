@@ -4,7 +4,7 @@ import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.Platforms;
 import org.pdxfinder.constant.TumorTypeConstants;
 import org.pdxfinder.constant.ValidationConstants;
-import org.pdxfinder.dto.PdxDto;
+import org.pdxfinder.dto.MetadataDto;
 import org.pdxfinder.dto.SampleDto;
 import org.pdxfinder.dto.ValidationDto;
 import org.pdxfinder.result.dto.*;
@@ -69,33 +69,33 @@ public class ExtractJax {
         return sampleDtos;
     }
 
-    public static MetadataSharingTsv sharingTsv(PdxDto pdxDto) {
+    public static MetadataSharingTsv sharingTsv(MetadataDto metadataDto) {
         return new MetadataSharingTsv()
                 .setField(DataConstants.EMPTY)
-                .setModelId(pdxDto.getModelID())
+                .setModelId(metadataDto.getModelID())
                 .setProviderType(DataConstants.EMPTY)
                 .setAccessibility(DataConstants.EMPTY)
                 .setEuropdxAccessModality(DataConstants.EMPTY)
                 .setEmail(DataConstants.EMPTY)
                 .setName(DataConstants.EMPTY)
-                .setFormUrl(String.format("%s%s", DataConstants.JAX_CONTACT, pdxDto.getModelID()))
-                .setDatabaseUrl(String.format("%s%s", DataConstants.JAX_SOURCE_URL, pdxDto.getModelID()))
+                .setFormUrl(String.format("%s%s", DataConstants.JAX_CONTACT, metadataDto.getModelID()))
+                .setDatabaseUrl(String.format("%s%s", DataConstants.JAX_SOURCE_URL, metadataDto.getModelID()))
                 .setProviderName(DataConstants.JAX_FULL_NAME)
                 .setProviderAbbreviation(DataConstants.JAX_ABBREV)
                 .setProject(DataConstants.EMPTY);
     }
 
-    public static MetadataSampleTsv sampleTsv(PdxDto pdxDto){
+    public static MetadataSampleTsv sampleTsv(MetadataDto metadataDto){
         return new MetadataSampleTsv()
                 .setField(DataConstants.EMPTY)
-                .setPatientId(pdxDto.getPatientID())
-                .setSampleId(pdxDto.getModelID())
-                .setAgeInYearsAtCollection(pdxDto.getAge())
-                .setDiagnosis(pdxDto.getClinicalDiagnosis())
-                .setTumourType(pdxDto.getTumorType())
-                .setPrimarySite(pdxDto.getPrimarySite())
-                .setStage(pdxDto.getStageValue())
-                .setGrade(pdxDto.getGradeValue())
+                .setPatientId(metadataDto.getPatientID())
+                .setSampleId(metadataDto.getModelID())
+                .setAgeInYearsAtCollection(metadataDto.getAge())
+                .setDiagnosis(metadataDto.getClinicalDiagnosis())
+                .setTumourType(metadataDto.getTumorType())
+                .setPrimarySite(metadataDto.getPrimarySite())
+                .setStage(metadataDto.getStageValue())
+                .setGrade(metadataDto.getGradeValue())
 
                 .setStagingSystem(DataConstants.EMPTY)
                 .setCollectionDate(DataConstants.EMPTY)
@@ -108,6 +108,6 @@ public class ExtractJax {
                 .setTreatmenNaiveAtCollection(DataConstants.EMPTY)
                 .setTreated(DataConstants.EMPTY)
                 .setPriorTreatment(DataConstants.EMPTY)
-                .setModelId(pdxDto.getModelID());
+                .setModelId(metadataDto.getModelID());
     }
 }

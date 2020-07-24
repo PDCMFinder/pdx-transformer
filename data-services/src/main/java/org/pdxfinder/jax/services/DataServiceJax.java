@@ -6,7 +6,7 @@ import org.apache.commons.io.FileUtils;
 import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.Directories;
 import org.pdxfinder.constant.UrlConstants;
-import org.pdxfinder.dto.PdxDto;
+import org.pdxfinder.dto.MetadataDto;
 import org.pdxfinder.jax.extractor.ExtractJax;
 import org.pdxfinder.result.dto.CnaTsv;
 import org.pdxfinder.result.dto.ExpressionTsv;
@@ -31,11 +31,11 @@ public class DataServiceJax {
     private String workDirectory;
 
 
-    public List<PdxDto> getAllMetadata() throws IOException {
+    public List<MetadataDto> getAllMetadata() throws IOException {
         String metadataJson = FileUtil.parseJsonURL(UrlConstants.JAX_METADATA);
         this.writeJAXToFile(metadataJson, Directories.METADATA_OUT_DIR, "models");
         return mapper.convertValue(mapper.readTree(metadataJson).get(DataConstants.METADATA_KEY),
-                                   new TypeReference<List<PdxDto>>() {});
+                                   new TypeReference<List<MetadataDto>>() {});
     }
 
     public List<MutationTsv> getAllMutationData(String modelId) throws IOException {

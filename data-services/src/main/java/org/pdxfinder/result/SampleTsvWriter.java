@@ -6,7 +6,7 @@ import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import org.pdxfinder.constant.FileNames;
 import org.pdxfinder.constant.TemplateLocations;
 import org.pdxfinder.result.dto.MetadataSampleTsv;
-import org.pdxfinder.dto.PdxDto;
+import org.pdxfinder.dto.MetadataDto;
 import org.pdxfinder.FileUtil;
 
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class SampleTsvWriter {
     }
 
 
-    public static void writeTsv(List<PdxDto> pdxDtoList, String outputDirectory) throws IOException {
+    public static void writeTsv(List<MetadataDto> metadataDtoList, String outputDirectory) throws IOException {
 
         InputStream contents = FileUtil.class.getResourceAsStream(TemplateLocations.META_DATA_SAMPLE);
         CsvSchema.Builder builder = CsvSchema.builder();
@@ -29,7 +29,7 @@ public class SampleTsvWriter {
         MappingIterator<MetadataSampleTsv> iterator = mapper.readerFor(MetadataSampleTsv.class).with(schema).readValues(contents);
 
         List<MetadataSampleTsv> metadataSampleTsvs = iterator.readAll();
-        pdxDtoList.forEach(pdxDto -> metadataSampleTsvs.add(pdxDto.getMetadataSampleTsv()));
+        metadataDtoList.forEach(pdxDto -> metadataSampleTsvs.add(pdxDto.getMetadataSampleTsv()));
 
         String modelMetaData = FileUtil.serializePojoToTsv(metadataSampleTsvs);
         String output = String.format("%s%s", outputDirectory, FileNames.METADATA_SAMPLE_TSV);

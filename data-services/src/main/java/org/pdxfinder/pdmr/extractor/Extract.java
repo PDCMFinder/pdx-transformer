@@ -2,11 +2,14 @@ package org.pdxfinder.pdmr.extractor;
 
 import org.pdxfinder.constant.*;
 import org.pdxfinder.domain.*;
+import org.pdxfinder.dto.MetadataDto;
 import org.pdxfinder.pdmr.dto.OracleDataDto;
 import org.pdxfinder.dto.SampleDto;
 import org.pdxfinder.dto.ValidationDto;
 import org.pdxfinder.projection.HistologyProjection;
 import org.pdxfinder.FileUtil;
+import org.pdxfinder.result.dto.MetadataSampleTsv;
+import org.pdxfinder.result.dto.MetadataSharingTsv;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -181,5 +184,47 @@ public class Extract {
         validationDtos.add(new ValidationDto(ValidationConstants.HISTOLOGY, ValidationConstants.HISTOLOGY_DESC, DataConstants.PASSAGE_ALL));
 
         return validationDtos;
+    }
+
+    public MetadataSampleTsv sampleTsv(MetadataDto metadataDto){
+        return new MetadataSampleTsv()
+                .setField(DataConstants.EMPTY)
+                .setPatientId(metadataDto.getPatientID())
+                .setSampleId(metadataDto.getModelID())
+                .setAgeInYearsAtCollection(metadataDto.getAge())
+                .setDiagnosis(metadataDto.getClinicalDiagnosis())
+                .setTumourType(metadataDto.getTumorType())
+                .setPrimarySite(metadataDto.getPrimarySite())
+                .setStage(metadataDto.getStageValue())
+                .setGrade(metadataDto.getGradeValue())
+
+                .setStagingSystem(DataConstants.EMPTY)
+                .setCollectionDate(DataConstants.EMPTY)
+                .setCollectionEvent(DataConstants.EMPTY)
+                .setMonthsSinceCollectionOne(DataConstants.EMPTY)
+                .setCollectionSite(DataConstants.NOT_SPECIFIED)
+                .setGradingSystem(DataConstants.EMPTY)
+                .setVirologyStatus(DataConstants.EMPTY)
+                .setSharable(DataConstants.EMPTY)
+                .setTreatmenNaiveAtCollection(DataConstants.EMPTY)
+                .setTreated(DataConstants.EMPTY)
+                .setPriorTreatment(DataConstants.EMPTY)
+                .setModelId(metadataDto.getModelID());
+    }
+
+    public MetadataSharingTsv sharingTsv(MetadataDto metadataDto) {
+        return new MetadataSharingTsv()
+                .setField(DataConstants.EMPTY)
+                .setModelId(metadataDto.getModelID())
+                .setProviderType(DataConstants.EMPTY)
+                .setAccessibility(DataConstants.EMPTY)
+                .setEuropdxAccessModality(DataConstants.EMPTY)
+                .setEmail(DataConstants.EMPTY)
+                .setName(DataConstants.EMPTY)
+                .setFormUrl(DataConstants.PDMR_CONTACT_URL)
+                .setDatabaseUrl(metadataDto.getSourceUrl())
+                .setProviderName(DataConstants.PDMR_FULL_NAME)
+                .setProviderAbbreviation(DataConstants.PDMR_ABBREV)
+                .setProject(DataConstants.EMPTY);
     }
 }
