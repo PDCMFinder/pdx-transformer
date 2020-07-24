@@ -36,9 +36,9 @@ public class ExtractServiceJax {
         for (MetadataDto metadataDto : metadataDtoList) {
 
             String modelId = metadataDto.getModelID();
-            List<MutationTsv> mutationTsvList = dataServiceJax.getAllMutationData(modelId);
-            List<CnaTsv> cnaTsvList = dataServiceJax.getAllCopyNumberAlterationData(modelId);
-            List<ExpressionTsv> expressionTsvList = dataServiceJax.getAllExpressionData(modelId);
+            List<MutationTsv> mutationTsvList = dataServiceJax.getAllMutations(modelId);
+            List<CnaTsv> cnaTsvList = dataServiceJax.getAllCopyNumberAlteration(modelId);
+            List<ExpressionTsv> expressionTsvList = dataServiceJax.getAllExpression(modelId);
 
             List<SampleDto> sampleDtos = ExtractJax.getSamplesFromGenomicData(mutationTsvList);
             metadataDto.setSampleDtos(sampleDtos)
@@ -56,7 +56,7 @@ public class ExtractServiceJax {
             fullCnaData.addAll(cnaTsvList);
             fullMutationData.addAll(mutationTsvList);
 
-            dataServiceJax.getAllHistologyData(modelId);
+            dataServiceJax.getAllHistology(modelId);
         }
 
         log.info("Finished Loading JAX data");

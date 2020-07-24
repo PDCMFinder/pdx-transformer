@@ -22,7 +22,7 @@ public class TransformOmicDataService {
 
     private final Logger log = LoggerFactory.getLogger(TransformOmicDataService.class);
 
-    public List<MutationTsv> transformOmicData(OracleDataDto extracted) {
+    public List<MutationTsv> fromOracleDataDto2MutationTsv(OracleDataDto extracted) {
         log.info("Start Transforming Omic data-sets");
 
         List<OncokbGenePanel> oncokbGenePanels = extracted.getOncokbGenePanels();

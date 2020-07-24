@@ -20,7 +20,7 @@ public class TransformMetaDataService {
 
     private final Logger log = LoggerFactory.getLogger(TransformMetaDataService.class);
 
-    public List<MetadataDto> execute(OracleDataDto dataDto) {
+    public List<MetadataDto> fromOracleDataDto2Metadata(OracleDataDto dataDto) {
 
         log.info("Start Transforming metadata data-sets");
         List<String> modelIds = new ArrayList<>();

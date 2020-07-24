@@ -23,7 +23,7 @@ public class PatientTreatmentTsvWriter {
         // Never Called
     }
 
-    public static void writeTsv(List<MetadataDto> metadataDtoList, String outputDirectory) throws IOException {
+    public static void write2FileSystem(List<MetadataDto> metadataDtoList, String outputDirectory) throws IOException {
 
         InputStream contents = FileUtil.class.getResourceAsStream(TemplateLocations.PATIENT_TREATMENT);
         CsvSchema.Builder builder = CsvSchema.builder();

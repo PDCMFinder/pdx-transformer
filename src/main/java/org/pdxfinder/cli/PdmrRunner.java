@@ -44,14 +44,14 @@ public class PdmrRunner implements CommandLineRunner {
     private void transformPdmrData() throws IOException {
         OracleDataDto extracted = extractService.fromPdmrOracle();
 
-        List<MetadataDto> metadataDtos = transformMetaDataService.execute(extracted);
-        writeTsvService.metaData(metadataDtos, DataConstants.PDMR_ABBREV);
+        List<MetadataDto> metadataDtos = transformMetaDataService.fromOracleDataDto2Metadata(extracted);
+        writeTsvService.metaDataDto2FileSystem(metadataDtos, DataConstants.PDMR_ABBREV);
 
-        List<MutationTsv> mutationTsvs = transformOmicDataService.transformOmicData(extracted);
-        writeTsvService.genomicData(mutationTsvs,
-                                    DataConstants.PDMR_ABBREV,
-                                    Directories.MUTATION_OUT_DIR,
-                                    FileNames.MUTATION_DATA_TSV);
+        List<MutationTsv> mutationTsvs = transformOmicDataService.fromOracleDataDto2MutationTsv(extracted);
+        writeTsvService.genomicTsvDto2FileSystem(mutationTsvs,
+                                                 DataConstants.PDMR_ABBREV,
+                                                 Directories.MUTATION_OUT_DIR,
+                                                 FileNames.MUTATION_DATA_TSV);
     }
 }
 

@@ -20,7 +20,7 @@ public class SampleTsvWriter {
     }
 
 
-    public static void writeTsv(List<MetadataDto> metadataDtoList, String outputDirectory) throws IOException {
+    public static void write2FileSystem(List<MetadataDto> metadataDtoList, String outputDirectory) throws IOException {
 
         InputStream contents = FileUtil.class.getResourceAsStream(TemplateLocations.META_DATA_SAMPLE);
         CsvSchema.Builder builder = CsvSchema.builder();
