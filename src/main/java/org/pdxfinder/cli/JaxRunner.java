@@ -3,7 +3,7 @@ package org.pdxfinder.cli;
 import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.Directories;
 import org.pdxfinder.constant.FileNames;
-import org.pdxfinder.services.WriteTsvService;
+import org.pdxfinder.services.common.WriteTsvService;
 import org.pdxfinder.services.jax.services.ExtractServiceJax;
 import org.pdxfinder.services.jax.dto.JaxDataDto;
 import org.pdxfinder.services.result.dto.CnaTsv;
@@ -33,25 +33,25 @@ public class JaxRunner implements CommandLineRunner {
 
     private void transformJAXData() throws IOException {
         JaxDataDto jaxDataDto = extractServiceJax.fromJAXFeed();
-        writeTsvService.metaData(jaxDataDto.getMetadataDtos(), DataConstants.JAX_ABBREV);
+        writeTsvService.metaDataDto2FileSystem(jaxDataDto.getMetadataDtos(), DataConstants.JAX_ABBREV);
 
         List<MutationTsv> mutationData = jaxDataDto.getMutationTsvs();
-        writeTsvService.genomicData(mutationData,
-                                    DataConstants.JAX_ABBREV,
-                                    Directories.MUTATION_OUT_DIR,
-                                    FileNames.MUTATION_DATA_TSV);
+        writeTsvService.genomicTsvDto2FileSystem(mutationData,
+                                                 DataConstants.JAX_ABBREV,
+                                                 Directories.MUTATION_OUT_DIR,
+                                                 FileNames.MUTATION_DATA_TSV);
 
         List<CnaTsv> cnaData = jaxDataDto.getCnaTsvs();
-        writeTsvService.genomicData(cnaData,
-                                    DataConstants.JAX_ABBREV,
-                                    Directories.CNA_OUT_DIR,
-                                    FileNames.CNA_DATA_TSV);
+        writeTsvService.genomicTsvDto2FileSystem(cnaData,
+                                                 DataConstants.JAX_ABBREV,
+                                                 Directories.CNA_OUT_DIR,
+                                                 FileNames.CNA_DATA_TSV);
 
         List<ExpressionTsv> expressionData = jaxDataDto.getExpressionTsvs();
-        writeTsvService.genomicData(expressionData,
-                                    DataConstants.JAX_ABBREV,
-                                    Directories.EXPRESSION_OUT_DIR,
-                                    FileNames.EXP_DATA_TSV);
+        writeTsvService.genomicTsvDto2FileSystem(expressionData,
+                                                 DataConstants.JAX_ABBREV,
+                                                 Directories.EXPRESSION_OUT_DIR,
+                                                 FileNames.EXP_DATA_TSV);
     }
 
 

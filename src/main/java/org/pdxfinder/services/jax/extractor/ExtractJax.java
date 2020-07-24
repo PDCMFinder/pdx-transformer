@@ -1,12 +1,9 @@
 package org.pdxfinder.services.jax.extractor;
 
-import org.pdxfinder.constant.DataConstants;
-import org.pdxfinder.constant.Platforms;
-import org.pdxfinder.constant.TumorTypeConstants;
-import org.pdxfinder.constant.ValidationConstants;
-import org.pdxfinder.services.dto.MetadataDto;
-import org.pdxfinder.services.dto.SampleDto;
-import org.pdxfinder.services.dto.ValidationDto;
+import org.pdxfinder.constant.*;
+import org.pdxfinder.services.common.dto.MetadataDto;
+import org.pdxfinder.services.common.dto.SampleDto;
+import org.pdxfinder.services.common.dto.ValidationDto;
 import org.pdxfinder.services.result.dto.*;
 
 import java.util.ArrayList;
@@ -78,8 +75,8 @@ public class ExtractJax {
                 .setEuropdxAccessModality(DataConstants.EMPTY)
                 .setEmail(DataConstants.EMPTY)
                 .setName(DataConstants.EMPTY)
-                .setFormUrl(String.format("%s%s", DataConstants.JAX_CONTACT, metadataDto.getModelID()))
-                .setDatabaseUrl(String.format("%s%s", DataConstants.JAX_SOURCE_URL, metadataDto.getModelID()))
+                .setFormUrl(String.format("%s%s", UrlConstants.JAX_CONTACT, metadataDto.getModelID()))
+                .setDatabaseUrl(String.format("%s%s", UrlConstants.JAX_SOURCE_URL, metadataDto.getModelID()))
                 .setProviderName(DataConstants.JAX_FULL_NAME)
                 .setProviderAbbreviation(DataConstants.JAX_ABBREV)
                 .setProject(DataConstants.EMPTY);

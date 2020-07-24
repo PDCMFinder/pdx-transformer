@@ -6,12 +6,12 @@ import org.apache.commons.io.FileUtils;
 import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.Directories;
 import org.pdxfinder.constant.UrlConstants;
-import org.pdxfinder.services.dto.MetadataDto;
+import org.pdxfinder.services.common.dto.MetadataDto;
 import org.pdxfinder.services.jax.extractor.ExtractJax;
 import org.pdxfinder.services.result.dto.CnaTsv;
 import org.pdxfinder.services.result.dto.ExpressionTsv;
 import org.pdxfinder.services.result.dto.MutationTsv;
-import org.pdxfinder.services.FileUtil;
+import org.pdxfinder.services.common.FileUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,7 +38,7 @@ public class DataServiceJax {
                                    new TypeReference<List<MetadataDto>>() {});
     }
 
-    public List<MutationTsv> getAllMutationData(String modelId) throws IOException {
+    public List<MutationTsv> getAllMutations(String modelId) throws IOException {
         log.info(" Getting Mutation Data for Model: {}", modelId);
 
         String omicData = FileUtil.parseJsonURL(UrlConstants.JAX_MUTATION + modelId);
@@ -48,7 +48,7 @@ public class DataServiceJax {
         return ExtractJax.moreMutationData(mutationTsvList, modelId);
     }
 
-    public List<CnaTsv> getAllCopyNumberAlterationData(String modelId) throws IOException {
+    public List<CnaTsv> getAllCopyNumberAlteration(String modelId) throws IOException {
         log.info(" Getting Copy Number Alteration Data for Model: {}", modelId);
 
         String cnaData = FileUtil.parseJsonURL(UrlConstants.JAX_CNA + modelId);
@@ -58,7 +58,7 @@ public class DataServiceJax {
         return ExtractJax.moreCnaData(cnaTsvList);
     }
 
-    public List<ExpressionTsv> getAllExpressionData(String modelId) throws IOException {
+    public List<ExpressionTsv> getAllExpression(String modelId) throws IOException {
         log.info(" Getting Expression Data for Model: {}", modelId);
 
         String data = FileUtil.parseJsonURL(UrlConstants.JAX_RNA_SEQ + modelId);
@@ -68,13 +68,11 @@ public class DataServiceJax {
         return ExtractJax.moreExpressionData(expressionTsvList);
     }
 
-    public void getAllHistologyData(String modelId) throws IOException {
+    public void getAllHistology(String modelId) throws IOException {
         log.info(" Getting Histology Data for Model: {}", modelId);
         String omicData = FileUtil.parseJsonURL(UrlConstants.JAX_HISTOLOGY + modelId);
         this.writeJAXToFile(omicData, Directories.HISTOLOGY_OUT_DIR, modelId);
     }
-
-
 
     public void writeJAXToFile(String pdxInfo, String dataType, String modelID) throws IOException {
 

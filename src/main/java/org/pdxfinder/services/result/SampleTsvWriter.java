@@ -6,8 +6,8 @@ import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import org.pdxfinder.constant.FileNames;
 import org.pdxfinder.constant.TemplateLocations;
 import org.pdxfinder.services.result.dto.MetadataSampleTsv;
-import org.pdxfinder.services.dto.MetadataDto;
-import org.pdxfinder.services.FileUtil;
+import org.pdxfinder.services.common.dto.MetadataDto;
+import org.pdxfinder.services.common.FileUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,7 +20,7 @@ public class SampleTsvWriter {
     }
 
 
-    public static void writeTsv(List<MetadataDto> metadataDtoList, String outputDirectory) throws IOException {
+    public static void write2FileSystem(List<MetadataDto> metadataDtoList, String outputDirectory) throws IOException {
 
         InputStream contents = FileUtil.class.getResourceAsStream(TemplateLocations.META_DATA_SAMPLE);
         CsvSchema.Builder builder = CsvSchema.builder();

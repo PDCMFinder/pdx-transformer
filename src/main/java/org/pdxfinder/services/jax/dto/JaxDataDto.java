@@ -1,6 +1,6 @@
 package org.pdxfinder.services.jax.dto;
 
-import org.pdxfinder.services.dto.MetadataDto;
+import org.pdxfinder.services.common.dto.MetadataDto;
 import org.pdxfinder.services.result.dto.CnaTsv;
 import org.pdxfinder.services.result.dto.ExpressionTsv;
 import org.pdxfinder.services.result.dto.MutationTsv;

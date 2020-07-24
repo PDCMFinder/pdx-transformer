@@ -4,7 +4,7 @@ import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.DrugConstants;
 import org.pdxfinder.data.model.*;
 import org.pdxfinder.services.pdmr.dto.OracleDataDto;
-import org.pdxfinder.services.dto.TreatmentDto;
+import org.pdxfinder.services.common.dto.TreatmentDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

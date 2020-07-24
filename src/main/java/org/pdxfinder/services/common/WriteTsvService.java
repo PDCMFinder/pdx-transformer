@@ -1,7 +1,7 @@
-package org.pdxfinder.services;
+package org.pdxfinder.services.common;
 
 import org.pdxfinder.constant.Directories;
-import org.pdxfinder.services.dto.MetadataDto;
+import org.pdxfinder.services.common.dto.MetadataDto;
 import org.pdxfinder.services.result.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,32 +21,32 @@ public class WriteTsvService {
 
     Logger log = LoggerFactory.getLogger(WriteTsvService.class);
 
-    public void metaData(List<MetadataDto> metadataDtos, String dataSource) throws IOException {
+    public void metaDataDto2FileSystem(List<MetadataDto> metadataDtos, String dataSource) throws IOException {
 
         String destination = String.format("%s%s", workDIrectory, dataSource);
         String treatment = String.format("%s%s%s", workDIrectory, dataSource, Directories.TREATMENT_OUT_DIR);
         FileUtils.forceMkdir(new File(destination));
         FileUtils.forceMkdir(new File(treatment));
 
-        ModelTsvWriter.writeTsv(metadataDtos, destination);
+        ModelTsvWriter.write2FileSystem(metadataDtos, destination);
 
-        PatientTsvWriter.writeTsv(metadataDtos, destination);
+        PatientTsvWriter.write2FileSystem(metadataDtos, destination);
 
-        SampleTsvWriter.writeTsv(metadataDtos, destination);
+        SampleTsvWriter.write2FileSystem(metadataDtos, destination);
 
-        SharingTsvWriter.writeTsv(metadataDtos, destination);
+        SharingTsvWriter.write2FileSystem(metadataDtos, destination);
 
-        ModelValidationTsvWriter.writeTsv(metadataDtos, destination);
+        ModelValidationTsvWriter.write2FileSystem(metadataDtos, destination);
 
-        SamplePlatformTsvWriter.writeTsv(metadataDtos, destination);
+        SamplePlatformTsvWriter.write2FileSystem(metadataDtos, destination);
 
-        PatientTreatmentTsvWriter.writeTsv(metadataDtos, treatment);
+        PatientTreatmentTsvWriter.write2FileSystem(metadataDtos, treatment);
     }
 
-    public void genomicData(List<?> mutationTsvs, String dataSource, String dataDir, String fileName) throws IOException {
+    public void genomicTsvDto2FileSystem(List<?> genomicData, String dataSource, String dataDir, String fileName) throws IOException {
         String destination = String.format("%s%s%s", workDIrectory, dataSource, dataDir);
         FileUtils.forceMkdir(new File(destination));
-        GenomicTsvWriter.writeTsv(mutationTsvs, destination+fileName);
+        GenomicTsvWriter.writeTsv(genomicData, destination+fileName);
     }
 
 }

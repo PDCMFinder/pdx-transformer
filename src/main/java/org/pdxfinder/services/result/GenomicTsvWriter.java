@@ -1,6 +1,6 @@
 package org.pdxfinder.services.result;
 
-import org.pdxfinder.services.FileUtil;
+import org.pdxfinder.services.common.FileUtil;
 
 import java.io.IOException;
 import java.util.List;

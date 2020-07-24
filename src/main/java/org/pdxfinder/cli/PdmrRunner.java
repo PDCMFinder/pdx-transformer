@@ -3,9 +3,9 @@ package org.pdxfinder.cli;
 import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.Directories;
 import org.pdxfinder.constant.FileNames;
-import org.pdxfinder.services.WriteTsvService;
+import org.pdxfinder.services.common.WriteTsvService;
 import org.pdxfinder.services.pdmr.dto.OracleDataDto;
-import org.pdxfinder.services.dto.MetadataDto;
+import org.pdxfinder.services.common.dto.MetadataDto;
 import org.pdxfinder.services.result.dto.MutationTsv;
 import org.pdxfinder.services.pdmr.services.ExtractService;
 import org.pdxfinder.services.pdmr.services.TransformMetaDataService;
@@ -44,14 +44,14 @@ public class PdmrRunner implements CommandLineRunner {
     private void transformPdmrData() throws IOException {
         OracleDataDto extracted = extractService.fromPdmrOracle();
 
-        List<MetadataDto> metadataDtos = transformMetaDataService.execute(extracted);
-        writeTsvService.metaData(metadataDtos, DataConstants.PDMR_ABBREV);
+        List<MetadataDto> metadataDtos = transformMetaDataService.fromOracleDataDto2Metadata(extracted);
+        writeTsvService.metaDataDto2FileSystem(metadataDtos, DataConstants.PDMR_ABBREV);
 
-        List<MutationTsv> mutationTsvs = transformOmicDataService.transformOmicData(extracted);
-        writeTsvService.genomicData(mutationTsvs,
-                                    DataConstants.PDMR_ABBREV,
-                                    Directories.MUTATION_OUT_DIR,
-                                    FileNames.MUTATION_DATA_TSV);
+        List<MutationTsv> mutationTsvs = transformOmicDataService.fromOracleDataDto2MutationTsv(extracted);
+        writeTsvService.genomicTsvDto2FileSystem(mutationTsvs,
+                                                 DataConstants.PDMR_ABBREV,
+                                                 Directories.MUTATION_OUT_DIR,
+                                                 FileNames.MUTATION_DATA_TSV);
     }
 }
 
