@@ -4,6 +4,7 @@ import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.constant.Directories;
 import org.pdxfinder.constant.FileNames;
 import org.pdxfinder.services.common.WriteTsvService;
+import org.pdxfinder.services.pdmr.dto.AccessionsDTO;
 import org.pdxfinder.services.pdmr.dto.OracleDataDto;
 import org.pdxfinder.services.common.dto.MetadataDto;
 import org.pdxfinder.services.result.dto.MutationTsv;
@@ -43,16 +44,18 @@ public class PdmrRunner implements CommandLineRunner {
 
     private void transformPdmrData() throws IOException {
         OracleDataDto extracted = extractService.fromPdmrOracle();
+        AccessionsDTO extractedAccession = extractService.fromPdmrEna();
 
-        List<MetadataDto> metadataDtos = transformMetaDataService.fromOracleDataDto2Metadata(extracted);
-        writeTsvService.metaDataDto2FileSystem(metadataDtos, DataConstants.PDMR_ABBREV);
+       List<MetadataDto> metadataDtos = transformMetaDataService.fromOracleDataDto2Metadata(extracted, extractedAccession);
+       writeTsvService.metaDataDto2FileSystem(metadataDtos, DataConstants.PDMR_ABBREV);
 
         List<MutationTsv> mutationTsvs = transformOmicDataService.fromOracleDataDto2MutationTsv(extracted);
         writeTsvService.genomicTsvDto2FileSystem(mutationTsvs,
                                                  DataConstants.PDMR_ABBREV,
                                                  Directories.MUTATION_OUT_DIR,
                                                  FileNames.MUTATION_DATA_TSV);
-    }
+
+      }
 }
 
 

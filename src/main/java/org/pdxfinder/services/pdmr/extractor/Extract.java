@@ -3,6 +3,7 @@ package org.pdxfinder.services.pdmr.extractor;
 import org.pdxfinder.constant.*;
 import org.pdxfinder.data.model.*;
 import org.pdxfinder.services.common.dto.MetadataDto;
+import org.pdxfinder.services.pdmr.dto.AccessionsDTO;
 import org.pdxfinder.services.pdmr.dto.OracleDataDto;
 import org.pdxfinder.services.common.dto.SampleDto;
 import org.pdxfinder.services.common.dto.ValidationDto;
@@ -15,16 +16,19 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Extract {
 
     private Logger log = LoggerFactory.getLogger(Extract.class);
     private SpecimenSearch specimenSearch;
     private OracleDataDto extracted;
+    private Map<String,String> accessions;
 
-    public Extract(SpecimenSearch specimenSearch, OracleDataDto extracted) {
+    public Extract(SpecimenSearch specimenSearch, OracleDataDto extracted, AccessionsDTO accessions) {
         this.specimenSearch = specimenSearch;
         this.extracted = extracted;
+        this.accessions = accessions.getAccessionMap();
     }
 
     public String getModelId(){
@@ -33,7 +37,7 @@ public class Extract {
         String modelID = "";
         if ((pdmTypeDesc.equals(CancerModelTypes.PDX_MODEL) || pdmTypeDesc.equals(CancerModelTypes.PATIENT_SPECIMEN))
                 && (tissueTypeDesc.equals(TissueTypeConstants.RESECTION) || tissueTypeDesc.equals(TissueTypeConstants.TUMOR_BIOPSY))) {
-            modelID = String.format("%s-%s", specimenSearch.getPatientid(), specimenSearch.getSpecimenid());
+            modelID = String.format("%s~%s", specimenSearch.getPatientid(), specimenSearch.getSpecimenid());
         }
         return modelID;
     }
@@ -60,7 +64,7 @@ public class Extract {
 
 
 
-    public List<SampleDto> getSamples(){
+    public List<SampleDto> getSamples(String modelId){
         List<SampleDto> sampleDtoList = new ArrayList<>();
         for (Sample dSample : extracted.getSamples()) {
             if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
@@ -70,6 +74,8 @@ public class Extract {
                 String samplePassage = String.valueOf(dSample.getPassageofthissample());
                 String sampleTumorType = "";
 
+                String enaAccession = getAccession(modelId, sampleId);
+
                 if (FileUtil.isNumeric(samplePassage)) {
                     if (!sampleId.contains(CancerModelTypes.CANCER_ASSOCIATED_FIBROBLASTS)) {
                         sampleTumorType = TumorTypeConstants.ENGRAFTED_TUMOR;
@@ -77,6 +83,7 @@ public class Extract {
                                                   .setTumorType(sampleTumorType)
                                                   .setPassage(samplePassage)
                                                   .setPlatform(Platforms.PDMR_ONKOKB.get())
+                                                  .setRawDataUrl(enaAccession)
                                                   .setPlatformUrl(Platforms.PDMR_ONKOKB.url())
                                                   .setwESVCFFile(wholeExomeSeqYn)
                                                   .setwESFastaFile(wholeExomeSeqYn)
@@ -95,12 +102,14 @@ public class Extract {
                                                   .setTumorType(sampleTumorType)
                                                   .setPassage(samplePassage)
                                                   .setPlatform(Platforms.PDMR_ONKOKB.get())
+                                                  .setRawDataUrl(enaAccession)
                                                   .setPlatformUrl(Platforms.PDMR_ONKOKB.url())
                                                   .setwESVCFFile(wholeExomeSeqYn)
                                                   .setwESFastaFile(wholeExomeSeqYn)
                                                   .setnCIGenePanel(wholeExomeSeqYn)
                                                   .setrNASeqFastaFile(rnaSeqYn)
-                                                  .setrNASeqRSEMFile(rnaSeqYn).build());
+                                                  .setrNASeqRSEMFile(rnaSeqYn)
+                                                  .build());
                     }else {
                         log.info("{} is neither PDX nor Patient Sample ", sampleId);
                     }
@@ -108,6 +117,12 @@ public class Extract {
             }
         }
         return sampleDtoList;
+    }
+
+    public String getAccession(String modelId, String sampleId){
+        String key = String.format("%s~%s", modelId, sampleId);
+        System.out.println(key);
+        return accessions.getOrDefault(key, "");
     }
 
     public String getGradeValue(){

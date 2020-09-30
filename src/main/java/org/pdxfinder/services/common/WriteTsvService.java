@@ -17,14 +17,14 @@ import java.util.List;
 public class WriteTsvService {
 
     @Value("${output.directory}")
-    private String workDIrectory;
+    private String workDirectory;
 
     Logger log = LoggerFactory.getLogger(WriteTsvService.class);
 
     public void metaDataDto2FileSystem(List<MetadataDto> metadataDtos, String dataSource) throws IOException {
 
-        String destination = String.format("%s%s", workDIrectory, dataSource);
-        String treatment = String.format("%s%s%s", workDIrectory, dataSource, Directories.TREATMENT_OUT_DIR);
+        String destination = String.format("%s%s", workDirectory, dataSource);
+        String treatment = String.format("%s%s%s", workDirectory, dataSource, Directories.TREATMENT_OUT_DIR);
         FileUtils.forceMkdir(new File(destination));
         FileUtils.forceMkdir(new File(treatment));
 
@@ -44,9 +44,11 @@ public class WriteTsvService {
     }
 
     public void genomicTsvDto2FileSystem(List<?> genomicData, String dataSource, String dataDir, String fileName) throws IOException {
-        String destination = String.format("%s%s%s", workDIrectory, dataSource, dataDir);
+        String destination = String.format("%s%s%s", workDirectory, dataSource, dataDir);
+        System.out.println(destination);
         FileUtils.forceMkdir(new File(destination));
         GenomicTsvWriter.writeTsv(genomicData, destination+fileName);
+        System.out.println("Finnished exporting PDMR");
     }
 
 }

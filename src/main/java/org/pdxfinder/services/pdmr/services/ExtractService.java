@@ -2,10 +2,13 @@ package org.pdxfinder.services.pdmr.services;
 
 import org.pdxfinder.data.model.*;
 import org.pdxfinder.data.model.projection.HistologyProjection;
+import org.pdxfinder.services.pdmr.dto.AccessionsDTO;
 import org.pdxfinder.services.pdmr.dto.OracleDataDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 import java.util.*;
 
 @Service
@@ -61,6 +64,12 @@ public class ExtractService {
                 .setOncokbGenePanels(oncokbGenePanels)
                 .setHugoGeneSymbols(hugoGeneSymbols)
                 .setVariantClasses(variantClasses);
+    }
+
+    public AccessionsDTO fromPdmrEna() throws IOException {
+        log.info("Loading accession information from ENA");
+        Map<String, String> accessions = dataService.getAllAccessionInfo();
+        return new AccessionsDTO().setAccessionMap(accessions);
     }
 
 

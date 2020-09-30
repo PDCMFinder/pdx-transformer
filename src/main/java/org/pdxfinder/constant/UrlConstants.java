@@ -36,5 +36,5 @@ public class UrlConstants {
 
     public static final String PDMR_ONKOKB_URL = "https://pdmr.cancer.gov/content/docs/MCCRD_SOP0053_Generating_oncoKB_Report.pdf";
 
-
+    public static final String ENA_PDMR_STUDY_JSON_URL = "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=PRJEB37099&result=read_run&fields=sample_accession,sample_alias&format=json";
 }

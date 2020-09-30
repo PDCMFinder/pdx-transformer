@@ -1,17 +1,31 @@
 package org.pdxfinder.services.pdmr.services;
 
+import com.fasterxml.jackson.core.TreeNode;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.pdxfinder.constant.UrlConstants;
 import org.pdxfinder.data.model.*;
 import org.pdxfinder.data.model.projection.HistologyProjection;
 import org.pdxfinder.data.model.repository.*;
+import org.pdxfinder.services.common.FileUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class DataService {
 
     private final Logger log = LoggerFactory.getLogger(DataService.class);
+    private ObjectMapper mapper = new ObjectMapper();
 
     private final GendersRepository gendersRepository;
     private final SpecimenRepository specimenRepository;
@@ -168,4 +182,24 @@ public class DataService {
         log.info("Loading Variant class data");
         return variantClassRepo.findAll();
     }
+
+    public Map<String, String> getAllAccessionInfo() throws IOException {
+        String accessionJson = FileUtil.parseJsonURL(UrlConstants.ENA_PDMR_STUDY_JSON_URL);
+        List<AccessionInfo> accessionList = mapper.convertValue(mapper.readTree(accessionJson),
+                new TypeReference<List<AccessionInfo>>() {});
+        Map<String,String> accessionMap = new HashMap<String,String>();
+        accessionList.forEach(accession -> {
+            accessionMap.putIfAbsent(accession.getSampleAlias(), accession.getSampleAccession());
+        });
+        return accessionMap;
+
+
+
+
+
+
+
+
+    }
+
 }
