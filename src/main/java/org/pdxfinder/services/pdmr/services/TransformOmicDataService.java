@@ -5,6 +5,7 @@ import org.pdxfinder.constant.Platforms;
 import org.pdxfinder.constant.TumorTypeConstants;
 import org.pdxfinder.data.model.OncokbGenePanel;
 import org.pdxfinder.data.model.Sample;
+import org.pdxfinder.services.pdmr.dto.AccessionsDTO;
 import org.pdxfinder.services.pdmr.dto.OracleDataDto;
 import org.pdxfinder.services.pdmr.extractor.ExtractOmic;
 import org.pdxfinder.services.result.dto.MutationTsv;

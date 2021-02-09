@@ -32,6 +32,8 @@ public class SampleDto {
     @JsonProperty("Platform")
     private String platform;
 
+    private String rawDataUrl;
+
     @JsonProperty("Platform URL")
     private String platformUrl;
 
@@ -94,6 +96,8 @@ public class SampleDto {
         return platformUrl;
     }
 
+    public String getRawDataUrl() { return rawDataUrl; }
+
     public SampleDto setSampleID(String sampleID) {
         this.sampleID = sampleID;
         return this;
@@ -142,6 +146,15 @@ public class SampleDto {
     public SampleDto setPlatformUrl(String platformUrl) {
         this.platformUrl = platformUrl;
         return this;
+    }
+
+    public SampleDto setRawDataUrl(String rawDataUrl) {
+        this.rawDataUrl = rawDataUrl;
+        return this;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public SampleDto build() {

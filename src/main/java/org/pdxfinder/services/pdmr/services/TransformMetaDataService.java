@@ -4,6 +4,7 @@ import org.pdxfinder.constant.DataConstants;
 import org.pdxfinder.data.model.SpecimenSearch;
 import org.pdxfinder.services.common.dto.MetadataDto;
 import org.pdxfinder.services.common.dto.TreatmentDto;
+import org.pdxfinder.services.pdmr.dto.AccessionsDTO;
 import org.pdxfinder.services.pdmr.dto.OracleDataDto;
 import org.pdxfinder.services.pdmr.extractor.Extract;
 import org.pdxfinder.services.pdmr.extractor.ExtractSpecimenData;
@@ -20,7 +21,7 @@ public class TransformMetaDataService {
 
     private final Logger log = LoggerFactory.getLogger(TransformMetaDataService.class);
 
-    public List<MetadataDto> fromOracleDataDto2Metadata(OracleDataDto dataDto) {
+    public List<MetadataDto> fromOracleDataDto2Metadata(OracleDataDto dataDto, AccessionsDTO accessions) {
 
         log.info("Start Transforming metadata data-sets");
         List<String> modelIds = new ArrayList<>();
@@ -28,7 +29,7 @@ public class TransformMetaDataService {
 
         for (SpecimenSearch specimenSearch : dataDto.getSpecimenSearchList()) {
 
-            Extract extract = new Extract(specimenSearch, dataDto);
+            Extract extract = new Extract(specimenSearch, dataDto, accessions);
 
             String modelId = extract.getModelId();
             if (modelId.isEmpty() || modelIds.contains(modelId)) {
@@ -49,7 +50,7 @@ public class TransformMetaDataService {
                     .setGradeValue(extract.getGradeValue())
                     .setExtractionMethod(extract.getExtractionMethod())
                     .setValidationDtos(extract.getValidations())
-                    .setSampleDtos(extract.getSamples())
+                    .setSampleDtos(extract.getSamples(modelId))
                     .setStageValue(DataConstants.NOT_SPECIFIED)
                     .setHostStrain(metadataDto.getHostStrainFull().isEmpty() ? DataConstants.EMPTY : DataConstants.NSG_HOST_STRAIN)
                     .setMouseSex(DataConstants.EMPTY)

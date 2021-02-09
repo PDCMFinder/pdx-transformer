@@ -19,6 +19,7 @@ public class ExtractSpecimenData {
                 .setTumorType(getTumorType(specimenSearch, extracted))
                 .setEngraftmentSite(getEngraftmentSite(specimenSearch, extracted))
                 .setEngraftmentType(getEngraftmentType(specimenSearch, extracted));
+
     }
 
     public static MetadataDto getBasicData(SpecimenSearch specimenSearch, OracleDataDto extracted){

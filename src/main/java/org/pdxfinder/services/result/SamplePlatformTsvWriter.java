@@ -52,7 +52,7 @@ public class SamplePlatformTsvWriter {
                                                                                .setAnalysisProtocol(DataConstants.EMPTY)
                                                                                .setProcessedDataFile(DataConstants.EMPTY)
                                                                                .setRawDataSharable(DataConstants.EMPTY)
-                                                                               .setRawDataFile(DataConstants.EMPTY)));
+                                                                               .setRawDataFile(sampleDto.getRawDataUrl())));
 
         });
 

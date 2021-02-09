@@ -28,7 +28,7 @@ public class JaxRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        this.transformJAXData();
+       // this.transformJAXData();
     }
 
     private void transformJAXData() throws IOException {
