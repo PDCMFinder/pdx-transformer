@@ -10,4 +10,6 @@ public class TumorTypeConstants {
 
     public static final String PATIENT_TUMOR = "patient tumor";
 
+    public static final String CELL_MODEL = "cell";
+
 }

@@ -17,6 +17,28 @@ public class OracleDataDto {
     private List<PriorTherapies> priorTherapiesList;
     private List<TumorGradeStageTypes> tumorGradeStageTypes;
     private List<TissueTypes> tissueTypes;
+
+    private List<Diagnoses> diagnoses;
+
+    public List<Diagnoses> getDiagnosis() {
+        return diagnoses;
+    }
+
+    public OracleDataDto setDiagnosis(List<Diagnoses> diagnoses) {
+        this.diagnoses = diagnoses;
+        return this;
+    }
+    private List<MedDRACodes> meddracodes;
+
+    public List<MedDRACodes> getMeddracodes() {
+        return meddracodes;
+    }
+
+    public OracleDataDto setMeddracodes(List<MedDRACodes> meddracodes) {
+        this.meddracodes = meddracodes;
+        return this;
+    }
+
     private List<MouseStrains> mouseStrains;
     private List<ImplantationSites> implantationSites;
     private List<ProvidedTissueOrigins> tissueOrigins;

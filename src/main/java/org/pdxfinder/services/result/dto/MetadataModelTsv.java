@@ -60,6 +60,7 @@ public class MetadataModelTsv {
         this.sampleState = "";
         this.passageNumber = "";
         this.publications = "";
+
     }
 
     public MetadataModelTsv setField(String field) {
@@ -112,6 +113,7 @@ public class MetadataModelTsv {
         return this;
     }
 
+
     public String getField() {
         return field;
     }
@@ -155,5 +157,6 @@ public class MetadataModelTsv {
     public String getPublications() {
         return publications;
     }
+
 
 }

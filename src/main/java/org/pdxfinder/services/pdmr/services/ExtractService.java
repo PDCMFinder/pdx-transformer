@@ -35,6 +35,8 @@ public class ExtractService {
         List<PriorTherapies> priorTherapiesList = dataService.getAllPriorTherapies();
         List<TumorGradeStageTypes> tumorGradeStageTypes = dataService.getAllTumorGradeStageTypes();
         List<TissueTypes> tissueTypes = dataService.getAllTissueTypes();
+        List<Diagnoses> diagnoses = dataService.getAllDiagnosis();
+        List<MedDRACodes> meddracodes = dataService.getAllMeddracodes();
         List<MouseStrains> mouseStrains = dataService.getAllMouseStrains();
         List<ImplantationSites> implantationSites = dataService.getAllImplantationSites();
         List<ProvidedTissueOrigins> tissueOrigins = dataService.getAllProvidedTissueOrigins();
@@ -56,6 +58,8 @@ public class ExtractService {
                 .setPriorTherapiesList(priorTherapiesList)
                 .setTumorGradeStageTypes(tumorGradeStageTypes)
                 .setTissueTypes(tissueTypes)
+                .setDiagnosis(diagnoses)
+                .setMeddracodes(meddracodes)
                 .setMouseStrains(mouseStrains)
                 .setImplantationSites(implantationSites)
                 .setTissueOrigins(tissueOrigins)

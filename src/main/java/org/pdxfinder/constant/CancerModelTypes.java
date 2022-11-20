@@ -11,4 +11,9 @@ public class CancerModelTypes {
     public static final String CANCER_ASSOCIATED_FIBROBLASTS = "CAF";
 
     public static final String PATIENT_SPECIMEN = "Patient/Originator Specimen";
+
+    public static final String ORGANOID_MODEL = "Organoid Culture";
+
+    public static final String CELL_MODEL = "Clonal Cell Line";
+
 }

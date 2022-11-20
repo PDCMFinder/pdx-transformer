@@ -45,6 +45,7 @@ public class TransformMetaDataService {
                     .setSampleType(specimenSearch.getTissuetypedescription())
                     .setInitialDiagnosis("")
                     .setClinicalDiagnosis(extract.getClinicalDiagnosis())
+                    .setClinicalDiagnosisnotes(extract.getClinicalDiagnosisNotes())
                     .setStageClassification(extract.getStageClassification())
                     .setGradeClassification(extract.getGradeClassification())
                     .setGradeValue(extract.getGradeValue())
@@ -61,6 +62,15 @@ public class TransformMetaDataService {
                     .setHistory(DataConstants.EMPTY)
                     .setEthnicityAssessmentMethod(DataConstants.EMPTY)
                     .setAgeAtInitialDiagnosis(DataConstants.EMPTY)
+
+                    .setModel_name(DataConstants.EMPTY)
+                    .setGrowth_properties(extract.getGrowth_properties())
+                    .setComments(extract.getcomments())
+                    .setSupplier(extract.getSupplier())
+                    .setExternal_ids(DataConstants.EMPTY)
+                    .setParent_id(extract.getParentID())
+                    .setOrigin_patient_sample_id(extract.getParentID())
+
 
                     .setMetadataSampleTsv(extract.sampleTsv(metadataDto))
                     .setMetadataSharingTsv(extract.sharingTsv(metadataDto))

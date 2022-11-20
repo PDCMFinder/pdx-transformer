@@ -1,8 +1,6 @@
 package org.pdxfinder.services.pdmr.services;
 
-import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.pdxfinder.constant.UrlConstants;
 import org.pdxfinder.data.model.*;
@@ -15,11 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Service
 public class DataService {
@@ -40,6 +35,10 @@ public class DataService {
     private final SpecimenSearchrepo specimenSearchrepo;
     private final StandardizedRegimensRepo standardizedRegimensRepo;
     private final TissueTypesRepo tissueTypesRepo;
+
+    private final DiagnosisRepo diagnosisRepo;
+
+    private final MeddraRepo meddraRepo;
     private final TumorGradesRepo tumorGradesRepo;
     private final TumorGradeStageTypesRepo tumorGradeStageTypesRepo;
     private final HistologyRepository histologyRepository;
@@ -61,7 +60,7 @@ public class DataService {
                        SpecimenSearchrepo specimenSearchrepo,
                        StandardizedRegimensRepo standardizedRegimensRepo,
                        TissueTypesRepo tissueTypesRepo,
-                       TumorGradesRepo tumorGradesRepo,
+                       DiagnosisRepo diagnosisRepo, MeddraRepo meddraRepo, TumorGradesRepo tumorGradesRepo,
                        TumorGradeStageTypesRepo tumorGradeStageTypesRepo,
                        HistologyRepository histologyRepository,
                        OncokbGenePanelRepo oncokbGenePanelRepo,
@@ -80,6 +79,8 @@ public class DataService {
         this.specimenSearchrepo = specimenSearchrepo;
         this.standardizedRegimensRepo = standardizedRegimensRepo;
         this.tissueTypesRepo = tissueTypesRepo;
+        this.diagnosisRepo = diagnosisRepo;
+        this.meddraRepo = meddraRepo;
         this.tumorGradesRepo = tumorGradesRepo;
         this.tumorGradeStageTypesRepo = tumorGradeStageTypesRepo;
         this.histologyRepository = histologyRepository;
@@ -103,7 +104,14 @@ public class DataService {
         log.info("Loading Tissue types");
         return tissueTypesRepo.findAll();
     }
-
+    public List<Diagnoses> getAllDiagnosis() {
+        log.info("Loading Diagnosis");
+        return diagnosisRepo.findAll();
+    }
+    public List<MedDRACodes> getAllMeddracodes() {
+        log.info("Loading MedDRA codes");
+        return meddraRepo.findAll();
+    }
     public List<StandardizedRegimens> getAllStandardizedRegimens() {
         log.info("Loading standard regimens");
         return standardizedRegimensRepo.findAll();

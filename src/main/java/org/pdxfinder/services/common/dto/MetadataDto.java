@@ -2,6 +2,7 @@ package org.pdxfinder.services.common.dto;
 
 
 import com.fasterxml.jackson.annotation.*;
+import org.pdxfinder.services.result.dto.MetadataCellModelTsv;
 import org.pdxfinder.services.result.dto.MetadataSampleTsv;
 import org.pdxfinder.services.result.dto.MetadataSharingTsv;
 
@@ -21,6 +22,7 @@ import java.util.Optional;
         "Primary Site",
         "Initial Diagnosis",
         "Clinical Diagnosis",
+        "Clinical Diagnosis Notes",
         "Tumor Type",
         "Stage Classification",
         "Stage Value",
@@ -41,13 +43,22 @@ import java.util.Optional;
         "Validations",
         "Source url",
 
+        "model_name",
+        "growth_properties",
+        "parent_id",
+        "origin_patient_sample_id",
+        "comments",
+        "supplier",
+        "external_ids",
+
         "sample_state",
         "publications",
         "history",
         "ethnicity_assessment_method",
         "age_at_initial_diagnosis",
         "sample_meta_data",
-        "sharing"
+        "sharing",
+        "cell_model"
 })
 public class MetadataDto {
 
@@ -82,6 +93,8 @@ public class MetadataDto {
 
     @JsonProperty("Clinical Diagnosis")
     private String clinicalDiagnosis;
+    @JsonProperty("Clinical Diagnosis Notes")
+    private String clinicalDiagnosisnotes;
 
     @JsonProperty("Tumor Type")
     private String tumorType;
@@ -165,9 +178,92 @@ public class MetadataDto {
     @JsonProperty("sharing")
     private MetadataSharingTsv metadataSharingTsv;
 
+    @JsonProperty("cellmodel")
+    private MetadataCellModelTsv metadataCellModelTsv;
 
+    @JsonProperty("model_name")
+    private String model_name;
 
+    @JsonProperty("growth_properties")
+    private String growth_properties;
 
+    @JsonProperty("parent_id")
+    private String parent_id;
+
+    @JsonProperty("origin_patient_sample_id")
+    private String origin_patient_sample_id;
+
+    @JsonProperty("comments")
+    private String comments;
+
+    @JsonProperty("supplier")
+    private String supplier;
+
+    @JsonProperty("external_ids")
+    private String external_ids;
+
+    public String getModel_name() {
+        return model_name;
+    }
+
+    public MetadataDto setModel_name(String model_name) {
+        this.model_name = model_name;
+        return this;
+    }
+
+    public String getGrowth_properties() {
+        return growth_properties;
+    }
+
+    public MetadataDto setGrowth_properties(String growth_properties) {
+        this.growth_properties = growth_properties;
+        return this;
+    }
+
+    public String getParent_id() {
+        return parent_id;
+    }
+
+    public MetadataDto setParent_id(String parent_id) {
+        this.parent_id = parent_id;
+        return this;
+    }
+
+    public String getOrigin_patient_sample_id() {
+        return origin_patient_sample_id;
+    }
+
+    public MetadataDto setOrigin_patient_sample_id(String origin_patient_sample_id) {
+        this.origin_patient_sample_id = origin_patient_sample_id;
+        return this;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public MetadataDto setComments(String comments) {
+        this.comments = comments;
+        return this;
+    }
+
+    public String getSupplier() {
+        return supplier;
+    }
+
+    public MetadataDto setSupplier(String supplier) {
+        this.supplier = supplier;
+        return this;
+    }
+
+    public String getExternal_ids() {
+        return external_ids;
+    }
+
+    public MetadataDto setExternal_ids(String external_ids) {
+        this.external_ids = external_ids;
+        return this;
+    }
 
     public MetadataDto() {
     }
@@ -255,6 +351,15 @@ public class MetadataDto {
 
     public String getClinicalDiagnosis() {
         return clinicalDiagnosis;
+    }
+
+    public String getClinicalDiagnosisnotes() {
+        return clinicalDiagnosisnotes;
+    }
+
+    public MetadataDto setClinicalDiagnosisnotes(String clinicalDiagnosisnotes) {
+        this.clinicalDiagnosisnotes = clinicalDiagnosisnotes;
+        return this;
     }
 
     public String getSampleState() {
@@ -501,6 +606,16 @@ public class MetadataDto {
 
     public MetadataDto setMetadataSharingTsv(MetadataSharingTsv metadataSharingTsv) {
         this.metadataSharingTsv = metadataSharingTsv;
+        return this;
+    }
+
+
+    public MetadataCellModelTsv getMetadataCellModelTsv() {
+        return metadataCellModelTsv;
+    }
+
+    public MetadataDto setMetadataCellModelTsv(MetadataCellModelTsv metadataCellModelTsv) {
+        this.metadataCellModelTsv = metadataCellModelTsv;
         return this;
     }
 

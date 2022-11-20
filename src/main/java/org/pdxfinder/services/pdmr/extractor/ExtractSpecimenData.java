@@ -89,12 +89,16 @@ public class ExtractSpecimenData {
         for (Specimen specimen : extracted.getSpecimenList()) {
             if (specimenSearch.getSpecimenid().equals(specimen.getSpecimenid())) {
                 for (ImplantationSites impantationSite : extracted.getImplantationSites()) {
-                    if (specimen.getImplantationsiteseqnbr().equals(impantationSite.getImplantationsiteseqnbr())) {
-                        engraftmentSite = impantationSite.getImplantationsitedescription();
+                    if (specimen.getImplantationsiteseqnbr() != null){
+                        if (specimen.getImplantationsiteseqnbr().equals(impantationSite.getImplantationsiteseqnbr())) {
+                            engraftmentSite = impantationSite.getImplantationsitedescription();
+                        }
+
                     }
                 }
 
-                if (specimen.getImplantationsiteseqnbr().equals("99")) {
+                if (specimen.getImplantationsiteseqnbr()==null || specimen.getImplantationsiteseqnbr().equals("99")) {
+                    specimen.setImplantationsiteseqnbr("99");
                     engraftmentSite = DataConstants.NOT_SPECIFIED;
                 }
             }

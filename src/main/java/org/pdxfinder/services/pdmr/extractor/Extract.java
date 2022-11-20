@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,16 +36,29 @@ public class Extract {
         String pdmTypeDesc = specimenSearch.getPdmtypedescription();
         String tissueTypeDesc = specimenSearch.getTissuetypedescription();
         String modelID = "";
-        if ((pdmTypeDesc.equals(CancerModelTypes.PDX_MODEL) || pdmTypeDesc.equals(CancerModelTypes.PATIENT_SPECIMEN))
+        String sampleId = "";
+        if ((pdmTypeDesc.equals(CancerModelTypes.PDX_MODEL) || pdmTypeDesc.equals(CancerModelTypes.PATIENT_SPECIMEN) ||
+                pdmTypeDesc.equals(CancerModelTypes.ORGANOID_MODEL) || pdmTypeDesc.equals(CancerModelTypes.CELL_MODEL))
                 && (tissueTypeDesc.equals(TissueTypeConstants.RESECTION) || tissueTypeDesc.equals(TissueTypeConstants.TUMOR_BIOPSY))) {
-            modelID = String.format("%s~%s", specimenSearch.getPatientid(), specimenSearch.getSpecimenid());
+            if (pdmTypeDesc.equals(CancerModelTypes.ORGANOID_MODEL)){
+                for (Sample dSample : extracted.getSamples()) {
+                    if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
+                        if(dSample.getPdmtypeseqnbr().equals("6")) {
+                            sampleId = dSample.getSampleid();
+                        }
+                    }
+                }
+                modelID = String.format("%s-%s-%s", specimenSearch.getPatientid(), specimenSearch.getSpecimenid(), sampleId);
+            }else {
+                modelID = String.format("%s-%s", specimenSearch.getPatientid(), specimenSearch.getSpecimenid());
+            }
         }
         return modelID;
     }
 
     public String getClinicalDiagnosis(){
         StringBuilder clinicalDiagnosis = new StringBuilder(specimenSearch.getMeddradescription());
-        for (PatientInfo patient : extracted.getPatientList()) {
+        /*for (PatientInfo patient : extracted.getPatientList()) {
             if (specimenSearch.getPatientseqnbr().equals(patient.getPatientseqnbr())) {
                 if (patient.getDiagnosissubtype() != null) {
                     clinicalDiagnosis.append(DataConstants.PIPE_CHARACTER).append(patient.getDiagnosissubtype());
@@ -58,10 +72,31 @@ public class Extract {
             }
         }
         clinicalDiagnosis = new StringBuilder(clinicalDiagnosis.toString().replaceAll("[^a-zA-Z,0-9 +_-]", DataConstants.EMPTY).trim());
+        */
         clinicalDiagnosis = new StringBuilder(clinicalDiagnosis.toString().replaceAll("\\s\\s", " "));
         return clinicalDiagnosis.toString();
     }
 
+    public String getClinicalDiagnosisNotes(){
+        StringBuilder clinicalDiagnosisNotes = new StringBuilder(specimenSearch.getMeddradescription());
+        for (PatientInfo patient : extracted.getPatientList()) {
+            if (specimenSearch.getPatientseqnbr().equals(patient.getPatientseqnbr())) {
+                if (patient.getDiagnosissubtype() != null) {
+                    clinicalDiagnosisNotes.append(DataConstants.PIPE_CHARACTER).append(patient.getDiagnosissubtype());
+                }
+                if (patient.getAdditionalmedicalhistory() != null) {
+                    clinicalDiagnosisNotes.append(DataConstants.PIPE_CHARACTER).append(patient.getAdditionalmedicalhistory());
+                }
+                if (patient.getNotes() != null) {
+                    clinicalDiagnosisNotes.append(DataConstants.PIPE_CHARACTER).append(patient.getNotes());
+                }
+            }
+        }
+        clinicalDiagnosisNotes = new StringBuilder(clinicalDiagnosisNotes.toString().replaceAll("[^a-zA-Z,0-9 +_-]", DataConstants.EMPTY).trim());
+
+        clinicalDiagnosisNotes = new StringBuilder(clinicalDiagnosisNotes.toString().replaceAll("\\s\\s", " "));
+        return clinicalDiagnosisNotes.toString();
+    }
 
 
     public List<SampleDto> getSamples(String modelId){
@@ -78,7 +113,12 @@ public class Extract {
 
                 if (FileUtil.isNumeric(samplePassage)) {
                     if (!sampleId.contains(CancerModelTypes.CANCER_ASSOCIATED_FIBROBLASTS)) {
-                        sampleTumorType = TumorTypeConstants.ENGRAFTED_TUMOR;
+                        if(dSample.getPdmtypeseqnbr().equals("6")){
+                            sampleTumorType = TumorTypeConstants.CELL_MODEL;
+                            samplePassage = "";
+                        }else {
+                            sampleTumorType = TumorTypeConstants.ENGRAFTED_TUMOR;
+                        }
                         sampleDtoList.add(new SampleDto().setSampleID(sampleId)
                                                   .setTumorType(sampleTumorType)
                                                   .setPassage(samplePassage)
@@ -120,10 +160,78 @@ public class Extract {
     }
 
     public String getAccession(String modelId, String sampleId){
-        String key = String.format("%s~%s", modelId, sampleId);
+        String key = String.format("%s-%s", modelId, sampleId);
         System.out.println(key);
         return accessions.getOrDefault(key, "");
     }
+    public String getGrowth_properties(){
+        String growth_property = "";
+        for (Sample dSample : extracted.getSamples()) {
+            if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
+                //String sampleId = dSample.getSampleid();
+                if(dSample.getPdmtypeseqnbr().equals("6")) {
+                    growth_property = dSample.getGrowthpropertyseqnbr();
+                }
+            }
+        }
+
+        return growth_property;
+    }
+    public String getcomments(){
+        String comments = "";
+        Map<String, String> MSIStatus = new HashMap<String, String>();
+        MSIStatus.put("0", "Unkown");
+        MSIStatus.put("1", "MSI-High");
+        MSIStatus.put("2", "MSI-Stable");
+        for (Sample dSample : extracted.getSamples()) {
+            if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
+                //String sampleId = dSample.getSampleid();
+                if(dSample.getPdmtypeseqnbr().equals("6")) {
+                    if (dSample.getCulturederivation() != null) {
+                        StringBuilder comment = new StringBuilder(dSample.getCulturederivation());
+                        if (dSample.getSubculturerecommendations() != null) {
+                            comment.append("; ").append(dSample.getSubculturerecommendations());
+                        }
+                        if (specimenSearch.getMsistatusseqnbr() != null) {
+                            comment.append("; MSI Status: ").append(MSIStatus.get(specimenSearch.getMsistatusseqnbr()));
+                        }
+                        comments = comment.toString();
+                    }
+                }
+            }
+        }
+
+        return comments;
+    }
+    public String getParentID(){
+        String ParentId = "";
+        for (Sample dSample : extracted.getSamples()) {
+            if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
+                if(dSample.getPdmtypeseqnbr().equals("6")) {
+                    if(dSample.getCultureoriginseqnbr().equals("1")){
+                        ParentId = String.format("PDMR:%s-%s", specimenSearch.getPatientid(), specimenSearch.getSpecimenid());
+                    }
+                }
+            }
+        }
+
+        return ParentId;
+
+    }
+    public String getSupplier(){
+        String supplier = "";
+        for (Sample dSample : extracted.getSamples()) {
+            if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
+                if(dSample.getPdmtypeseqnbr().equals("6")) {
+                    String sampleId = dSample.getSampleid();
+                    supplier = String.format("PDMR:%s-%s-%s", specimenSearch.getPatientid(), specimenSearch.getSpecimenid(), sampleId);
+                }
+            }
+        }
+
+        return supplier;
+    }
+
 
     public String getGradeValue(){
         String gradeValue = "";
