@@ -7,6 +7,7 @@ import org.pdxfinder.constant.FileNames;
 import org.pdxfinder.constant.TemplateLocations;
 import org.pdxfinder.services.common.dto.MetadataDto;
 import org.pdxfinder.services.common.dto.SampleDto;
+import org.pdxfinder.services.result.dto.MetadataCellModelTsv;
 import org.pdxfinder.services.result.dto.MetadataModelTsv;
 import org.pdxfinder.services.common.FileUtil;
 
@@ -38,21 +39,49 @@ public class ModelTsvWriter {
                     .map(SampleDto::getPassage)
                     .collect(Collectors.toSet());
 
-            metadataModelTsvs.add(new MetadataModelTsv()
-                               .setField("")
-                               .setModelId(pdxDto.getModelID())
-                               .setHostStrain(pdxDto.getHostStrain())
-                               .setHostStrainFull(pdxDto.getHostStrainFull())
-                               .setEngraftmentSite(pdxDto.getEngraftmentSite())
-                               .setEngraftmentType(pdxDto.getEngraftmentType())
-                               .setSampleType(pdxDto.getSampleType())
-                               .setSampleState(pdxDto.getSampleState())
-                               .setPublications(pdxDto.getPublications())
-                               .setPassageNumber(String.join(",", passages)));
+        metadataModelTsvs.add(new MetadataModelTsv()
+                           .setField("")
+                           .setModelId(pdxDto.getModelID())
+                           .setHostStrain(pdxDto.getHostStrain())
+                           .setHostStrainFull(pdxDto.getHostStrainFull())
+                           .setEngraftmentSite(pdxDto.getEngraftmentSite())
+                           .setEngraftmentType(pdxDto.getEngraftmentType())
+                           .setSampleType(pdxDto.getSampleType())
+                           .setSampleState(pdxDto.getSampleState())
+                           .setPublications(pdxDto.getPublications())
+                           .setPassageNumber(String.join(",", passages)));
         });
 
         String modelMetaData = FileUtil.serializePojoToTsv(metadataModelTsvs);
         String output = String.format("%s%s", outputDirectory, FileNames.METADATA_MODEL_TSV);
+        FileUtil.write(modelMetaData, output);
+    }
+    public static void writecellmodel2FileSystem(List<MetadataDto> metadataDtoList, String outputDirectory) throws IOException {
+
+        InputStream contents = FileUtil.class.getResourceAsStream(TemplateLocations.METADATA_CELL_MODEL_TEMPLATE);
+        CsvSchema.Builder builder = CsvSchema.builder();
+        CsvMapper mapper = new CsvMapper();
+        CsvSchema schema = builder.build().withHeader().withColumnSeparator('\t');
+
+        MappingIterator<MetadataCellModelTsv> iterator = mapper.readerFor(MetadataCellModelTsv.class).with(schema).readValues(contents);
+        List<MetadataCellModelTsv> metadataCellModelTsvs = iterator.readAll();
+
+        metadataDtoList.forEach(pdxDto -> {metadataCellModelTsvs.add(new MetadataCellModelTsv()
+                .setField("")
+                .setModelId(pdxDto.getModelID())
+                .setModel_name(pdxDto.getModel_name())
+                .setPublications(pdxDto.getPublications())
+                .setComments(pdxDto.getComments())
+                .setExternal_ids(pdxDto.getExternal_ids())
+                .setGrowth_properties(pdxDto.getGrowth_properties())
+                .setOrigin_patient_sample_id(pdxDto.getOrigin_patient_sample_id())
+                .setParent_id(pdxDto.getParent_id())
+                .setSupplier(pdxDto.getSupplier())
+                );
+        });
+
+        String modelMetaData = FileUtil.serializePojoToTsv(metadataCellModelTsvs);
+        String output = String.format("%s%s", outputDirectory, FileNames.METADATA_CELL_MODEL_TSV);
         FileUtil.write(modelMetaData, output);
     }
 }

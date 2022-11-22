@@ -1,9 +1,7 @@
 package org.pdxfinder.services.result.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
+import com.fasterxml.jackson.annotation.*;
+import org.pdxfinder.constant.DataConstants;
 
 @JsonPropertyOrder({
         "Field",

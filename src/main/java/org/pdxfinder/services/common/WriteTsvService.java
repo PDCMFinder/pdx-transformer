@@ -12,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class WriteTsvService {
@@ -28,7 +29,12 @@ public class WriteTsvService {
         FileUtils.forceMkdir(new File(destination));
         FileUtils.forceMkdir(new File(treatment));
 
-        ModelTsvWriter.write2FileSystem(metadataDtos, destination);
+        ModelTsvWriter.write2FileSystem(metadataDtos.stream().
+                filter(x -> !x.getModelID().contains("organoid")).
+                collect(Collectors.toList()), destination);
+        ModelTsvWriter.writecellmodel2FileSystem(metadataDtos.stream().
+                filter(x -> x.getModelID().contains("organoid")).
+                collect(Collectors.toList()), destination);
 
         PatientTsvWriter.write2FileSystem(metadataDtos, destination);
 

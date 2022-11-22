@@ -38,7 +38,7 @@ public class Extract {
         String modelID = "";
         String sampleId = "";
         if ((pdmTypeDesc.equals(CancerModelTypes.PDX_MODEL) || pdmTypeDesc.equals(CancerModelTypes.PATIENT_SPECIMEN) ||
-                pdmTypeDesc.equals(CancerModelTypes.ORGANOID_MODEL) || pdmTypeDesc.equals(CancerModelTypes.CELL_MODEL))
+                pdmTypeDesc.equals(CancerModelTypes.ORGANOID_MODEL))
                 && (tissueTypeDesc.equals(TissueTypeConstants.RESECTION) || tissueTypeDesc.equals(TissueTypeConstants.TUMOR_BIOPSY))) {
             if (pdmTypeDesc.equals(CancerModelTypes.ORGANOID_MODEL)){
                 for (Sample dSample : extracted.getSamples()) {
@@ -92,9 +92,9 @@ public class Extract {
                 }
             }
         }
-        clinicalDiagnosisNotes = new StringBuilder(clinicalDiagnosisNotes.toString().replaceAll("[^a-zA-Z,0-9 +_-]", DataConstants.EMPTY).trim());
+        //clinicalDiagnosisNotes = new StringBuilder(clinicalDiagnosisNotes.toString().replaceAll("[^a-zA-Z,0-9 +_-]", DataConstants.EMPTY).trim());
 
-        clinicalDiagnosisNotes = new StringBuilder(clinicalDiagnosisNotes.toString().replaceAll("\\s\\s", " "));
+        //clinicalDiagnosisNotes = new StringBuilder(clinicalDiagnosisNotes.toString().replaceAll("\\s\\s", " "));
         return clinicalDiagnosisNotes.toString();
     }
 
@@ -108,17 +108,15 @@ public class Extract {
                 String rnaSeqYn = dSample.getRnasequenceftpyn();
                 String samplePassage = String.valueOf(dSample.getPassageofthissample());
                 String sampleTumorType = "";
-
-                String enaAccession = getAccession(modelId, sampleId);
-
+                String enaAccession = "";
+                if (modelId.contains("organoid")){
+                    enaAccession = getAccession(modelId, "");
+                }else {
+                    enaAccession = getAccession(modelId, sampleId);
+                }
                 if (FileUtil.isNumeric(samplePassage)) {
                     if (!sampleId.contains(CancerModelTypes.CANCER_ASSOCIATED_FIBROBLASTS)) {
-                        if(dSample.getPdmtypeseqnbr().equals("6")){
-                            sampleTumorType = TumorTypeConstants.CELL_MODEL;
-                            samplePassage = "";
-                        }else {
-                            sampleTumorType = TumorTypeConstants.ENGRAFTED_TUMOR;
-                        }
+                        sampleTumorType = TumorTypeConstants.ENGRAFTED_TUMOR;
                         sampleDtoList.add(new SampleDto().setSampleID(sampleId)
                                                   .setTumorType(sampleTumorType)
                                                   .setPassage(samplePassage)
@@ -135,7 +133,7 @@ public class Extract {
                         log.warn("This is Strange, CAF Culture that has passage number");
                     }
                 } else {
-                    if (sampleId.equals(DataConstants.PDMR_PATIENT_SAMPLE_ID)) {
+                    if (sampleId.equals(DataConstants.PDMR_PATIENT_SAMPLE_ID)|| dSample.getPdmtypeseqnbr().equals("1")) {
                         sampleTumorType = TumorTypeConstants.PATIENT_TUMOR;
                         samplePassage = "";
                         sampleDtoList.add(new SampleDto().setSampleID(sampleId)
@@ -151,7 +149,24 @@ public class Extract {
                                                   .setrNASeqRSEMFile(rnaSeqYn)
                                                   .build());
                     }else {
-                        log.info("{} is neither PDX nor Patient Sample ", sampleId);
+                        if(dSample.getPdmtypeseqnbr().equals("6")){
+                            sampleTumorType = TumorTypeConstants.CELL_MODEL;
+                            samplePassage = "";
+                            sampleDtoList.add(new SampleDto().setSampleID(modelId)
+                                    .setTumorType(sampleTumorType)
+                                    .setPassage(samplePassage)
+                                    .setPlatform(Platforms.PDMR_ONKOKB.get())
+                                    .setRawDataUrl(enaAccession)
+                                    .setPlatformUrl(Platforms.PDMR_ONKOKB.url())
+                                    .setwESVCFFile(wholeExomeSeqYn)
+                                    .setwESFastaFile(wholeExomeSeqYn)
+                                    .setnCIGenePanel(wholeExomeSeqYn)
+                                    .setrNASeqFastaFile(rnaSeqYn)
+                                    .setrNASeqRSEMFile(rnaSeqYn)
+                                    .build());
+                        }else {
+                        log.info(String.format("%s-%s is neither PDX nor Patient Sample ", modelId, sampleId));
+                        }
                     }
                 }
             }
@@ -160,12 +175,18 @@ public class Extract {
     }
 
     public String getAccession(String modelId, String sampleId){
-        String key = String.format("%s-%s", modelId, sampleId);
-        System.out.println(key);
+        String key = "";
+        if(sampleId.equals("")){
+            key = modelId;
+        }else {
+            key = String.format("%s-%s", modelId, sampleId);
+        }
+        //System.out.println(key);
         return accessions.getOrDefault(key, "");
     }
     public String getGrowth_properties(){
         String growth_property = "";
+        Map <String, String> gp_map = new HashMap<String, String>();
         for (Sample dSample : extracted.getSamples()) {
             if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
                 //String sampleId = dSample.getSampleid();
@@ -209,7 +230,7 @@ public class Extract {
             if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
                 if(dSample.getPdmtypeseqnbr().equals("6")) {
                     if(dSample.getCultureoriginseqnbr().equals("1")){
-                        ParentId = String.format("PDMR:%s-%s", specimenSearch.getPatientid(), specimenSearch.getSpecimenid());
+                        ParentId = String.format("%s-%s", specimenSearch.getPatientid(), specimenSearch.getSpecimenid());
                     }
                 }
             }

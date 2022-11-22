@@ -63,6 +63,10 @@ public class TransformOmicDataService {
                         omicDataRow.setSampleOrigin(TumorTypeConstants.PATIENT_TUMOR);
                         omicDataRow.setPassage(DataConstants.EMPTY);
                         validData.set(true);
+                    }else if (sample.getPdmtypeseqnbr().equals("6")){
+                        omicDataRow.setSampleOrigin(TumorTypeConstants.CELL_MODEL);
+                        omicDataRow.setPassage(DataConstants.EMPTY);
+                        validData.set(true);
                     } else {
                         validData.set(false);
                     }

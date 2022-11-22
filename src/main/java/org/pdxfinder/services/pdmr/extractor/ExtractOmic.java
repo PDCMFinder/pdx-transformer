@@ -80,9 +80,21 @@ public class ExtractOmic {
     public static String getModelId(Sample sample, OracleDataDto extracted){
         List<SpecimenSearch> specimenSearches = extracted.getSpecimenSearchList();
         AtomicReference<String> modelId = new AtomicReference<>(DataConstants.EMPTY);
+        AtomicReference<String> sampleId = new AtomicReference<>("");
         specimenSearches.forEach(specimen -> {
             if (specimen.getSpecimenseqnbr().equals(sample.getSpecimenseqnbr())) {
-                modelId.set(specimen.getPatientid() + "-" + specimen.getSpecimenid());
+                if(specimen.getPdmtypeseqnbr().equals("6")){
+                    for (Sample dSample : extracted.getSamples()) {
+                        if (specimen.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
+                            if(dSample.getPdmtypeseqnbr().equals("6")) {
+                                sampleId.set(dSample.getSampleid());
+                            }
+                        }
+                    }
+                    modelId.set(String.format(specimen.getPatientid() + "-" + specimen.getSpecimenid()+ "-" + sampleId.get()));
+                }else {
+                    modelId.set(specimen.getPatientid() + "-" + specimen.getSpecimenid());
+                }
             }
         });
         return modelId.get();

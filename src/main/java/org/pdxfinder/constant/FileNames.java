@@ -8,6 +8,8 @@ public class FileNames {
 
     public static final String METADATA_MODEL_TSV = "/metadata-model.tsv";
 
+    public static final String METADATA_CELL_MODEL_TSV = "/metadata-cell_model.tsv";
+
     public static final String METADATA_MODEL_VALIDATION_TSV = "/metadata-model_validation.tsv";
 
     public static final String PATIENT_TREATMENT_TSV = "/patient-treatment.tsv";

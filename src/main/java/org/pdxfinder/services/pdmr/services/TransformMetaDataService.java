@@ -32,7 +32,7 @@ public class TransformMetaDataService {
             Extract extract = new Extract(specimenSearch, dataDto, accessions);
 
             String modelId = extract.getModelId();
-            if (modelId.isEmpty() || modelIds.contains(modelId)) {
+            if (modelId.isEmpty() || modelIds.contains(modelId) || modelId.equals("")) {
                 continue;
             }
             modelIds.add(modelId);

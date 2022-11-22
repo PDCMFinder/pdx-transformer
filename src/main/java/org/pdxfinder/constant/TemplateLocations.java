@@ -7,6 +7,7 @@ public class TemplateLocations {
     }
 
     public static final String METADATA_MODEL_TEMPLATE = "/templates/head_metadata-model.tsv";
+    public static final String METADATA_CELL_MODEL_TEMPLATE = "/templates/head_metadata-cell_model.tsv";
 
     public static final String METADATA_MODEL_VALIDATION = "/templates/head_metadata-model_validation.tsv";
 

@@ -197,7 +197,7 @@ public class DataService {
                 new TypeReference<List<AccessionInfo>>() {});
         Map<String,String> accessionMap = new HashMap<String,String>();
         accessionList.forEach(accession -> {
-            accessionMap.putIfAbsent(accession.getSampleAlias(), accession.getSampleAccession());
+            accessionMap.putIfAbsent(accession.getSampleAlias().replace("~" ,"-"), accession.getSampleAccession().replace("~" ,"-"));
         });
         return accessionMap;
 
