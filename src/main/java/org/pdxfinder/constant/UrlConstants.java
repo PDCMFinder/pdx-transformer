@@ -34,6 +34,8 @@ public class UrlConstants {
 
     public static final String PDMR_SOURCE_URL_PREFIX = "https://pdmdb.cancer.gov/pls/apex/f?p=101:4:0::NO:4:P4_SPECIMENSEQNBR:";
 
+    public static final String PDMR_SOURCE_URL_SAMPLE_PREFIX = "https://pdmdb.cancer.gov/web/apex/f?p=101:7:::NO:7:P7_SAMPLESEQNBR:";
+
     public static final String PDMR_ONKOKB_URL = "https://pdmr.cancer.gov/content/docs/MCCRD_SOP0053_Generating_oncoKB_Report.pdf";
 
     public static final String ENA_PDMR_STUDY_JSON_URL = "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=PRJEB37099&result=read_run&fields=sample_accession,sample_alias&format=json";

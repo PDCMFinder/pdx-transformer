@@ -14,6 +14,6 @@ public class CancerModelTypes {
 
     public static final String ORGANOID_MODEL = "Organoid Culture";
 
-    public static final String CELL_MODEL = "Clonal Cell Line";
+    public static final String CELL_MODEL = "PDC: Mixed Tumor Culture";
 
 }

@@ -38,18 +38,21 @@ public class Extract {
         String modelID = "";
         String sampleId = "";
         if ((pdmTypeDesc.equals(CancerModelTypes.PDX_MODEL) || pdmTypeDesc.equals(CancerModelTypes.PATIENT_SPECIMEN) ||
-                pdmTypeDesc.equals(CancerModelTypes.ORGANOID_MODEL))
+                pdmTypeDesc.equals(CancerModelTypes.ORGANOID_MODEL) || pdmTypeDesc.equals(CancerModelTypes.CELL_MODEL) )
                 && (tissueTypeDesc.equals(TissueTypeConstants.RESECTION) || tissueTypeDesc.equals(TissueTypeConstants.TUMOR_BIOPSY))) {
-            if (pdmTypeDesc.equals(CancerModelTypes.ORGANOID_MODEL)){
+            // Separate model ids for cell model and organoid models
+            if (pdmTypeDesc.equals(CancerModelTypes.ORGANOID_MODEL) || pdmTypeDesc.equals(CancerModelTypes.CELL_MODEL)){
                 for (Sample dSample : extracted.getSamples()) {
                     if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
-                        if(dSample.getPdmtypeseqnbr().equals("6")) {
+                        if(dSample.getPdmtypeseqnbr().equals(specimenSearch.getPdmtypeseqnbr())) {
                             sampleId = dSample.getSampleid();
                         }
                     }
                 }
                 modelID = String.format("%s-%s-%s", specimenSearch.getPatientid(), specimenSearch.getSpecimenid(), sampleId);
-            }else {
+            }
+            // Model id for pdx and patient specimen
+            else if ((pdmTypeDesc.equals(CancerModelTypes.PDX_MODEL) || pdmTypeDesc.equals(CancerModelTypes.PATIENT_SPECIMEN))){
                 modelID = String.format("%s-%s", specimenSearch.getPatientid(), specimenSearch.getSpecimenid());
             }
         }
@@ -133,7 +136,7 @@ public class Extract {
                         log.warn("This is Strange, CAF Culture that has passage number");
                     }
                 } else {
-                    if (sampleId.equals(DataConstants.PDMR_PATIENT_SAMPLE_ID)|| dSample.getPdmtypeseqnbr().equals("1")) {
+                    if (sampleId.equals(DataConstants.PDMR_PATIENT_SAMPLE_ID)) {
                         sampleTumorType = TumorTypeConstants.PATIENT_TUMOR;
                         samplePassage = "";
                         sampleDtoList.add(new SampleDto().setSampleID(sampleId)
