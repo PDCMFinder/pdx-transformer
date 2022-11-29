@@ -29,12 +29,9 @@ public class WriteTsvService {
         FileUtils.forceMkdir(new File(destination));
         FileUtils.forceMkdir(new File(treatment));
 
-        ModelTsvWriter.write2FileSystem(metadataDtos.stream().
-                filter(x -> !x.getModelID().contains("organoid")).
-                collect(Collectors.toList()), destination);
-        ModelTsvWriter.writecellmodel2FileSystem(metadataDtos.stream().
-                filter(x -> x.getModelID().contains("organoid")).
-                collect(Collectors.toList()), destination);
+        ModelTsvWriter.write2FileSystem(metadataDtos, destination);
+
+        ModelTsvWriter.writecellmodel2FileSystem(metadataDtos, destination);
 
         PatientTsvWriter.write2FileSystem(metadataDtos, destination);
 

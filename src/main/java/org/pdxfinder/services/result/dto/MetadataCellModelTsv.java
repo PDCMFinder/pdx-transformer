@@ -48,10 +48,15 @@ public class MetadataCellModelTsv {
     @JsonProperty("publications")
     private String publications;
 
+    @JsonProperty("model_type")
+    private String model_type;
+
+
     public MetadataCellModelTsv() {
         this.field = "";
         this.modelId = "";
         this.model_name = "";
+        this.model_type = "";
         this.growth_properties = "";
         this.parent_id = "";
         this.origin_patient_sample_id = "";
@@ -85,8 +90,8 @@ public class MetadataCellModelTsv {
     }
 
 
-    public MetadataCellModelTsv setModelname(String model_name) {
-        this.model_name = model_name;
+    public MetadataCellModelTsv setModel_type(String model_type) {
+        this.model_type = model_type;
         return this;
     }
 

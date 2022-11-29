@@ -52,17 +52,19 @@ public class TransformMetaDataService {
                     .setExtractionMethod(extract.getExtractionMethod())
                     .setValidationDtos(extract.getValidations())
                     .setSampleDtos(extract.getSamples(modelId))
-                    .setStageValue(DataConstants.NOT_SPECIFIED)
+                    .setStageValue(extract.getNotes())
+                    .setDateAtCollection(extract.getCollectionDate())
+                    .setAge_in_years_at_collection(extract.getAgeInYearsAtCollection())
                     .setHostStrain(metadataDto.getHostStrainFull().isEmpty() ? DataConstants.EMPTY : DataConstants.NSG_HOST_STRAIN)
                     .setMouseSex(DataConstants.EMPTY)
                     .setTreatmentNaive(DataConstants.EMPTY)
                     .setTreatmentDtos(treatmentDtos)
                     .setSampleState(DataConstants.NOT_SPECIFIED)
                     .setPublications(DataConstants.EMPTY)
-                    .setHistory(DataConstants.EMPTY)
+                    .setHistory(extract.getSmokingHistory())
                     .setEthnicityAssessmentMethod(DataConstants.EMPTY)
-                    .setAgeAtInitialDiagnosis(DataConstants.EMPTY)
-
+                    .setAgeAtInitialDiagnosis(extract.getAgeAtDiagnosis())
+                    .setModel_type(specimenSearch.getPdmtypedescription())
                     .setModel_name(DataConstants.EMPTY)
                     .setGrowth_properties(extract.getGrowth_properties())
                     .setComments(extract.getcomments())
@@ -82,5 +84,4 @@ public class TransformMetaDataService {
 
         return metadataDtos;
     }
-
 }

@@ -21,6 +21,7 @@ public class Specimen {
     private String archiveyn;
     private String ctcphenotypingresults;
     private String ageatsampling;
+    private String ageatsamplingrange;
     private String biopsysite;
     private String publicaccessyn;
     private String consensuswes1Ftpyn;
@@ -78,6 +79,14 @@ public class Specimen {
 
     public Date getCollectiondate() {
         return collectiondate;
+    }
+
+    public String getAgeatsamplingrange() {
+        return ageatsamplingrange;
+    }
+
+    public void setAgeatsamplingrange(String ageatsamplingrange) {
+        this.ageatsamplingrange = ageatsamplingrange;
     }
 
     public void setCollectiondate(Date collectiondate) {

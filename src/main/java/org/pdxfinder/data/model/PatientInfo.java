@@ -14,6 +14,8 @@ public class PatientInfo {
   private String patientid;
   private String gender;
   private String ageatdiagnosis;
+
+  private String ageatdiagnosisrange;
   private String initialdiagnosisconfirmedyn;
   private String knowngeneticmutations;
   private String diagnosissubtype;
@@ -105,6 +107,9 @@ public class PatientInfo {
   public String getNotes() {
     return notes;
   }
+
+  public String getAgeatdiagnosisrange() { return ageatdiagnosisrange; }
+
 
   public String getGenemedloadedyn() {
     return genemedloadedyn;

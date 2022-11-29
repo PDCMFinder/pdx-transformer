@@ -39,11 +39,13 @@ import java.util.Optional;
         "Engraftment Type",
         "Extraction Method",
         "Date At Collection",
+        "Age at Collection",
         "Accessibility",
         "Validations",
         "Source url",
 
         "model_name",
+        "model_type",
         "growth_properties",
         "parent_id",
         "origin_patient_sample_id",
@@ -143,6 +145,8 @@ public class MetadataDto {
 
     @JsonProperty("Date At Collection")
     private String dateAtCollection;
+    @JsonProperty("Age At Collection")
+    private String age_in_years_at_collection;
 
     @JsonProperty("Accessibility")
     private String accessibility;
@@ -187,6 +191,7 @@ public class MetadataDto {
     @JsonProperty("growth_properties")
     private String growth_properties;
 
+
     @JsonProperty("parent_id")
     private String parent_id;
 
@@ -201,6 +206,19 @@ public class MetadataDto {
 
     @JsonProperty("external_ids")
     private String external_ids;
+
+
+    @JsonProperty("model_type")
+    private String model_type;
+
+    public String getModel_type() {
+        return model_type;
+    }
+
+    public MetadataDto setModel_type(String model_type) {
+        this.model_type = model_type;
+        return this;
+    }
 
     public String getModel_name() {
         return model_name;
@@ -494,6 +512,15 @@ public class MetadataDto {
 
     public String getDateAtCollection() {
         return dateAtCollection;
+    }
+
+    public String getAge_in_years_at_collection() {
+        return age_in_years_at_collection;
+    }
+
+    public MetadataDto setAge_in_years_at_collection(String age_in_years_at_collection) {
+        this.age_in_years_at_collection = age_in_years_at_collection;
+        return this;
     }
 
     public String getExtractionMethod() {

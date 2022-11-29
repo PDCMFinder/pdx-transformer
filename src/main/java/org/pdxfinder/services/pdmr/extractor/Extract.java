@@ -61,21 +61,6 @@ public class Extract {
 
     public String getClinicalDiagnosis(){
         StringBuilder clinicalDiagnosis = new StringBuilder(specimenSearch.getMeddradescription());
-        /*for (PatientInfo patient : extracted.getPatientList()) {
-            if (specimenSearch.getPatientseqnbr().equals(patient.getPatientseqnbr())) {
-                if (patient.getDiagnosissubtype() != null) {
-                    clinicalDiagnosis.append(DataConstants.PIPE_CHARACTER).append(patient.getDiagnosissubtype());
-                }
-                if (patient.getAdditionalmedicalhistory() != null) {
-                    clinicalDiagnosis.append(DataConstants.PIPE_CHARACTER).append(patient.getAdditionalmedicalhistory());
-                }
-                if (patient.getNotes() != null) {
-                    clinicalDiagnosis.append(DataConstants.PIPE_CHARACTER).append(patient.getNotes());
-                }
-            }
-        }
-        clinicalDiagnosis = new StringBuilder(clinicalDiagnosis.toString().replaceAll("[^a-zA-Z,0-9 +_-]", DataConstants.EMPTY).trim());
-        */
         clinicalDiagnosis = new StringBuilder(clinicalDiagnosis.toString().replaceAll("\\s\\s", " "));
         return clinicalDiagnosis.toString();
     }
@@ -101,7 +86,17 @@ public class Extract {
         return clinicalDiagnosisNotes.toString();
     }
 
-
+    public String getAgeAtDiagnosis(){
+        String AgeAtDiagnosis = "";
+        for (PatientInfo patient : extracted.getPatientList()) {
+            if (specimenSearch.getPatientseqnbr().equals(patient.getPatientseqnbr())) {
+                if (patient.getAgeatdiagnosis() != null) {
+                    AgeAtDiagnosis = patient.getAgeatdiagnosisrange();
+                }
+            }
+        }
+        return AgeAtDiagnosis;
+    }
     public List<SampleDto> getSamples(String modelId){
         List<SampleDto> sampleDtoList = new ArrayList<>();
         for (Sample dSample : extracted.getSamples()) {
@@ -151,8 +146,9 @@ public class Extract {
                                                   .setrNASeqFastaFile(rnaSeqYn)
                                                   .setrNASeqRSEMFile(rnaSeqYn)
                                                   .build());
-                    }else {
-                        if(dSample.getPdmtypeseqnbr().equals("6")){
+                    }
+                    else if( (dSample.getPdmtypeseqnbr().equals(CancerModelTypes.ORGANOID_MODEL_seqNR) || dSample.getPdmtypeseqnbr().equals(CancerModelTypes.PDC_MODEL_seqNR))
+                            && !dSample.getPdmtypeseqnbr().equals("5")){   // Organoid and cell models
                             sampleTumorType = TumorTypeConstants.CELL_MODEL;
                             samplePassage = "";
                             sampleDtoList.add(new SampleDto().setSampleID(modelId)
@@ -167,9 +163,9 @@ public class Extract {
                                     .setrNASeqFastaFile(rnaSeqYn)
                                     .setrNASeqRSEMFile(rnaSeqYn)
                                     .build());
-                        }else {
-                        log.info(String.format("%s-%s is neither PDX nor Patient Sample ", modelId, sampleId));
                         }
+                    else {
+                        log.info(String.format("%s-%s is neither PDX, Patient Sample, Organoid nor PDC ", modelId, sampleId));
                     }
                 }
             }
@@ -193,7 +189,7 @@ public class Extract {
         for (Sample dSample : extracted.getSamples()) {
             if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
                 //String sampleId = dSample.getSampleid();
-                if(dSample.getPdmtypeseqnbr().equals("6")) {
+                if(dSample.getPdmtypeseqnbr().equals(CancerModelTypes.ORGANOID_MODEL_seqNR) || dSample.getPdmtypeseqnbr().equals(CancerModelTypes.PDC_MODEL_seqNR)) {
                     growth_property = dSample.getGrowthpropertyseqnbr();
                 }
             }
@@ -207,17 +203,31 @@ public class Extract {
         MSIStatus.put("0", "Unkown");
         MSIStatus.put("1", "MSI-High");
         MSIStatus.put("2", "MSI-Stable");
+
+        Map<String, String> CultureOrigin = new HashMap<String, String>();
+        CultureOrigin.put("0", "Patient Tissue");
+        CultureOrigin.put("1", "PDX Fragment");
+        CultureOrigin.put("2", "Patient-Derived Organoid");
+        CultureOrigin.put("3", "PDX-Derived Organoid");
+        CultureOrigin.put("9", "Unkown");
+
         for (Sample dSample : extracted.getSamples()) {
             if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
                 //String sampleId = dSample.getSampleid();
-                if(dSample.getPdmtypeseqnbr().equals("6")) {
+                if(dSample.getPdmtypeseqnbr().equals(CancerModelTypes.ORGANOID_MODEL_seqNR) || dSample.getPdmtypeseqnbr().equals(CancerModelTypes.PDC_MODEL_seqNR)) {
                     if (dSample.getCulturederivation() != null) {
                         StringBuilder comment = new StringBuilder(dSample.getCulturederivation());
+                        if (dSample.getCultureoriginseqnbr() != null){
+                            comment.append("; Origin: ").append(CultureOrigin.get(dSample.getCultureoriginseqnbr()));
+                        }
                         if (dSample.getSubculturerecommendations() != null) {
-                            comment.append("; ").append(dSample.getSubculturerecommendations());
+                            comment.append("; Sub-culture: ").append(dSample.getSubculturerecommendations());
                         }
                         if (specimenSearch.getMsistatusseqnbr() != null) {
                             comment.append("; MSI Status: ").append(MSIStatus.get(specimenSearch.getMsistatusseqnbr()));
+                        }
+                        if (dSample.getProliferationrate() != null) {
+                            comment.append("; Proliferation rate: ").append(dSample.getProliferationrate());
                         }
                         comments = comment.toString();
                     }
@@ -231,10 +241,13 @@ public class Extract {
         String ParentId = "";
         for (Sample dSample : extracted.getSamples()) {
             if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
-                if(dSample.getPdmtypeseqnbr().equals("6")) {
+                if(dSample.getPdmtypeseqnbr().equals(CancerModelTypes.ORGANOID_MODEL_seqNR) || dSample.getPdmtypeseqnbr().equals(CancerModelTypes.PDC_MODEL_seqNR)) {
                     if(dSample.getCultureoriginseqnbr().equals("1")){
                         ParentId = String.format("%s-%s", specimenSearch.getPatientid(), specimenSearch.getSpecimenid());
                     }
+                    //else if(dSample.getCultureoriginseqnbr().equals("2")){
+                    //    ParentId = String.format("%s-%s", specimenSearch.getPatientid(), specimenSearch.getSpecimenid());
+                    //}
                 }
             }
         }
@@ -256,7 +269,59 @@ public class Extract {
         return supplier;
     }
 
+    public String getNotes(){
+        String notes = "";
+        for (PatientInfo patient : extracted.getPatientList()) {
+            if (specimenSearch.getPatientseqnbr().equals(patient.getPatientseqnbr())) {
+                if (patient.getNotes() != null) {
+                    notes = patient.getNotes();
+                }
+            }
+        }
+        return notes;
+    }
 
+    public String getCollectionDate(){
+        String collectionDate = "";
+        for (Specimen specimen : extracted.getSpecimenList()) {
+            if (specimenSearch.getSpecimenseqnbr().equals(specimen.getSpecimenseqnbr())) {
+                if (specimen.getCollectiondate().toString() != null) {
+                    collectionDate = specimen.getCollectiondate().toString();
+                }
+            }
+        }
+        return collectionDate;
+    }
+    public String getAgeInYearsAtCollection(){
+        String ageAtCollection = "";
+        for (Specimen specimen : extracted.getSpecimenList()) {
+            if (specimenSearch.getSpecimenseqnbr().equals(specimen.getSpecimenseqnbr())) {
+                if (specimen.getAgeatsamplingrange() != null) {
+                    ageAtCollection = specimen.getAgeatsamplingrange();
+                }
+            }
+        }
+        return ageAtCollection;
+    }
+
+
+    public String getSmokingHistory(){
+        String history = "";
+        if (specimenSearch.getSmoked100Description().equals("Yes")){
+            history = "Current Smoker";
+            /*
+            for (PatientInfo patient : extracted.getPatientList()) {
+                if (specimenSearch.getPatientseqnbr().equals(patient.getPatientseqnbr())) {
+                    if (patient.getNotes() != null) {
+                        history = patient.getNotes();
+                    }
+                }
+            }
+            */
+        }
+
+        return history;
+    }
     public String getGradeValue(){
         String gradeValue = "";
         for (Sample dSample : extracted.getSamples()) {
@@ -338,7 +403,7 @@ public class Extract {
                 .setField(DataConstants.EMPTY)
                 .setPatientId(metadataDto.getPatientID())
                 .setSampleId(metadataDto.getModelID())
-                .setAgeInYearsAtCollection(metadataDto.getAge())
+                .setAgeInYearsAtCollection(metadataDto.getAge_in_years_at_collection())
                 .setDiagnosis(metadataDto.getClinicalDiagnosis())
                 .setTumourType(metadataDto.getTumorType())
                 .setPrimarySite(metadataDto.getPrimarySite())
@@ -346,7 +411,7 @@ public class Extract {
                 .setGrade(metadataDto.getGradeValue())
 
                 .setStagingSystem(DataConstants.EMPTY)
-                .setCollectionDate(DataConstants.EMPTY)
+                .setCollectionDate(metadataDto.getDateAtCollection())
                 .setCollectionEvent(DataConstants.EMPTY)
                 .setMonthsSinceCollectionOne(DataConstants.EMPTY)
                 .setCollectionSite(DataConstants.NOT_SPECIFIED)

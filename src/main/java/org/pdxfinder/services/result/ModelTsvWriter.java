@@ -3,6 +3,7 @@ package org.pdxfinder.services.result;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import org.pdxfinder.constant.CancerModelTypes;
 import org.pdxfinder.constant.FileNames;
 import org.pdxfinder.constant.TemplateLocations;
 import org.pdxfinder.services.common.dto.MetadataDto;
@@ -24,7 +25,8 @@ public class ModelTsvWriter {
     }
 
     public static void write2FileSystem(List<MetadataDto> metadataDtoList, String outputDirectory) throws IOException {
-
+        metadataDtoList = metadataDtoList.stream().filter(x -> (x.getModel_type().equals(CancerModelTypes.PDX_MODEL)|| x.getModel_type().equals(CancerModelTypes.PATIENT_SPECIMEN)))
+                .collect(Collectors.toList());
         InputStream contents = FileUtil.class.getResourceAsStream(TemplateLocations.METADATA_MODEL_TEMPLATE);
         CsvSchema.Builder builder = CsvSchema.builder();
         CsvMapper mapper = new CsvMapper();
@@ -57,7 +59,8 @@ public class ModelTsvWriter {
         FileUtil.write(modelMetaData, output);
     }
     public static void writecellmodel2FileSystem(List<MetadataDto> metadataDtoList, String outputDirectory) throws IOException {
-
+        metadataDtoList = metadataDtoList.stream().filter(x -> (x.getModel_type().equals(CancerModelTypes.ORGANOID_MODEL)|| x.getModel_type().equals(CancerModelTypes.CELL_MODEL)))
+                .collect(Collectors.toList());
         InputStream contents = FileUtil.class.getResourceAsStream(TemplateLocations.METADATA_CELL_MODEL_TEMPLATE);
         CsvSchema.Builder builder = CsvSchema.builder();
         CsvMapper mapper = new CsvMapper();
@@ -70,6 +73,7 @@ public class ModelTsvWriter {
                 .setField("")
                 .setModelId(pdxDto.getModelID())
                 .setModel_name(pdxDto.getModel_name())
+                .setModel_type(pdxDto.getModel_type())
                 .setPublications(pdxDto.getPublications())
                 .setComments(pdxDto.getComments())
                 .setExternal_ids(pdxDto.getExternal_ids())

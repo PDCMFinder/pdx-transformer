@@ -10,6 +10,7 @@ public class SpecimenSearch {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "patient_Sequence")
   @SequenceGenerator(name = "patient_Sequence", sequenceName = "PATIENT_SEQ")
+  private String new_id;
   private String patientseqnbr;
 
   private String patientid;
