@@ -41,17 +41,25 @@ public class ModelTsvWriter {
                     .map(SampleDto::getPassage)
                     .collect(Collectors.toSet());
 
-        metadataModelTsvs.add(new MetadataModelTsv()
-                           .setField("")
-                           .setModelId(pdxDto.getModelID())
-                           .setHostStrain(pdxDto.getHostStrain())
-                           .setHostStrainFull(pdxDto.getHostStrainFull())
-                           .setEngraftmentSite(pdxDto.getEngraftmentSite())
-                           .setEngraftmentType(pdxDto.getEngraftmentType())
-                           .setSampleType(pdxDto.getSampleType())
-                           .setSampleState(pdxDto.getSampleState())
-                           .setPublications(pdxDto.getPublications())
-                           .setPassageNumber(String.join(",", passages)));
+            metadataModelTsvs.add(new MetadataModelTsv()
+                    .setField("")
+                    .setModelId(pdxDto.getModelID())
+                    .setHostStrain(pdxDto.getHostStrain())
+                    .setHostStrainFull(pdxDto.getHostStrainFull())
+                    .setEngraftmentSite(pdxDto.getEngraftmentSite())
+                    .setEngraftmentType(pdxDto.getEngraftmentType())
+                    .setSampleType(pdxDto.getSampleType())
+                    .setSampleState(pdxDto.getSampleState())
+                    .setPublications(pdxDto.getPublications())
+                    .setPassageNumber(String.join(",", passages))
+                    .setParent_id("")
+                    .setOrigin_patient_sample_id("")
+                    .setSupplier(pdxDto.getSupplier())
+                    .setSupplier_type("Academic")
+                    .setCatalog_number(pdxDto.catalog_number())
+                    .setVendor_link(pdxDto.vendor_link())
+                    .setExternal_ids(pdxDto.getExternal_ids())
+            );
         });
 
         String modelMetaData = FileUtil.serializePojoToTsv(metadataModelTsvs);
@@ -69,18 +77,41 @@ public class ModelTsvWriter {
         MappingIterator<MetadataCellModelTsv> iterator = mapper.readerFor(MetadataCellModelTsv.class).with(schema).readValues(contents);
         List<MetadataCellModelTsv> metadataCellModelTsvs = iterator.readAll();
 
-        metadataDtoList.forEach(pdxDto -> {metadataCellModelTsvs.add(new MetadataCellModelTsv()
+
+
+        metadataDtoList.forEach(pdxDto -> {
+            Set<String> passages = pdxDto.getSampleDtos().stream()
+                    .filter(sampleDto -> !sampleDto.getPassage().isEmpty())
+                    .map(SampleDto::getPassage)
+                    .collect(Collectors.toSet());
+
+            metadataCellModelTsvs.add(new MetadataCellModelTsv()
                 .setField("")
                 .setModelId(pdxDto.getModelID())
                 .setModel_name(pdxDto.getModel_name())
-                .setModel_type(pdxDto.getModel_type())
-                .setPublications(pdxDto.getPublications())
-                .setComments(pdxDto.getComments())
-                .setExternal_ids(pdxDto.getExternal_ids())
-                .setGrowth_properties(pdxDto.getGrowth_properties())
-                .setOrigin_patient_sample_id(pdxDto.getOrigin_patient_sample_id())
+                .setModel_name_aliases(pdxDto.model_name_aliases())
+                .setType(pdxDto.getModel_type())
                 .setParent_id(pdxDto.getParent_id())
+                .setOrigin_patient_sample_id(pdxDto.getOrigin_patient_sample_id())
+                .setGrowth_properties(pdxDto.getGrowth_properties())
+                .setMedia_id(pdxDto.media_id())
+                .setGrowth_media(pdxDto.growth_media())
+                .setPlate_coating(pdxDto.plate_coating())
+                .setOther_plate_coating(pdxDto.other_plate_coating())
+                .setPassage_number("")
+                .setContaminated(pdxDto.contaminated())
+                .setContamination_details(pdxDto.contamination_details())
+                .setSupplements(pdxDto.supplements())
+                .setDrug(pdxDto.drug())
+                .setDrug_concentration(pdxDto.drug_concentration())
+                .setPublications(pdxDto.getPublications())
                 .setSupplier(pdxDto.getSupplier())
+                .setSupplier_type(pdxDto.supplier_type())
+                .setCatalog_number(pdxDto.catalog_number())
+                .setVendor_link(pdxDto.vendor_link())
+                .setRrid(pdxDto.rrid())
+                .setExternal_ids(pdxDto.getExternal_ids())
+                .setComments(pdxDto.getComments())
                 );
         });
 

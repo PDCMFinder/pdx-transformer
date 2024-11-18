@@ -9,7 +9,7 @@ public class CancerModelTypes {
     public static final String PDX_MODEL = "PDX";
 
     public static final String CANCER_ASSOCIATED_FIBROBLASTS = "CAF";
-
+    public static final String CANCER_ASSOCIATED_FIBROBLASTS_CULTURE = "CAF Culture";
     public static final String PATIENT_SPECIMEN = "Patient/Originator Specimen";
 
     public static final String ORGANOID_MODEL = "Organoid Culture";

@@ -47,7 +47,10 @@ public class OracleDataDto {
     private List<OncokbGenePanel> oncokbGenePanels;
     private List<HugoGeneSymbol> hugoGeneSymbols;
     private List<VariantClass> variantClasses;
-
+    private List<GrowthProperties> growthProperties;
+    private List<RequiredMedia> requiredMedia;
+    private List<Contributors> contributors;
+    private List<DistributionLot> distributionLot;
 
     public List<PatientInfo> getPatientList() {
         return patientList;
@@ -55,6 +58,16 @@ public class OracleDataDto {
 
     public List<Sample> getSamples() {
         return samples;
+    }
+
+    public List<GrowthProperties> getGrowthProperties() {
+        return growthProperties;
+    }
+    public List<RequiredMedia> getRequiredMedia() {
+        return requiredMedia;
+    }
+    public List<Contributors> getContributors() {
+        return contributors;
     }
 
     public List<HistologyProjection> getHistologies() {
@@ -119,6 +132,15 @@ public class OracleDataDto {
 
     public List<VariantClass> getVariantClasses() {
         return variantClasses;
+    }
+
+    public List<DistributionLot> getDistributionLot() {
+        return distributionLot;
+    }
+
+    public OracleDataDto setDistributionLot(List<DistributionLot> distributionLot) {
+        this.distributionLot = distributionLot;
+        return this;
     }
 
     public OracleDataDto setPatientList(List<PatientInfo> patientList) {
@@ -208,6 +230,20 @@ public class OracleDataDto {
 
     public OracleDataDto setVariantClasses(List<VariantClass> variantClasses) {
         this.variantClasses = variantClasses;
+        return this;
+    }
+    public OracleDataDto setGrowthProperties(List<GrowthProperties> growthProperties) {
+        this.growthProperties = growthProperties;
+        return this;
+    }
+
+    public OracleDataDto setRequiredMedia(List<RequiredMedia> requiredMedia) {
+        this.requiredMedia = requiredMedia;
+        return this;
+    }
+
+    public OracleDataDto setContributors(List<Contributors> contributors) {
+        this.contributors = contributors;
         return this;
     }
 

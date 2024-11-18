@@ -88,18 +88,12 @@ public class ExtractSpecimenData {
         String engraftmentSite = "";
         for (Specimen specimen : extracted.getSpecimenList()) {
             if (specimenSearch.getSpecimenid().equals(specimen.getSpecimenid())) {
-                for (ImplantationSites impantationSite : extracted.getImplantationSites()) {
-                    if (specimen.getImplantationsiteseqnbr() != null){
-                        if (specimen.getImplantationsiteseqnbr().equals(impantationSite.getImplantationsiteseqnbr())) {
-                            engraftmentSite = impantationSite.getImplantationsitedescription();
-                        }
-
-                    }
-                }
-
-                if (specimen.getImplantationsiteseqnbr()==null || specimen.getImplantationsiteseqnbr().equals("99")) {
-                    specimen.setImplantationsiteseqnbr("99");
-                    engraftmentSite = DataConstants.NOT_SPECIFIED;
+                if (specimen.getViablepassageimpsiteseqnbr().equals("0")) {
+                    engraftmentSite = "Subcutaneous (flank)";
+                } else if (specimen.getViablepassageimpsiteseqnbr().equals("99")) {
+                    engraftmentSite = DataConstants.NOT_PROVIDED;
+                } else {
+                    engraftmentSite = "Mammary Fat Pad";
                 }
             }
         }
@@ -111,10 +105,10 @@ public class ExtractSpecimenData {
         for (Specimen specimen : extracted.getSpecimenList()) {
             if (specimenSearch.getSpecimenid().equals(specimen.getSpecimenid())) {
 
-                if (specimen.getImplantationsiteseqnbr().equals("0")) {
+                if (specimen.getViablepassageimpsiteseqnbr().equals("0")) {
                     engraftmentType = EngraftmentTypeConstants.HETEROTROPIC;
-                } else if (specimen.getImplantationsiteseqnbr().equals("99")) {
-                    engraftmentType = DataConstants.NOT_SPECIFIED;
+                } else if (specimen.getViablepassageimpsiteseqnbr().equals("99")) {
+                    engraftmentType = DataConstants.NOT_PROVIDED;
                 } else {
                     engraftmentType = EngraftmentTypeConstants.ORTHOTOPIC;
                 }

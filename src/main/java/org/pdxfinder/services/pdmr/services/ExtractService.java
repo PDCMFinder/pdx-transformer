@@ -42,10 +42,14 @@ public class ExtractService {
         List<ProvidedTissueOrigins> tissueOrigins = dataService.getAllProvidedTissueOrigins();
         List<Specimen> specimenList = dataService.getAllPdmrSpecimen();
         List<SpecimenSearch> specimenSearchList = dataService.getAllSpecimenSearch();
-
         List<OncokbGenePanel> oncokbGenePanels = dataService.getAllOncokbGenePanel();
         List<HugoGeneSymbol> hugoGeneSymbols = dataService.getAllHugoGeneSymbols();
         List<VariantClass> variantClasses = dataService.getAllVariantClasses();
+        List<GrowthProperties> growthProperties = dataService.getAllGrowthProperties();
+        List<RequiredMedia> requiredMedia = dataService.getAllRequiredMedia();
+        List<Contributors> contributors = dataService.getAllContributors();
+        List<DistributionLot> distributionLots = dataService.getAllDistributionLots();
+
         log.info("Finished Loading Oracle data-sets");
 
         return new OracleDataDto().setPatientList(patientList)
@@ -67,7 +71,12 @@ public class ExtractService {
                 .setSpecimenSearchList(specimenSearchList)
                 .setOncokbGenePanels(oncokbGenePanels)
                 .setHugoGeneSymbols(hugoGeneSymbols)
-                .setVariantClasses(variantClasses);
+                .setVariantClasses(variantClasses)
+                .setGrowthProperties(growthProperties)
+                .setRequiredMedia(requiredMedia)
+                .setContributors(contributors)
+                .setDistributionLot(distributionLots);
+
     }
 
     public AccessionsDTO fromPdmrEna() throws IOException {

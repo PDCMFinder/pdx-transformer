@@ -36,7 +36,13 @@ public class TransformMetaDataService {
                 continue;
             }
             modelIds.add(modelId);
-            List<TreatmentDto> treatmentDtos = ExtractTreatment.getCurrentTherapies(specimenSearch, dataDto);
+            List<TreatmentDto> treatmentDtos = new ArrayList<>();
+            try {
+                treatmentDtos = ExtractTreatment.getCurrentTherapies(specimenSearch, dataDto);
+            }catch (Exception e){
+                continue;
+            }
+
 
             MetadataDto metadataDto = ExtractSpecimenData.get(specimenSearch, dataDto);
             metadataDto.setModelID(modelId)
@@ -49,7 +55,7 @@ public class TransformMetaDataService {
                     .setStageClassification(extract.getStageClassification())
                     .setGradeClassification(extract.getGradeClassification())
                     .setGradeValue(extract.getGradeValue())
-                    .setExtractionMethod(extract.getExtractionMethod())
+                    .setExtractionMethod(extract.getExtractionMethod()) //collection method
                     .setValidationDtos(extract.getValidations())
                     .setSampleDtos(extract.getSamples(modelId))
                     .setStageValue(extract.getNotes())
@@ -59,21 +65,39 @@ public class TransformMetaDataService {
                     .setMouseSex(DataConstants.EMPTY)
                     .setTreatmentNaive(DataConstants.EMPTY)
                     .setTreatmentDtos(treatmentDtos)
-                    .setSampleState(DataConstants.NOT_SPECIFIED)
+                    .setSampleState("Fresh")
                     .setPublications(DataConstants.EMPTY)
-                    .setHistory(extract.getSmokingHistory())
+                    .setHistory(extract.gethistory())
+                    .setsmokingStatus(extract.getSmokingHistory())
                     .setEthnicityAssessmentMethod(DataConstants.EMPTY)
                     .setAgeAtInitialDiagnosis(extract.getAgeAtDiagnosis())
-                    .setModel_type(specimenSearch.getPdmtypedescription())
                     .setModel_name(DataConstants.EMPTY)
-                    .setGrowth_properties(extract.getGrowth_properties())
-                    .setComments(extract.getcomments())
-                    .setSupplier(extract.getSupplier())
-                    .setExternal_ids(DataConstants.EMPTY)
+                    .setModel_name_aliases(DataConstants.EMPTY)
+                    .setModel_type(specimenSearch.getPdmtypedescription())
                     .setParent_id(extract.getParentID())
                     .setOrigin_patient_sample_id(extract.getParentID())
-
-
+                    .setGrowth_properties(extract.getGrowth_properties())
+                    .setMedia_id("Invitrogen, Cat#: 12634-010")
+                    .setGrowth_media("DMEM/F12 + 10% FBS")
+                    .setPlate_coating(DataConstants.EMPTY)
+                    .setOther_plate_coating(DataConstants.EMPTY)
+                    .setContaminated("No")
+                    .setContamination_details("None")
+                    .setSupplements(extract.getSupplements())
+                    .setDrug(DataConstants.NOT_PROVIDED)
+                    .setDrug_concentration(DataConstants.NOT_PROVIDED)
+                    .setSupplier(extract.getSupplier())
+                    .setSupplier_type("Academic")
+                    .setCatalog_number(modelId)
+                    .setVendor_link(DataConstants.NOT_PROVIDED)
+                    .setRrid(DataConstants.NOT_PROVIDED)
+                    .setExternal_ids(extract.getexternalID())
+                    .setComments(extract.getcomments())
+                    .setgeneMutationStatus(extract.getgeneMutationStatus())
+                    .setresponseToTreatment(extract.getresponseToTreatment())
+                    .setcollectionMethod(extract.getExtractionMethod())
+                    .setcollectionSite(extract.getcollectionSite())
+                    .setAccessibility(extract.getAvailability(modelId))
                     .setMetadataSampleTsv(extract.sampleTsv(metadataDto))
                     .setMetadataSharingTsv(extract.sharingTsv(metadataDto))
                     .build();

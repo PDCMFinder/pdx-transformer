@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.pdxfinder.constant.UrlConstants;
 import org.pdxfinder.data.model.*;
+import org.pdxfinder.data.model.DistributionLot;
 import org.pdxfinder.data.model.projection.HistologyProjection;
 import org.pdxfinder.data.model.repository.*;
 import org.pdxfinder.services.common.FileUtil;
@@ -20,6 +21,10 @@ import java.util.Map;
 public class DataService {
 
     private final Logger log = LoggerFactory.getLogger(DataService.class);
+    private final GrowthPropertiesRepo growthPropertiesRepo;
+    private final RequiredMediaRepo requiredMediaRepo;
+    private final ContributorsRepo contributorsRepo;
+    private final DistributionLotRepo distributionLotRepo;
     private ObjectMapper mapper = new ObjectMapper();
 
     private final GendersRepository gendersRepository;
@@ -65,7 +70,11 @@ public class DataService {
                        HistologyRepository histologyRepository,
                        OncokbGenePanelRepo oncokbGenePanelRepo,
                        HugoGeneSymbolRepo hugoGeneSymbolRepo,
-                       VariantClassRepo variantClassRepo) {
+                       VariantClassRepo variantClassRepo,
+                       GrowthPropertiesRepo growthPropertiesRepo,
+                       RequiredMediaRepo requiredMediaRepo,
+                       ContributorsRepo contributorsRepo,
+                       DistributionLotRepo distributionLotRepo) {
         this.gendersRepository = gendersRepository;
         this.specimenRepository = specimenRepository;
         this.clinicalResponsesRepo = clinicalResponsesRepo;
@@ -87,6 +96,10 @@ public class DataService {
         this.oncokbGenePanelRepo = oncokbGenePanelRepo;
         this.hugoGeneSymbolRepo = hugoGeneSymbolRepo;
         this.variantClassRepo = variantClassRepo;
+        this.growthPropertiesRepo = growthPropertiesRepo;
+        this.requiredMediaRepo = requiredMediaRepo;
+        this.contributorsRepo = contributorsRepo;
+        this.distributionLotRepo = distributionLotRepo;
     }
 
 
@@ -173,7 +186,7 @@ public class DataService {
 
     public List<HistologyProjection> getAllHistologies(){
         log.info("Loading Histology data");
-        return   histologyRepository.findAllHistology();
+        return  histologyRepository.findAllHistology();
     }
 
     public List<OncokbGenePanel> getAllOncokbGenePanel(){
@@ -190,6 +203,26 @@ public class DataService {
         log.info("Loading Variant class data");
         return variantClassRepo.findAll();
     }
+
+    public List<GrowthProperties> getAllGrowthProperties(){
+        log.info("Loading Growth Properties data");
+        return growthPropertiesRepo.findAll();
+    }
+    public List<RequiredMedia> getAllRequiredMedia(){
+        log.info("Loading Media data");
+        return requiredMediaRepo.findAll();
+    }
+
+    public List<Contributors> getAllContributors(){
+        log.info("Loading contributors data");
+        return contributorsRepo.findAll();
+    }
+
+    public List<DistributionLot> getAllDistributionLots(){
+        log.info("Loading Distribution data");
+        return distributionLotRepo.findAll();
+    }
+
 
     public Map<String, String> getAllAccessionInfo() throws IOException {
         String accessionJson = FileUtil.parseJsonURL(UrlConstants.ENA_PDMR_STUDY_JSON_URL);

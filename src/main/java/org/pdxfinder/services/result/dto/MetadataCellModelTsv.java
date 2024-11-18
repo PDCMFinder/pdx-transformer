@@ -1,19 +1,34 @@
 package org.pdxfinder.services.result.dto;
 
 import com.fasterxml.jackson.annotation.*;
-import org.pdxfinder.constant.DataConstants;
 
 @JsonPropertyOrder({
         "Field",
         "model_id",
         "model_name",
-        "growth_properties",
+        "model_name_aliases",
+        "type",
         "parent_id",
         "origin_patient_sample_id",
-        "comments",
+        "growth_properties",
+        "media_id",
+        "growth_media",
+        "plate_coating",
+        "other_plate_coating",
+        "passage_number",
+        "contaminated",
+        "contamination_details",
+        "supplements",
+        "drug",
+        "drug_concentration",
+        "publications",
         "supplier",
+        "supplier_type",
+        "catalog_number",
+        "vendor_link",
+        "rrid",
         "external_ids",
-        "publications"
+        "comments"
 })
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MetadataCellModelTsv {
@@ -27,8 +42,11 @@ public class MetadataCellModelTsv {
     @JsonProperty("model_name")
     private String model_name;
 
-    @JsonProperty("growth_properties")
-    private String growth_properties;
+    @JsonProperty("model_name_aliases")
+    private String model_name_aliases;
+
+    @JsonProperty("type")
+    private String type;
 
     @JsonProperty("parent_id")
     private String parent_id;
@@ -36,34 +54,94 @@ public class MetadataCellModelTsv {
     @JsonProperty("origin_patient_sample_id")
     private String origin_patient_sample_id;
 
-    @JsonProperty("comments")
-    private String comments;
+    @JsonProperty("growth_properties")
+    private String growth_properties;
 
-    @JsonProperty("supplier")
-    private String supplier;
+    @JsonProperty("media_id")
+    private String media_id;
 
-    @JsonProperty("external_ids")
-    private String external_ids;
+    @JsonProperty("growth_media")
+    private String growth_media;
+
+    @JsonProperty("plate_coating")
+    private String plate_coating;
+
+    @JsonProperty("other_plate_coating")
+    private String other_plate_coating;
+
+    @JsonProperty("passage_number")
+    private String passage_number;
+
+    @JsonProperty("contaminated")
+    private String contaminated;
+
+    @JsonProperty("contamination_details")
+    private String contamination_details;
+
+    @JsonProperty("supplements")
+    private String supplements;
+
+    @JsonProperty("drug")
+    private String drug;
+
+    @JsonProperty("drug_concentration")
+    private String drug_concentration;
+
 
     @JsonProperty("publications")
     private String publications;
 
-    @JsonProperty("model_type")
-    private String model_type;
+    @JsonProperty("supplier")
+    private String supplier;
+
+    @JsonProperty("supplier_type")
+    private String supplier_type;
+
+    @JsonProperty("catalog_number")
+    private String catalog_number;
+
+    @JsonProperty("vendor_link")
+    private String vendor_link;
+
+    @JsonProperty("rrid")
+    private String rrid;
+
+    @JsonProperty("external_ids")
+    private String external_ids;
+
+    @JsonProperty("comments")
+    private String comments;
+
 
 
     public MetadataCellModelTsv() {
         this.field = "";
         this.modelId = "";
         this.model_name = "";
-        this.model_type = "";
-        this.growth_properties = "";
+        this.model_name_aliases = "";
+        this.type = "";
         this.parent_id = "";
         this.origin_patient_sample_id = "";
-        this.comments = "";
-        this.supplier = "";
-        this.external_ids = "";
+        this.growth_properties = "";
+        this.media_id = "";
+        this.growth_media = "";
+        this.plate_coating = "";
+        this.other_plate_coating = "";
+        this.passage_number = "";
+        this.contaminated = "";
+        this.contamination_details = "";
+        this.supplements = "";
+        this.drug = "";
+        this.drug_concentration = "";
         this.publications = "";
+        this.supplier = "";
+        this.supplier_type = "";
+        this.catalog_number = "";
+        this.vendor_link = "";
+        this.rrid = "";
+        this.external_ids = "";
+        this.comments = "";
+
     }
 
     public MetadataCellModelTsv build() {
@@ -90,8 +168,8 @@ public class MetadataCellModelTsv {
     }
 
 
-    public MetadataCellModelTsv setModel_type(String model_type) {
-        this.model_type = model_type;
+    public MetadataCellModelTsv setType(String model_type) {
+        this.type = model_type;
         return this;
     }
 
@@ -167,6 +245,143 @@ public class MetadataCellModelTsv {
         return this;
     }
 
+    public String getType() {
+        return type;
+    }
 
+    public String getModel_name_aliases() {
+        return model_name_aliases;
+    }
+
+    public MetadataCellModelTsv setModel_name_aliases(String model_name_aliases) {
+        this.model_name_aliases = model_name_aliases;
+        return this;
+    }
+
+    public String getMedia_id() {
+        return media_id;
+    }
+
+    public MetadataCellModelTsv setMedia_id(String media_id) {
+        this.media_id = media_id;
+        return this;
+    }
+
+    public String getGrowth_media() {
+        return growth_media;
+    }
+
+    public MetadataCellModelTsv setGrowth_media(String growth_media) {
+        this.growth_media = growth_media;
+        return this;
+    }
+
+    public String getPlate_coating() {
+        return plate_coating;
+    }
+
+    public MetadataCellModelTsv setPlate_coating(String plate_coating) {
+        this.plate_coating = plate_coating;
+        return this;
+    }
+
+    public String getOther_plate_coating() {
+        return other_plate_coating;
+    }
+
+    public MetadataCellModelTsv setOther_plate_coating(String other_plate_coating) {
+        this.other_plate_coating = other_plate_coating;
+        return this;
+    }
+
+    public String getPassage_number() {
+        return passage_number;
+    }
+
+    public MetadataCellModelTsv setPassage_number(String passage_number) {
+        this.passage_number = passage_number;
+        return this;
+    }
+
+    public String getContaminated() {
+        return contaminated;
+    }
+
+    public MetadataCellModelTsv setContaminated(String contaminated) {
+        this.contaminated = contaminated;
+        return this;
+    }
+
+    public String getContamination_details() {
+        return contamination_details;
+    }
+
+    public MetadataCellModelTsv setContamination_details(String contamination_details) {
+        this.contamination_details = contamination_details;
+        return this;
+    }
+
+    public String getSupplements() {
+        return supplements;
+    }
+
+    public MetadataCellModelTsv setSupplements(String supplements) {
+        this.supplements = supplements;
+        return this;
+    }
+
+    public String getDrug() {
+        return drug;
+    }
+
+    public MetadataCellModelTsv setDrug(String drug) {
+        this.drug = drug;
+        return this;
+    }
+
+    public String getDrug_concentration() {
+        return drug_concentration;
+    }
+
+    public MetadataCellModelTsv setDrug_concentration(String drug_concentration) {
+        this.drug_concentration = drug_concentration;
+        return this;
+    }
+
+    public String getSupplier_type() {
+        return supplier_type;
+    }
+
+    public MetadataCellModelTsv setSupplier_type(String supplier_type) {
+        this.supplier_type = supplier_type;
+        return this;
+    }
+
+    public String getCatalog_number() {
+        return catalog_number;
+    }
+
+    public MetadataCellModelTsv setCatalog_number(String catalog_number) {
+        this.catalog_number = catalog_number;
+        return this;
+    }
+
+    public String getVendor_link() {
+        return vendor_link;
+    }
+
+    public MetadataCellModelTsv setVendor_link(String vendor_link) {
+        this.vendor_link = vendor_link;
+        return this;
+    }
+
+    public String getRrid() {
+        return rrid;
+    }
+
+    public MetadataCellModelTsv setRrid(String rrid) {
+        this.rrid = rrid;
+        return this;
+    }
 
 }

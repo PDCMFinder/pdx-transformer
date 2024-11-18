@@ -70,16 +70,12 @@ public class ExtractJax {
         return new MetadataSharingTsv()
                 .setField(DataConstants.EMPTY)
                 .setModelId(metadataDto.getModelID())
-                .setProviderType(DataConstants.EMPTY)
                 .setAccessibility(DataConstants.EMPTY)
                 .setEuropdxAccessModality(DataConstants.EMPTY)
                 .setEmail(DataConstants.EMPTY)
                 .setName(DataConstants.EMPTY)
                 .setFormUrl(String.format("%s%s", UrlConstants.JAX_CONTACT, metadataDto.getModelID()))
-                .setDatabaseUrl(String.format("%s%s", UrlConstants.JAX_SOURCE_URL, metadataDto.getModelID()))
-                .setProviderName(DataConstants.JAX_FULL_NAME)
-                .setProviderAbbreviation(DataConstants.JAX_ABBREV)
-                .setProject(DataConstants.EMPTY);
+                .setDatabaseUrl(String.format("%s%s", UrlConstants.JAX_SOURCE_URL, metadataDto.getModelID()));
     }
 
     public static MetadataSampleTsv sampleTsv(MetadataDto metadataDto){

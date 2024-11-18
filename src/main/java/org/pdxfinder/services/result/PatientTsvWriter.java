@@ -36,10 +36,16 @@ public class PatientTsvWriter {
                                                     .setPatientId(pdxDto.getPatientID())
                                                     .setSex(pdxDto.getGender())
                                                     .setHistory(pdxDto.getHistory())
-                                                    .setEthnicity(pdxDto.getEthnicity())
+                                                    .setEthnicity(pdxDto.getRace())
                                                     .setEthnicityAssessmentMethod(pdxDto.getEthnicityAssessmentMethod())
-                                                    .setInitialDiagnosis(pdxDto.getInitialDiagnosis())
-                                                    .setAgeAtInitialDiagnosis(pdxDto.getAgeAtInitialDiagnosis())));
+                                                    .setInitialDiagnosis(pdxDto.getClinicalDiagnosis())
+                                                    .setAgeAtInitialDiagnosis(pdxDto.getAgeAtInitialDiagnosis())
+                                                    .setageCategory(DataConstants.NOT_PROVIDED)
+                                                    .setalcoholStatus(DataConstants.NOT_PROVIDED)
+                                                    .setalcoholFrequency(DataConstants.NOT_PROVIDED)
+                                                    .setsmokingStatus(pdxDto.getSmokingStatus())
+                                                    .setfamilyHistory(DataConstants.NOT_PROVIDED)
+        ));
 
         String patientMetaData = FileUtil.serializePojoToTsv(patients);
         String output = String.format("%s%s", outputDirectory, FileNames.METADATA_PATIENT_TSV);

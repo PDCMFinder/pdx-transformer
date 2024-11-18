@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Extract {
 
@@ -25,11 +28,13 @@ public class Extract {
     private SpecimenSearch specimenSearch;
     private OracleDataDto extracted;
     private Map<String,String> accessions;
+    private List growthProperties;
 
     public Extract(SpecimenSearch specimenSearch, OracleDataDto extracted, AccessionsDTO accessions) {
         this.specimenSearch = specimenSearch;
         this.extracted = extracted;
         this.accessions = accessions.getAccessionMap();
+        this.growthProperties = extracted.getGrowthProperties();
     }
 
     public String getModelId(){
@@ -37,15 +42,13 @@ public class Extract {
         String tissueTypeDesc = specimenSearch.getTissuetypedescription();
         String modelID = "";
         String sampleId = "";
-        if ((pdmTypeDesc.equals(CancerModelTypes.PDX_MODEL) || pdmTypeDesc.equals(CancerModelTypes.PATIENT_SPECIMEN) ||
-                pdmTypeDesc.equals(CancerModelTypes.ORGANOID_MODEL) || pdmTypeDesc.equals(CancerModelTypes.CELL_MODEL) )
-                && (tissueTypeDesc.equals(TissueTypeConstants.RESECTION) || tissueTypeDesc.equals(TissueTypeConstants.TUMOR_BIOPSY))) {
+        if (!pdmTypeDesc.equals(CancerModelTypes.CANCER_ASSOCIATED_FIBROBLASTS_CULTURE) && (tissueTypeDesc.equals(TissueTypeConstants.RESECTION) || tissueTypeDesc.equals(TissueTypeConstants.TUMOR_BIOPSY))) {
             // Separate model ids for cell model and organoid models
             if (pdmTypeDesc.equals(CancerModelTypes.ORGANOID_MODEL) || pdmTypeDesc.equals(CancerModelTypes.CELL_MODEL)){
                 for (Sample dSample : extracted.getSamples()) {
                     if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
                         if(dSample.getPdmtypeseqnbr().equals(specimenSearch.getPdmtypeseqnbr())) {
-                            sampleId = dSample.getSampleid();
+                            sampleId = dSample.getSampleid().trim();
                         }
                     }
                 }
@@ -90,9 +93,8 @@ public class Extract {
         String AgeAtDiagnosis = "";
         for (PatientInfo patient : extracted.getPatientList()) {
             if (specimenSearch.getPatientseqnbr().equals(patient.getPatientseqnbr())) {
-                if (patient.getAgeatdiagnosis() != null) {
-                    AgeAtDiagnosis = patient.getAgeatdiagnosisrange();
-                }
+                AgeAtDiagnosis = patient.getAgeatdiagnosisrange();
+                AgeAtDiagnosis = AgeAtDiagnosis == null ? "" : AgeAtDiagnosis;
             }
         }
         return AgeAtDiagnosis;
@@ -101,7 +103,7 @@ public class Extract {
         List<SampleDto> sampleDtoList = new ArrayList<>();
         for (Sample dSample : extracted.getSamples()) {
             if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
-                String sampleId = dSample.getSampleid();
+                String sampleId = dSample.getSampleid().trim().toUpperCase();
                 String wholeExomeSeqYn = dSample.getWholeexomesequenceftpyn();
                 String rnaSeqYn = dSample.getRnasequenceftpyn();
                 String samplePassage = String.valueOf(dSample.getPassageofthissample());
@@ -165,7 +167,7 @@ public class Extract {
                                     .build());
                         }
                     else {
-                        log.info(String.format("%s-%s is neither PDX, Patient Sample, Organoid nor PDC ", modelId, sampleId));
+                        log.info(String.format("%s-%s is neither PDX, Patient Sample, Organoid nor PDC.", modelId, sampleId));
                     }
                 }
             }
@@ -185,18 +187,35 @@ public class Extract {
     }
     public String getGrowth_properties(){
         String growth_property = "";
-        Map <String, String> gp_map = new HashMap<String, String>();
+        Map<String, String> gp_map = extracted.getGrowthProperties().stream().collect(Collectors.toMap(GrowthProperties::getGrowthpropertyseqnbr, GrowthProperties::getGrowthpropertydescription));
         for (Sample dSample : extracted.getSamples()) {
             if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
                 //String sampleId = dSample.getSampleid();
                 if(dSample.getPdmtypeseqnbr().equals(CancerModelTypes.ORGANOID_MODEL_seqNR) || dSample.getPdmtypeseqnbr().equals(CancerModelTypes.PDC_MODEL_seqNR)) {
-                    growth_property = dSample.getGrowthpropertyseqnbr();
+                    growth_property = gp_map.get(dSample.getGrowthpropertyseqnbr());
+                    growth_property = growth_property.equals("Organoids") == true ? "" : growth_property ;
                 }
             }
         }
 
         return growth_property;
     }
+
+    public String getSupplements(){
+        String supplements = "";
+        Map<String, String> supplement_map = extracted.getRequiredMedia().stream().collect(Collectors.toMap(RequiredMedia::getRequiredmediaseqnbr, RequiredMedia::getRequiredmediadescription));
+        for (Sample dSample : extracted.getSamples()) {
+            if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
+                //String sampleId = dSample.getSampleid();
+                if(dSample.getPdmtypeseqnbr().equals(CancerModelTypes.ORGANOID_MODEL_seqNR) || dSample.getPdmtypeseqnbr().equals(CancerModelTypes.PDC_MODEL_seqNR)) {
+                    supplements = supplement_map.get(dSample.getRequiredmediaseqnbr());
+                }
+            }
+        }
+        return supplements;
+    }
+
+
     public String getcomments(){
         String comments = "";
         Map<String, String> MSIStatus = new HashMap<String, String>();
@@ -255,18 +274,65 @@ public class Extract {
         return ParentId;
 
     }
-    public String getSupplier(){
-        String supplier = "";
+
+    public String getgeneMutationStatus(){
+        String geneMutationStatus = "";
         for (Sample dSample : extracted.getSamples()) {
             if (specimenSearch.getSpecimenseqnbr().equals(dSample.getSpecimenseqnbr())) {
-                if(dSample.getPdmtypeseqnbr().equals("6")) {
-                    String sampleId = dSample.getSampleid();
-                    supplier = String.format("PDMR:%s-%s-%s", specimenSearch.getPatientid(), specimenSearch.getSpecimenid(), sampleId);
-                }
+                        geneMutationStatus = dSample.getFacsCharacterization() == null ? "" : dSample.getFacsCharacterization() ;
             }
         }
+        return geneMutationStatus;
 
-        return supplier;
+    }
+
+    public String getresponseToTreatment(){
+        String responseToTreatment = specimenSearch.getPriorbestresponse();
+        responseToTreatment = responseToTreatment.equals("NA") ? "" : responseToTreatment;
+        return responseToTreatment;
+    }
+
+
+    public String getcollectionSite(){
+        String collectionSite = "";
+        for (Specimen specimen : extracted.getSpecimenList()) {
+            if (specimenSearch.getSpecimenseqnbr().equals(specimen.getSpecimenseqnbr())) {
+                collectionSite = specimen.getBiopsysite() == null ? "" : specimen.getBiopsysite() ;
+            }
+        }
+        return collectionSite;
+
+    }
+    public String getSupplier(){
+        String contributor = "";
+        Map<String, String> contributor_map = extracted.getContributors().stream().collect(Collectors.toMap(Contributors::getContributorseqnbr, Contributors::getContributorshortname));
+        for (PatientInfo patient : extracted.getPatientList()) {
+            if (specimenSearch.getPatientid().equals(patient.getPatientid())) {
+                contributor = contributor_map.get(patient.getContributorseqnbr());
+                contributor = contributor.equals("PDMR") == true ? "PDMR": "PDMR/"+contributor;
+            }
+        }
+        return contributor;
+    }
+
+
+
+    public String getexternalID(){
+        String externalID = "";
+        String contributor = "";
+        Map<String, String> contributor_map = extracted.getContributors().stream().collect(Collectors.toMap(Contributors::getContributorseqnbr, Contributors::getContributorshortname));
+
+        for (PatientInfo patient : extracted.getPatientList()) {
+            if (specimenSearch.getPatientid().equals(patient.getPatientid())) {
+                externalID = patient.getContributorpdxid();
+                externalID = externalID == null ? "" : externalID;
+
+                contributor = contributor_map.get(patient.getContributorseqnbr());
+                externalID = contributor + ": " + externalID;
+                //contributor = contributor.equals("PDMR") == true ? "PDMR": "PDMR/"+contributor;
+            }
+        }
+        return externalID;
     }
 
     public String getNotes(){
@@ -303,7 +369,17 @@ public class Extract {
         }
         return ageAtCollection;
     }
-
+    public String gethistory(){
+        String history = "";
+        for (PatientInfo patient : extracted.getPatientList()) {
+            if (specimenSearch.getPatientseqnbr().equals(patient.getPatientseqnbr())) {
+                if (patient.getNotes() != null) {
+                    history = patient.getAdditionalmedicalhistory();
+                }
+            }
+        }
+        return history;
+    }
 
     public String getSmokingHistory(){
         String history = "";
@@ -387,6 +463,24 @@ public class Extract {
         }
         return extractionMethod;
     }
+    public String getAvailability(String modelId){
+        String availability = "";
+        Map<String, String> availmap = new HashMap<String, String>();
+        availmap.put("1", "Available");
+        availmap.put("2", "Currently Unavailable");
+        availmap.put("3", "Not for Distribution");
+        availmap.put("4", "Available Upon Request");
+        availmap.put("5", "Not Applicable");
+        availmap.put("6", "DCTD Only (Restricted Use)");
+        for (DistributionLot distributionLot: extracted.getDistributionLot()){
+            if (distributionLot.distributionlotname().equals(modelId)){
+                availability = distributionLot.cryopreservedfragmentsseqnbr() == "5" ? distributionLot.invitroculturematerialseqnbr() : distributionLot.cryopreservedfragmentsseqnbr();
+                availability = availmap.get(availability);
+            }
+        }
+
+        return availability;
+    }
 
     public List<ValidationDto> getValidations(){
         // Hardcode the validation techniques.
@@ -409,34 +503,40 @@ public class Extract {
                 .setPrimarySite(metadataDto.getPrimarySite())
                 .setStage(metadataDto.getStageValue())
                 .setGrade(metadataDto.getGradeValue())
+                .setCollectionMethod(metadataDto.getExtractionMethod())
+                .setgeneMutationStatus(metadataDto.geneMutationStatus())
+                .setCollectionMethod(metadataDto.collectionMethod())
+                .setresponseToTreatment(metadataDto.responseToTreatment())
 
                 .setStagingSystem(DataConstants.EMPTY)
                 .setCollectionDate(metadataDto.getDateAtCollection())
                 .setCollectionEvent(DataConstants.EMPTY)
                 .setMonthsSinceCollectionOne(DataConstants.EMPTY)
-                .setCollectionSite(DataConstants.NOT_SPECIFIED)
+                .setCollectionSite(metadataDto.collectionSite())
                 .setGradingSystem(DataConstants.EMPTY)
                 .setVirologyStatus(DataConstants.EMPTY)
-                .setSharable(DataConstants.EMPTY)
-                .setTreatmenNaiveAtCollection(DataConstants.EMPTY)
+                .setSharable("Yes")
+                .setTreatmenNaiveAtCollection(metadataDto.getTreatmentNaive())
                 .setTreated(DataConstants.EMPTY)
                 .setPriorTreatment(DataConstants.EMPTY)
                 .setModelId(metadataDto.getModelID());
     }
+    LocalDate today = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    String formattedDate = today.format(formatter);
 
     public MetadataSharingTsv sharingTsv(MetadataDto metadataDto) {
         return new MetadataSharingTsv()
                 .setField(DataConstants.EMPTY)
                 .setModelId(metadataDto.getModelID())
-                .setProviderType(DataConstants.EMPTY)
-                .setAccessibility(DataConstants.EMPTY)
+                .setdateSubmitted(formattedDate)
+                .setAccessibility("Academia and Industry")
                 .setEuropdxAccessModality(DataConstants.EMPTY)
-                .setEmail(DataConstants.EMPTY)
-                .setName(DataConstants.EMPTY)
+                .setEmail("hilfikerp@mail.nih.gov")
+                .setName("Pete Hilfiker")
                 .setFormUrl(UrlConstants.PDMR_CONTACT_URL)
                 .setDatabaseUrl(metadataDto.getSourceUrl())
-                .setProviderName(DataConstants.PDMR_FULL_NAME)
-                .setProviderAbbreviation(DataConstants.PDMR_ABBREV)
-                .setProject(DataConstants.EMPTY);
+                .setmodelAvailability(metadataDto.getAccessibility())
+                .setlicense("CC0");
     }
 }

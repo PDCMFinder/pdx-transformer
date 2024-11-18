@@ -16,15 +16,18 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "tumour_type",
         "primary_site",
         "collection_site",
+        "collection_method",
         "stage",
         "staging_system",
         "grade",
         "grading_system",
         "virology_status",
+        "gene_mutation_status",
         "sharable",
         "treatment_naive_at_collection",
-        "treated",
-        "prior_treatment",
+        "treated_at_collection",
+        "treated_prior_to_collection",
+        "response_to_treatment",
         "model_id",
 })
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -64,6 +67,9 @@ public class MetadataSampleTsv {
     @JsonProperty("collection_site")
     private String collectionSite;
 
+    @JsonProperty("collection_method")
+    private String collectionMethod;
+
     @JsonProperty("stage")
     private String stage;
 
@@ -82,14 +88,20 @@ public class MetadataSampleTsv {
     @JsonProperty("sharable")
     private String sharable;
 
+    @JsonProperty("gene_mutation_status")
+    private String geneMutationStatus;
+
     @JsonProperty("treatment_naive_at_collection")
     private String treatmenNaiveAtCollection;
 
-    @JsonProperty("treated")
+    @JsonProperty("treated_at_collection")
     private String treated;
 
-    @JsonProperty("prior_treatment")
+    @JsonProperty("treated_prior_to_collection")
     private String priorTreatment;
+
+    @JsonProperty("response_to_treatment")
+    private String responseToTreatment;
 
     @JsonProperty("model_id")
     private String modelId;
@@ -106,15 +118,18 @@ public class MetadataSampleTsv {
         this.tumourType = "";
         this.primarySite = "";
         this.collectionSite = "";
+        this.collectionMethod = "";
         this.stage = "";
         this.stagingSystem = "";
         this.grade = "";
         this.gradingSystem = "";
         this.virologyStatus = "";
+        this.geneMutationStatus = "";
         this.sharable = "";
         this.treatmenNaiveAtCollection = "";
         this.treated = "";
         this.priorTreatment = "";
+        this.responseToTreatment = "";
         this.modelId = "";
     }
 
@@ -173,6 +188,11 @@ public class MetadataSampleTsv {
         return this;
     }
 
+    public MetadataSampleTsv setCollectionMethod(String collectionMethod) {
+        this.collectionMethod = collectionMethod;
+        return this;
+    }
+
     public MetadataSampleTsv setStage(String stage) {
         this.stage = stage;
         return this;
@@ -198,6 +218,11 @@ public class MetadataSampleTsv {
         return this;
     }
 
+    public MetadataSampleTsv setgeneMutationStatus(String geneMutationStatus) {
+        this.geneMutationStatus = geneMutationStatus;
+        return this;
+    }
+
     public MetadataSampleTsv setSharable(String sharable) {
         this.sharable = sharable;
         return this;
@@ -215,6 +240,11 @@ public class MetadataSampleTsv {
 
     public MetadataSampleTsv setPriorTreatment(String priorTreatment) {
         this.priorTreatment = priorTreatment;
+        return this;
+    }
+
+    public MetadataSampleTsv setresponseToTreatment(String responseToTreatment) {
+        this.responseToTreatment = responseToTreatment;
         return this;
     }
 

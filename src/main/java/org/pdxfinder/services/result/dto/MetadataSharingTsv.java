@@ -7,16 +7,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
         "Field",
         "model_id",
-        "provider_type",
         "accessibility",
         "europdx_access_modality",
+        "date_submitted",
+        "model_availability",
         "email",
         "name",
         "form_url",
         "database_url",
-        "provider_name",
-        "provider_abbreviation",
-        "project"
+        "license"
 })
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MetadataSharingTsv {
@@ -26,9 +25,6 @@ public class MetadataSharingTsv {
 
     @JsonProperty("model_id")
     private String modelId;
-
-    @JsonProperty("provider_type")
-    private String providerType;
 
     @JsonProperty("accessibility")
     private String accessibility;
@@ -48,28 +44,28 @@ public class MetadataSharingTsv {
     @JsonProperty("database_url")
     private String databaseUrl;
 
-    @JsonProperty("provider_name")
-    private String providerName;
+    @JsonProperty("date_submitted")
+    private String dateSubmitted;
 
-    @JsonProperty("provider_abbreviation")
-    private String providerAbbreviation;
+    @JsonProperty("model_availability")
+    private String modelAvailability;
 
-    @JsonProperty("project")
-    private String project;
+    @JsonProperty("license")
+    private String license;
 
     public MetadataSharingTsv() {
         this.field = "";
         this.modelId = "";
-        this.providerType = "";
+        this.dateSubmitted = "";
         this.accessibility = "";
         this.europdxAccessModality = "";
         this.email = "";
         this.name = "";
         this.formUrl = "";
         this.databaseUrl = "";
-        this.providerName = "";
-        this.providerAbbreviation = "";
-        this.project = "";
+        this.modelAvailability = "";
+        this.license = "";
+
     }
 
     public MetadataSharingTsv setField(String field) {
@@ -82,8 +78,8 @@ public class MetadataSharingTsv {
         return this;
     }
 
-    public MetadataSharingTsv setProviderType(String providerType) {
-        this.providerType = providerType;
+    public MetadataSharingTsv setlicense(String license) {
+        this.license = license;
         return this;
     }
 
@@ -117,20 +113,16 @@ public class MetadataSharingTsv {
         return this;
     }
 
-    public MetadataSharingTsv setProviderName(String providerName) {
-        this.providerName = providerName;
+    public MetadataSharingTsv setdateSubmitted(String dateSubmitted) {
+        this.dateSubmitted = dateSubmitted;
         return this;
     }
 
-    public MetadataSharingTsv setProviderAbbreviation(String providerAbbreviation) {
-        this.providerAbbreviation = providerAbbreviation;
+    public MetadataSharingTsv setmodelAvailability(String modelAvailability) {
+        this.modelAvailability = modelAvailability;
         return this;
     }
 
-    public MetadataSharingTsv setProject(String project) {
-        this.project = project;
-        return this;
-    }
 
     public MetadataSharingTsv build() {
         return this;
@@ -144,8 +136,8 @@ public class MetadataSharingTsv {
         return modelId;
     }
 
-    public String getProviderType() {
-        return providerType;
+    public String getDateSubmitted() {
+        return dateSubmitted;
     }
 
     public String getAccessibility() {
@@ -172,15 +164,12 @@ public class MetadataSharingTsv {
         return databaseUrl;
     }
 
-    public String getProviderName() {
-        return providerName;
+    public String getModelAvailability() {
+        return modelAvailability;
     }
 
-    public String getProviderAbbreviation() {
-        return providerAbbreviation;
+    public String getLicense() {
+        return license;
     }
 
-    public String getProject() {
-        return project;
-    }
 }

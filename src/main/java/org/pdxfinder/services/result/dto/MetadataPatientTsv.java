@@ -12,7 +12,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "ethnicity",
         "ethnicity_assessment_method",
         "initial_diagnosis",
-        "age_at_initial_diagnosis"
+        "age_at_initial_diagnosis",
+        "age_category",
+        "smoking_status",
+        "alcohol_status",
+        "alcohol_frequency",
+        "family_history_of_cancer"
 })
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MetadataPatientTsv {
@@ -41,6 +46,22 @@ public class MetadataPatientTsv {
     @JsonProperty("age_at_initial_diagnosis")
     private String ageAtInitialDiagnosis;
 
+    @JsonProperty("age_category")
+    private String ageCategory;
+
+    @JsonProperty("smoking_status")
+    private String smokingStatus;
+
+    @JsonProperty("alcohol_status")
+    private String alcoholStatus;
+
+    @JsonProperty("alcohol_frequency")
+    private String alcoholFrequency;
+
+    @JsonProperty("family_history_of_cancer")
+    private String familyHistory;
+
+
     public MetadataPatientTsv() {
         this.field = "";
         this.patientId = "";
@@ -50,6 +71,11 @@ public class MetadataPatientTsv {
         this.ethnicityAssessmentMethod = "";
         this.initialDiagnosis = "";
         this.ageAtInitialDiagnosis = "";
+        this.ageCategory = "";
+        this.smokingStatus = "";
+        this.alcoholStatus = "";
+        this.alcoholFrequency = "";
+        this.familyHistory = "";
     }
 
     public MetadataPatientTsv setField(String field) {
@@ -89,6 +115,27 @@ public class MetadataPatientTsv {
 
     public MetadataPatientTsv setAgeAtInitialDiagnosis(String ageAtInitialDiagnosis) {
         this.ageAtInitialDiagnosis = ageAtInitialDiagnosis;
+        return this;
+    }
+
+    public MetadataPatientTsv setageCategory(String ageCategory) {
+        this.ageCategory = ageCategory;
+        return this;
+    }
+    public MetadataPatientTsv setsmokingStatus(String smokingStatus) {
+        this.smokingStatus = smokingStatus;
+        return this;
+    }
+    public MetadataPatientTsv setalcoholStatus(String alcoholStatus) {
+        this.alcoholStatus = alcoholStatus;
+        return this;
+    }
+    public MetadataPatientTsv setalcoholFrequency(String alcoholFrequency) {
+        this.alcoholFrequency = alcoholFrequency;
+        return this;
+    }
+    public MetadataPatientTsv setfamilyHistory(String familyHistory) {
+        this.familyHistory = familyHistory;
         return this;
     }
 

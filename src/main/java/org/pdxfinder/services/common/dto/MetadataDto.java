@@ -45,22 +45,39 @@ import java.util.Optional;
         "Source url",
 
         "model_name",
+        "model_name_aliases",
         "model_type",
-        "growth_properties",
         "parent_id",
         "origin_patient_sample_id",
-        "comments",
+        "growth_properties",
+        "media_id",
+        "growth_media",
+        "plate_coating",
+        "other_plate_coating",
+        "passage_number",
+        "contaminated",
+        "contamination_details",
+        "supplements",
+        "drug",
+        "drug_concentration",
+        "publications",
         "supplier",
+        "supplier_type",
+        "catalog_number",
+        "vendor_link",
+        "rrid",
         "external_ids",
+        "comments",
 
         "sample_state",
         "publications",
         "history",
+        "smokingStatus",
         "ethnicity_assessment_method",
         "age_at_initial_diagnosis",
         "sample_meta_data",
         "sharing",
-        "cell_model"
+
 })
 public class MetadataDto {
 
@@ -95,6 +112,7 @@ public class MetadataDto {
 
     @JsonProperty("Clinical Diagnosis")
     private String clinicalDiagnosis;
+
     @JsonProperty("Clinical Diagnosis Notes")
     private String clinicalDiagnosisnotes;
 
@@ -130,6 +148,9 @@ public class MetadataDto {
 
     @JsonProperty("Treatment Naive")
     private String treatmentNaive;
+
+    @JsonProperty("smokingSatus")
+    private String smokingStatus;
 
     @JsonProperty("Engraftment Site")
     private String engraftmentSite;
@@ -185,11 +206,12 @@ public class MetadataDto {
     @JsonProperty("cellmodel")
     private MetadataCellModelTsv metadataCellModelTsv;
 
+
     @JsonProperty("model_name")
     private String model_name;
 
-    @JsonProperty("growth_properties")
-    private String growth_properties;
+    @JsonProperty("model_name_aliases")
+    private String model_name_aliases;
 
 
     @JsonProperty("parent_id")
@@ -198,18 +220,115 @@ public class MetadataDto {
     @JsonProperty("origin_patient_sample_id")
     private String origin_patient_sample_id;
 
-    @JsonProperty("comments")
-    private String comments;
+    @JsonProperty("growth_properties")
+    private String growth_properties;
+
+    @JsonProperty("media_id")
+    private String media_id;
+
+    @JsonProperty("growth_media")
+    private String growth_media;
+
+    @JsonProperty("plate_coating")
+    private String plate_coating;
+
+    @JsonProperty("other_plate_coating")
+    private String other_plate_coating;
+
+    @JsonProperty("passage_number")
+    private String passage_number;
+
+    @JsonProperty("contaminated")
+    private String contaminated;
+
+    @JsonProperty("contamination_details")
+    private String contamination_details;
+
+    @JsonProperty("supplements")
+    private String supplements;
+
+    @JsonProperty("drug")
+    private String drug;
+
+    @JsonProperty("drug_concentration")
+    private String drug_concentration;
 
     @JsonProperty("supplier")
     private String supplier;
 
+    @JsonProperty("supplier_type")
+    private String supplier_type;
+
+    @JsonProperty("catalog_number")
+    private String catalog_number;
+
+    @JsonProperty("vendor_link")
+    private String vendor_link;
+
+    @JsonProperty("rrid")
+    private String rrid;
+
     @JsonProperty("external_ids")
     private String external_ids;
 
+    @JsonProperty("comments")
+    private String comments;
 
     @JsonProperty("model_type")
     private String model_type;
+
+    @JsonProperty("gene_mutation_status")
+    private String geneMutationStatus;
+
+    @JsonProperty("response_to_treatment")
+    private String responseToTreatment;
+
+    @JsonProperty("collection_method")
+    private String collectionMethod;
+
+    @JsonProperty("collection_site")
+    private String collectionSite;
+
+    public MetadataDto setsmokingStatus(String smokingStatus) {
+        this.smokingStatus = smokingStatus;
+        return this;
+    }
+
+    public MetadataDto setgeneMutationStatus(String geneMutationStatus) {
+        this.geneMutationStatus = geneMutationStatus;
+        return this;
+    }
+    public MetadataDto setresponseToTreatment(String responseToTreatment) {
+        this.responseToTreatment = responseToTreatment;
+        return this;
+    }
+    public MetadataDto setcollectionMethod(String collectionMethod) {
+        this.collectionMethod = collectionMethod;
+        return this;
+    }
+
+    public MetadataDto setcollectionSite(String collectionSite) {
+        this.collectionSite = collectionSite;
+        return this;
+    }
+    public String getSmokingStatus() {
+        return smokingStatus;
+    }
+
+    public String collectionSite() {
+        return collectionSite;
+    }
+    public String collectionMethod() {
+        return collectionMethod;
+    }
+
+    public String responseToTreatment() {
+        return responseToTreatment;
+    }
+
+    public String geneMutationStatus() {
+        return geneMutationStatus;
+    }
 
     public String getModel_type() {
         return model_type;
@@ -645,6 +764,144 @@ public class MetadataDto {
         this.metadataCellModelTsv = metadataCellModelTsv;
         return this;
     }
+
+    public String model_name_aliases() {
+        return model_name_aliases;
+    }
+
+    public MetadataDto setModel_name_aliases(String model_name_aliases) {
+        this.model_name_aliases = model_name_aliases;
+        return this;
+    }
+
+    public String media_id() {
+        return media_id;
+    }
+
+    public MetadataDto setMedia_id(String media_id) {
+        this.media_id = media_id;
+        return this;
+    }
+
+    public String growth_media() {
+        return growth_media;
+    }
+
+    public MetadataDto setGrowth_media(String growth_media) {
+        this.growth_media = growth_media;
+        return this;
+    }
+
+    public String plate_coating() {
+        return plate_coating;
+    }
+
+    public MetadataDto setPlate_coating(String plate_coating) {
+        this.plate_coating = plate_coating;
+        return this;
+    }
+
+    public String other_plate_coating() {
+        return other_plate_coating;
+    }
+
+    public MetadataDto setOther_plate_coating(String other_plate_coating) {
+        this.other_plate_coating = other_plate_coating;
+        return this;
+    }
+
+    public String passage_number() {
+        return passage_number;
+    }
+
+    public MetadataDto setPassage_number(String passage_number) {
+        this.passage_number = passage_number;
+        return this;
+    }
+
+    public String contaminated() {
+        return contaminated;
+    }
+
+    public MetadataDto setContaminated(String contaminated) {
+        this.contaminated = contaminated;
+        return this;
+    }
+
+    public String contamination_details() {
+        return contamination_details;
+    }
+
+    public MetadataDto setContamination_details(String contamination_details) {
+        this.contamination_details = contamination_details;
+        return this;
+    }
+
+    public String supplements() {
+        return supplements;
+
+    }
+
+    public MetadataDto setSupplements(String supplements) {
+        this.supplements = supplements;
+        return this;
+    }
+
+    public String drug() {
+        return drug;
+    }
+
+    public MetadataDto setDrug(String drug) {
+        this.drug = drug;
+        return this;
+    }
+
+    public String drug_concentration() {
+        return drug_concentration;
+    }
+
+    public MetadataDto setDrug_concentration(String drug_concentration) {
+        this.drug_concentration = drug_concentration;
+        return this;
+    }
+
+    public String supplier_type() {
+        return supplier_type;
+    }
+
+    public MetadataDto setSupplier_type(String supplier_type) {
+        this.supplier_type = supplier_type;
+        return this;
+    }
+
+    public String catalog_number() {
+        return catalog_number;
+    }
+
+    public MetadataDto setCatalog_number(String catalog_number) {
+        this.catalog_number = catalog_number;
+        return this;
+    }
+
+    public String vendor_link() {
+        return vendor_link;
+    }
+
+    public MetadataDto setVendor_link(String vendor_link) {
+        this.vendor_link = vendor_link;
+        return this;
+    }
+
+    public String rrid() {
+        return rrid;
+    }
+
+    public MetadataDto setRrid(String rrid) {
+        this.rrid = rrid;
+        return this;
+    }
+
+
 
     public MetadataDto build() {
         return this;

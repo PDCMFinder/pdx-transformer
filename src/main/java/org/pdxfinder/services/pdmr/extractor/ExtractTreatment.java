@@ -22,16 +22,19 @@ public class ExtractTreatment {
         List<TreatmentDto> currentTherapies = new ArrayList<>();
         for (CurrentTherapy currentTherapy : extracted.getCurrentTherapies()) {
             String drug = "";
-            String duration = DataConstants.NOT_SPECIFIED;
             String response = "";
 
-            if (specimenSearch.getPatientseqnbr().equals(currentTherapy.getPatientseqnbr())) {
-                String startingDate = String.valueOf(currentTherapy.getDateregimenstarted());
+            if (specimenSearch.getPatientseqnbr().equals(currentTherapy.getPatientseqnbr()) &&
+                    (!currentTherapy.getRegimen().toLowerCase().contains("naive") && !currentTherapy.getRegimen().toLowerCase().contains("no current") &&  !currentTherapy.getRegimen().toLowerCase().contains("no prior") && !currentTherapy.getRegimen().toLowerCase().contains("undefined") && !currentTherapy.getRegimen().toLowerCase().contains("none"))
+            ) {
+                String duration = currentTherapy.getNumberofcycles() == null ? DataConstants.NOT_PROVIDED : currentTherapy.getNumberofcycles();
+                String startingDate = currentTherapy.getDateregimenstarted() == null ? DataConstants.NOT_PROVIDED : String.valueOf(currentTherapy.getDateregimenstarted());
                 try {
-                    startingDate = startingDate.equals(DataConstants.NULL_STRING) ? DataConstants.NOT_SPECIFIED : startingDate.substring(0, 10);
+                    startingDate = startingDate.equals(DataConstants.NOT_PROVIDED) ? DataConstants.NOT_PROVIDED : startingDate.substring(0, 10);
                 } catch (Exception e) {
                     log.warn(e.getMessage());
                 }
+
                 for (StandardizedRegimens standardRegimen : extracted.getStandardRegimens()) {
                     if (currentTherapy.getStandardizedregimenseqnbr().equals(standardRegimen.getRegimenseqnbr())) {
                         drug = standardRegimen.getDisplayedregimen().replace(",", " +");
@@ -40,7 +43,10 @@ public class ExtractTreatment {
                 for (ClinicalResponses dClinicalResponse : extracted.getClinicalResponses()) {
                     if (currentTherapy.getBestresponseseqnbr().equals(dClinicalResponse.getClinicalresponseseqnbr())) {
                         response = dClinicalResponse.getClinicalresponsedescription();
-                        response = response.equals(DataConstants.UNKNOWN) ? "Not Specified" : response;
+                        response = response.equals(DataConstants.UNKNOWN) ? DataConstants.NOT_PROVIDED : response;
+                        response = response.equals("Not Applicable") ? DataConstants.NOT_PROVIDED : response;
+                        response = response.equals("Non-evaluable") ? DataConstants.NOT_PROVIDED : response;
+                        response = response.equals("Other") ? DataConstants.NOT_PROVIDED : response;
                     }
                 }
 
